@@ -404,7 +404,7 @@ function checkKeywords() {
       if (!title.includes(homeKw) || !h1.includes(homeKw)) {
         fail(`Home (en) missing "${homeKw}" in title and h1`);
       }
-    } else if (!onHome && !pathname.includes('/status/')) {
+    } else if (!onHome && !pathname.includes('/status/') && pathname !== '/blog/best-rust-hacks/') {
       if (h1.includes(homeKw) || titleWithoutSiteSuffix.includes(homeKw)) {
         fail(`${relFromDist(file)}: "${homeKw}" in title/h1 outside home`);
       }

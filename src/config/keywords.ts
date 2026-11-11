@@ -14,7 +14,6 @@ export const PRODUCT_H1: Record<string, string> = {
 };
 
 export const PRODUCT_PAGE_KEYWORDS: Record<string, string> = {
-  spoofer: 'hwid spoofer rust',
   ugc: 'rust account recovery',
 };
 

@@ -7,12 +7,12 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
     title: 'Rust Hacks for Windows PC | Rust Game Hacks & Plans',
     description:
-      'Rust hacks and rust game hacks for Windows PC—player visuals, resource filters, and raid tools. Compare the hack loader, HWID spoofer, and account recovery on rust-hacks.com.',
+      'Rust hacks and rust game hacks for Windows PC: player visuals, resource filters, and raid tools. Compare the loader, spoofer, and account recovery now.',
   },
   '/product/': {
-    title: 'Rust Hacks Catalog | Monthly and Lifetime Plans',
+    title: 'Rust Game Hacks | Monthly and Lifetime Plans',
     description:
-      'Rust hack loader, HWID spoofer, and UGC account recovery for Windows PC. Hack and UGC are $35 monthly or $150 lifetime; the HWID spoofer is $50 monthly or $150 lifetime.',
+      'Rust game hacks for Windows PC: a loader, HWID spoofer, and account recovery. Loader and recovery are $35 monthly or $150 lifetime; the spoofer is $50 or $150.',
   },
   '/product/rust-cheat/': {
     title: 'Rust Hack Loader | Aim, Visuals & World Overlays',
@@ -35,14 +35,14 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'See which Windows utility fits a hardware flag and which fits an account appeal. Both check out separately from the hack loader.',
   },
   '/blog/': {
-    title: 'Windows Guides for Setup, Visuals, and Hardware',
+    title: 'Windows PC Guides for Setup, Visuals, and Hardware',
     description:
-      'Published Windows PC guides on setup, hardware fingerprint tools, and plan pricing for rust-hacks.com.',
+      'Published Windows PC guides on setup, hardware fingerprint tools, aim, visuals, and how monthly and lifetime plans differ before checkout on rust-hacks.com.',
   },
   '/forum/': {
-    title: 'Rust Hacks Community Forum | Setup and Plans',
+    title: 'Community Forum | Setup, Plans, and Patch Days',
     description:
-      'Forum threads on the Rust hack loader, visuals, $35 monthly and $150 lifetime plans, and EAC patch days.',
+      'Forum threads on the loader, visuals, $35 monthly and $150 lifetime plans, and EAC patch days.',
   },
   '/faq/': {
     title: 'FAQ – Plans, Setup, and EAC Risk Before Checkout',
@@ -50,14 +50,14 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Answers on checkout, EAC updates, Windows requirements, hardware flags, and how the loader, spoofer, and account tool differ.',
   },
   '/support/': {
-    title: 'Rust Hacks Support | Loader and Portal Help',
+    title: 'Support | Loader, Checkout, and Portal Help',
     description:
       'Loader, checkout, and portal help for Windows tools, the HWID spoofer, and account appeals via Discord support.',
   },
   '/about/': {
-    title: 'About rust-hacks.com | Portal Delivery and Risk',
+    title: 'About This Rust Store | Checkout, Delivery, and Risk',
     description:
-      'What rust-hacks.com sells, how checkout and portal delivery work, and ban risk when you use these tools on Windows PC.',
+      'What this store sells, how checkout and portal delivery work, and the ban risk you accept when these Windows PC tools run after a game or anti-cheat patch.',
   },
   '/privacy/': {
     title: 'Privacy notes for analytics and cookies',

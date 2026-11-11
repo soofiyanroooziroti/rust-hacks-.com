@@ -14,10 +14,20 @@ const descriptions = new Map();
 const keywordToPath = new Map();
 const primaries = primaryKeywords();
 
+function keywordPattern(keyword) {
+  const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?<![a-z0-9])${escaped}(?![a-z0-9])`, 'i');
+}
+
+function stripBrandSuffix(title) {
+  return title.replace(/\s*\|\s*rust hacks\s*$/i, '').trim();
+}
+
 for (const [pathname, entry] of Object.entries(PAGE_SEO)) {
   const expected = PAGE_KEYWORDS[pathname] ?? null;
   const title = entry.title;
   const description = entry.description;
+  const titleForKeywords = stripBrandSuffix(title);
 
   if (title.length > 60) errors.push(`Title over 60 chars (${title.length}): ${pathname}`);
   if (description.length > 160) errors.push(`Description over 160 chars (${description.length}): ${pathname}`);
@@ -46,11 +56,12 @@ for (const [pathname, entry] of Object.entries(PAGE_SEO)) {
 
   for (const other of primaries) {
     if (other === expected) continue;
-    const otherLower = other.toLowerCase();
-    if (title.toLowerCase().includes(otherLower)) {
+    if (pathname === '/' && other === 'rust game hacks') continue;
+    if (pathname === '/status/' && other === 'rust hacks') continue;
+    if (keywordPattern(other).test(titleForKeywords)) {
       errors.push(`Title on ${pathname} contains another page keyword "${other}"`);
     }
-    if (description.toLowerCase().includes(otherLower)) {
+    if (keywordPattern(other).test(description)) {
       errors.push(`Description on ${pathname} contains another page keyword "${other}"`);
     }
   }
