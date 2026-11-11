@@ -1,0 +1,197 @@
+---
+import '../styles/blog-sidebar.css';
+import Icon from './icons/Icon.astro';
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+import { blogPostPath, localizedPath, ROUTES } from '../utils/path';
+import type { BlogPostFull } from '../data/blog';
+import { getBlogPost } from '../data/blog';
+import { Badge } from '@/components/starwind/badge';
+import BlogQuickFacts from './BlogQuickFacts.astro';
+
+interface Props {
+  post: BlogPostFull;
+  related: BlogPostFull[];
+  class?: string;
+}
+
+const { post, related, class: className } = Astro.props;
+
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+const side = (t.blogSidebar ?? {}) as Record<string, string>;
+
+const h2Count = post.body.filter((b) => b.type === 'h2').length;
+
+const relatedShort = related.slice(0, 2);
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+const tocFromHeadings = post.body
+  .filter((block) => block.type === 'h2' || block.type === 'h3')
+  .map((block) => ({
+    level: block.type as 'h2' | 'h3',
+    text: 'text' in block ? block.text : '',
+    id: slugify('text' in block ? block.text : ''),
+  }));
+
+const tocFallbackLabel = side.tocFallbackLabel ?? 'Start of article';
+const toc =
+  tocFromHeadings.length > 0
+    ? tocFromHeadings
+    : [{ level: 'h2' as const, text: tocFallbackLabel, id: 'blog-article-start' }];
+
+const tocCount = tocFromHeadings.length > 0 ? h2Count : toc.length > 0 ? 1 : 0;
+
+const UTILITY_SLUG = 'what-an-hwid-spoofer-does';
+const onUtilityPost = post.slug === UTILITY_SLUG;
+const utilityPost = getBlogPost(UTILITY_SLUG, locale);
+const otherReads: BlogPostFull[] = [];
+const usedRelated = new Set(relatedShort.map((item) => item.slug));
+const extraReads = [...related.slice(2), ...otherReads].filter((item) => !usedRelated.has(item.slug));
+const slotPosts: BlogPostFull[] = onUtilityPost
+  ? extraReads.slice(0, 2)
+  : utilityPost
+    ? [utilityPost]
+    : [];
+const slotHeading = onUtilityPost
+  ? (side.moreGuides ?? 'More guides')
+  : (side.utilityGuides ?? 'HWID spoofer');
+---
+
+<aside
+  class:list={[
+    'blog-sidebar min-w-0 lg:self-start lg:pr-0.5',
+    className,
+  ]}
+  aria-label={side.ariaLabel ?? 'Article sidebar'}
+>
+  {
+    toc.length > 0 && (
+      <section class="blog-sidebar__block" aria-labelledby="blog-sidebar-toc-title">
+        <h2 id="blog-sidebar-toc-title" class="blog-sidebar__heading">
+          <Icon name="layers" size={14} class="text-primary" aria-hidden="true" />
+          <span class="blog-sidebar__heading-text">{side.inThisArticle ?? 'In this article'}</span>
+          {tocCount > 0 && (
+            <Badge variant="secondary" size="sm" class="h-5 shrink-0 rounded-full px-1.5 tabular-nums text-[10px]">
+              {tocCount}
+            </Badge>
+          )}
+        </h2>
+        <nav aria-label={side.tocAria ?? 'Table of contents'}>
+          <ul class="blog-sidebar__toc-list" data-blog-toc>
+            {toc.map((item) => (
+              <li class:list={[item.level === 'h3' && 'blog-sidebar__toc-item--nested']}>
+                <button
+                  type="button"
+                  class="blog-sidebar__toc-link blog-toc-link truncate"
+                  data-toc-target={item.id}
+                  title={item.text}
+                >
+                  {item.text}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </section>
+    )
+  }
+
+  <section class="blog-sidebar__block" aria-labelledby="blog-sidebar-related-title">
+    <h2 id="blog-sidebar-related-title" class="blog-sidebar__heading">
+      <Icon name="navBlog" size={14} class="text-primary" aria-hidden="true" />
+      {side.relatedGuides ?? 'Related guides'}
+    </h2>
+    {
+      relatedShort.length > 0 ? (
+        <ul class="blog-sidebar__list">
+          {relatedShort.map((item) => (
+            <li>
+              <a href={blogPostPath(item.slug, locale)} class="blog-sidebar__link" title={item.title}>
+                <Icon name="arrowUpRight" size={13} class="shrink-0 opacity-70" aria-hidden="true" />
+                <span class="blog-sidebar__truncate">{item.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <a href={localizedPath(ROUTES.blog, locale)} class="blog-sidebar__link" title={side.allArticles ?? 'All articles'}>
+          <Icon name="arrowUpRight" size={13} class="shrink-0 opacity-70" aria-hidden="true" />
+          <span class="blog-sidebar__truncate">{side.allArticles ?? 'All articles'}</span>
+        </a>
+      )
+    }
+  </section>
+
+  <section class="blog-sidebar__block blog-sidebar__block--quick-facts" aria-labelledby="blog-sidebar-quick-facts-title">
+    <h2 id="blog-sidebar-quick-facts-title" class="blog-sidebar__heading blog-sidebar__heading--sr">
+      {side.quickFactsTitle ?? 'Quick facts'}
+    </h2>
+    <BlogQuickFacts locale={locale} />
+  </section>
+
+  {
+    slotPosts.length > 0 && (
+      <section class="blog-sidebar__block" aria-labelledby="blog-sidebar-utility-title">
+        <h2 id="blog-sidebar-utility-title" class="blog-sidebar__heading">
+          <Icon name="navBlog" size={14} class="text-primary" aria-hidden="true" />
+          {slotHeading}
+        </h2>
+        <ul class="blog-sidebar__list">
+          {slotPosts.map((item) => (
+            <li>
+              <a href={blogPostPath(item.slug, locale)} class="blog-sidebar__link" title={item.title}>
+                <Icon name="arrowUpRight" size={13} class="shrink-0 opacity-70" aria-hidden="true" />
+                <span class="blog-sidebar__truncate">{item.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</aside>
+
+<script>
+  const tocRoot = document.querySelector('[data-blog-toc]');
+  if (tocRoot) {
+    const links = [...tocRoot.querySelectorAll<HTMLButtonElement>('[data-toc-target]')];
+    const headings = links
+      .map((link) => document.getElementById(link.getAttribute('data-toc-target')!))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        const id = link.getAttribute('data-toc-target');
+        if (!id) return;
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    if (headings.length > 0) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+          if (!visible) return;
+
+          links.forEach((link) => link.classList.remove('is-active'));
+          const active = links.find(
+            (link) => link.getAttribute('data-toc-target') === visible.target.id,
+          );
+          active?.classList.add('is-active');
+        },
+        { rootMargin: '-20% 0px -55% 0px', threshold: [0, 0.25, 0.5, 1] },
+      );
+
+      headings.forEach((heading) => observer.observe(heading));
+    }
+  }
+</script>

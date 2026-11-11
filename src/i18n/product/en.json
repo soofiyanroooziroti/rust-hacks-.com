@@ -1,0 +1,319 @@
+{
+  "steps": [
+    {
+      "title": "Check status",
+      "desc": "Confirm modules are online on rust-hacks.com before you buy—especially after a Rust or ACE update."
+    },
+    {
+      "title": "Pick a plan",
+      "desc": "Choose monthly or lifetime—same USD pricing on every product in the lineup."
+    },
+    {
+      "title": "Secure checkout",
+      "desc": "Complete checkout on Zadeyo. Your license unlocks in the portal with instant delivery."
+    },
+    {
+      "title": "Install & verify",
+      "desc": "Follow the setup guide, load a conservative preset, and test in a low-stakes mode before ranked play."
+    }
+  ],
+  "howToGet": "How to get {name}",
+  "cheats": {
+    "groupNames": [
+      "Visual ESP Features",
+      "Visual ESP Features 2",
+      "Weapon Options",
+      "Aimbot Options",
+      "Misc Options",
+      "Config Options"
+    ],
+    "descs": [
+      "Toggle Players — menu option on the Rust hack loader.",
+      "Custom Players Color — menu option on the Rust hack loader.",
+      "Custom Team Color — menu option on the Rust hack loader.",
+      "Player Distance Slider — menu option on the Rust hack loader.",
+      "Toggle Scientists — menu option on the Rust hack loader.",
+      "Custom Scientists Color — menu option on the Rust hack loader.",
+      "Scientists Distance — menu option on the Rust hack loader.",
+      "ESP Style — menu option on the Rust hack loader.",
+      "Box ESP — menu option on the Rust hack loader.",
+      "Skeleton ESP — menu option on the Rust hack loader.",
+      "Name ESP — menu option on the Rust hack loader.",
+      "Health ESP — menu option on the Rust hack loader.",
+      "Player Item ESP — menu option on the Rust hack loader.",
+      "Player Weapon ESP — menu option on the Rust hack loader.",
+      "Toggle Animal ESP — menu option on the Rust hack loader.",
+      "Animal ESP Color — menu option on the Rust hack loader.",
+      "Animal Distance Slider — menu option on the Rust hack loader.",
+      "Boar ESP — menu option on the Rust hack loader.",
+      "Deer ESP — menu option on the Rust hack loader.",
+      "Bear ESP — menu option on the Rust hack loader.",
+      "Polar Bear ESP — menu option on the Rust hack loader.",
+      "Wolf ESP — menu option on the Rust hack loader.",
+      "Horse ESP — menu option on the Rust hack loader.",
+      "Chicken ESP — menu option on the Rust hack loader.",
+      "Toggle Ores ESP — menu option on the Rust hack loader.",
+      "Ores Distance Slider — menu option on the Rust hack loader.",
+      "Sulfur ESP — menu option on the Rust hack loader.",
+      "Sulfur Color — menu option on the Rust hack loader.",
+      "Metal ESP — menu option on the Rust hack loader.",
+      "Metal Color — menu option on the Rust hack loader.",
+      "Stone ESP — menu option on the Rust hack loader.",
+      "Stone Color — menu option on the Rust hack loader.",
+      "Toggle Collectables ESP — menu option on the Rust hack loader.",
+      "Collectables Color — menu option on the Rust hack loader.",
+      "Collectables Distance Slider — menu option on the Rust hack loader.",
+      "Wood ESP — menu option on the Rust hack loader.",
+      "Berry ESP — menu option on the Rust hack loader.",
+      "Hemp ESP — menu option on the Rust hack loader.",
+      "Food ESP — menu option on the Rust hack loader.",
+      "Toggle Traps — menu option on the Rust hack loader.",
+      "Traps Color — menu option on the Rust hack loader.",
+      "Traps Distance Slider — menu option on the Rust hack loader.",
+      "Shotgun Traps ESP — menu option on the Rust hack loader.",
+      "Auto Turret ESP — menu option on the Rust hack loader.",
+      "Snap Traps ESP — menu option on the Rust hack loader.",
+      "Flame Turrets ESP — menu option on the Rust hack loader.",
+      "Land Mines ESP — menu option on the Rust hack loader.",
+      "Samsite ESP — menu option on the Rust hack loader.",
+      "Toggle Hidden Stashes — menu option on the Rust hack loader.",
+      "Toggle Tool Cupboards — menu option on the Rust hack loader.",
+      "Toggle Dropped Items — menu option on the Rust hack loader.",
+      "Dropped Items ESP — menu option on the Rust hack loader.",
+      "Dropped Items Distance Slider — menu option on the Rust hack loader.",
+      "Toggle Weapons Only — menu option on the Rust hack loader.",
+      "Toggle Vehicles — menu option on the Rust hack loader.",
+      "Vehicles Color — menu option on the Rust hack loader.",
+      "Vehicle Distance Slider — menu option on the Rust hack loader.",
+      "Instant Eoka — menu option on the Rust hack loader.",
+      "Instant Compound — menu option on the Rust hack loader.",
+      "Instant Bow — menu option on the Rust hack loader.",
+      "No Recoil — menu option on the Rust hack loader.",
+      "No Recoil Yaw — menu option on the Rust hack loader.",
+      "No Recoil Pitch — menu option on the Rust hack loader.",
+      "No Sway — menu option on the Rust hack loader.",
+      "No Spread — menu option on the Rust hack loader.",
+      "No Bob — menu option on the Rust hack loader.",
+      "Sprint Melee — menu option on the Rust hack loader.",
+      "Far Melee — menu option on the Rust hack loader.",
+      "Fat Melee — menu option on the Rust hack loader.",
+      "Recoil While Scope — menu option on the Rust hack loader.",
+      "Auto Reload Sniper — menu option on the Rust hack loader.",
+      "Always Automatic — menu option on the Rust hack loader.",
+      "Rapid Fire — menu option on the Rust hack loader.",
+      "Longneck — menu option on the Rust hack loader.",
+      "Longneck Key — menu option on the Rust hack loader.",
+      "Shortneck — menu option on the Rust hack loader.",
+      "Shortneck Key — menu option on the Rust hack loader.",
+      "Leftside Peek — menu option on the Rust hack loader.",
+      "Leftside Peek Key — menu option on the Rust hack loader.",
+      "Rightside Peek Key — menu option on the Rust hack loader.",
+      "Toggle Aimbot — menu option on the Rust hack loader.",
+      "Aimbot FOV Slider — menu option on the Rust hack loader.",
+      "FOV Circle — menu option on the Rust hack loader.",
+      "Aimbot Smoothing Slider — menu option on the Rust hack loader.",
+      "Custom Aim Bone — menu option on the Rust hack loader.",
+      "Custom Aim Key — menu option on the Rust hack loader.",
+      "AdminFlag — menu option on the Rust hack loader.",
+      "Stash Exploit — menu option on the Rust hack loader.",
+      "Bright Night — menu option on the Rust hack loader.",
+      "Fullbright — menu option on the Rust hack loader.",
+      "Spiderman — menu option on the Rust hack loader.",
+      "Infinite Jump — menu option on the Rust hack loader.",
+      "Low Gravity — menu option on the Rust hack loader.",
+      "Climb Assist — menu option on the Rust hack loader.",
+      "Climb Assist Key — menu option on the Rust hack loader.",
+      "Climb Assist #2 — menu option on the Rust hack loader.",
+      "No Fall Damage — menu option on the Rust hack loader.",
+      "Zoom — menu option on the Rust hack loader.",
+      "Zoom Key — menu option on the Rust hack loader.",
+      "FOV Changer — menu option on the Rust hack loader.",
+      "FOV Value Slider — menu option on the Rust hack loader.",
+      "Flyhack — menu option on the Rust hack loader.",
+      "Flyhack Key — menu option on the Rust hack loader.",
+      "Self Kill — menu option on the Rust hack loader.",
+      "Close Cheat — menu option on the Rust hack loader.",
+      "Toggle Watermark — menu option on the Rust hack loader.",
+      "Font Slider — menu option on the Rust hack loader.",
+      "Icon Size Slider — menu option on the Rust hack loader.",
+      "Corner Size Slider — menu option on the Rust hack loader.",
+      "Box Width Slider — menu option on the Rust hack loader.",
+      "Skeleton Size Slider — menu option on the Rust hack loader.",
+      "Game Width — menu option on the Rust hack loader.",
+      "Update FPS Slider — menu option on the Rust hack loader.",
+      "Renderer FPS Slider — menu option on the Rust hack loader."
+    ],
+    "slides": [
+      {
+        "alt": "Rust chams and ESP on an operator in a firefight",
+        "caption": "Chams & ESP",
+        "captionDesc": "Player highlights and bone ESP in a close-quarters fight."
+      },
+      {
+        "alt": "Rust scoped view with ESP markers on targets",
+        "caption": "Scoped ESP",
+        "captionDesc": "Distance and target markers through optics."
+      },
+      {
+        "alt": "Rust extraction mode with loot and player ESP",
+        "caption": "Extraction ESP",
+        "captionDesc": "Loot and operator awareness during extraction."
+      },
+      {
+        "alt": "Rust warehouse interior with chams on several players",
+        "caption": "Warehouse chams",
+        "captionDesc": "Player chams in a close indoor fight."
+      },
+      {
+        "alt": "Rust skeleton ESP on operators",
+        "caption": "Skeleton ESP",
+        "captionDesc": "Bone lines and player boxes."
+      }
+    ],
+    "overview": {
+      "title": "Built for Rust on Windows PC",
+      "paragraphs": [
+        "Rust Hacks ships six menu groups—Visual ESP (two panels), Weapon Options, Aimbot Options, Misc Options, and Config Options—for wipe and monument play. Updates ship while your key is active, with Discord help for setup.",
+        "Always check availability on rust-hacks.com before you launch, especially after an EasyAnti-Cheat (EAC) or client patch."
+      ]
+    },
+    "body": [
+      {
+        "type": "h2",
+        "text": "Modules included"
+      },
+      {
+        "type": "p",
+        "text": "Visual ESP Features, Visual ESP Features 2, Weapon Options, Aimbot Options, Misc Options, and Config Options. The full list with a short note on each toggle is in the feature section on this page."
+      },
+      {
+        "type": "h2",
+        "text": "Plans"
+      },
+      {
+        "type": "p",
+        "text": "Monthly $35 USD or lifetime $150 USD. Instant digital delivery worldwide after checkout."
+      }
+    ],
+    "goodToKnow": "Rust and EasyAnti-Cheat (EAC) update often. Confirm availability on rust-hacks.com before you launch. Overlay behavior may differ in menus or spectator views after patches.",
+    "limitations": "Third-party software can violate game terms and lead to bans. You use this software at your own risk. Compatibility can change after game, ACE, or Windows updates without notice.",
+    "requirements": [
+      "Windows 10/11",
+      "Intel/AMD",
+      "HVCI ON",
+      "CORE ISOLATION ON",
+      "TPM ON",
+      "SECURE BOOT ON"
+    ]
+  },
+  "spoofer": {
+    "slides": [
+      {
+        "alt": "HWID spoofer on Windows PC",
+        "caption": "HWID spoofer",
+        "captionDesc": "Hardware fingerprint tools before you relaunch."
+      },
+      {
+        "alt": "Phoenix Satano HWID spoofer hardware fingerprint rotation on Windows PC",
+        "caption": "Phoenix board",
+        "captionDesc": "Disk, MAC, and GPU ID rotation."
+      },
+      {
+        "alt": "Phoenix WH-Satano spoofer branding on Windows PC",
+        "caption": "Phoenix WH",
+        "captionDesc": "Spoofer workspace used on every store."
+      }
+    ],
+    "overview": {
+      "title": "HWID recovery workflow",
+      "paragraphs": [
+        "HWID Spoofer focuses on hardware profile rotation when you need a clean machine context before relaunching Rust after a hardware flag.",
+        "Monthly and lifetime USD plans use the same checkout flow as the rest of the lineup."
+      ]
+    },
+    "body": [
+      {
+        "type": "h2",
+        "text": "When to use it"
+      },
+      {
+        "type": "p",
+        "text": "Use when fresh accounts fail on one PC but work elsewhere—not for account-only bans. Pair with conservative cheat presets after verification."
+      },
+      {
+        "type": "h2",
+        "text": "Plans"
+      },
+      {
+        "type": "p",
+        "text": "Monthly $50 USD or lifetime $150 USD."
+      }
+    ],
+    "goodToKnow": "HWID tools change how your PC fingerprint appears—they do not remove account bans by themselves. Follow portal guides before launching Rust again.",
+    "limitations": "Spoofing carries technical risk and may violate game terms. Results vary by ban type and driver setup. Use only on systems you own.",
+    "requirements": [
+      "Windows 10 or 11 64-bit with administrator rights.",
+      "Create a restore point before running hardware tools.",
+      "Stable internet for activation and verification steps."
+    ],
+    "features": [
+      "Hardware spoofer with cleaner",
+      "Disk serial and MAC rotation",
+      "GPU ID profile tools",
+      "Compatibility scan",
+      "Verification checklist",
+      "Portal step-by-step workflow",
+      "Discord setup support"
+    ]
+  },
+  "ugc": {
+    "slides": [
+      {
+        "alt": "UGC account recovery workspace preview on Windows PC",
+        "caption": "Account recovery",
+        "captionDesc": "Appeal workspace shared across stores."
+      }
+    ],
+    "overview": {
+      "title": "UGC Account recovery workspace",
+      "paragraphs": [
+        "UGC Account recovery helps organize ban appeals and recovery cases with templates, evidence lists, and follow-up reminders.",
+        "Instant digital delivery after secure checkout, with Discord support for setup questions."
+      ]
+    },
+    "body": [
+      {
+        "type": "h2",
+        "text": "Appeal workflows"
+      },
+      {
+        "type": "p",
+        "text": "Build custom appeal paths, automate dispute steps, and track case status when gaming accounts are locked or restricted."
+      },
+      {
+        "type": "h2",
+        "text": "Plans"
+      },
+      {
+        "type": "p",
+        "text": "Monthly $35 USD or lifetime $150 USD."
+      }
+    ],
+    "goodToKnow": "Gather portal order ID, account details, and restriction screenshots before opening a ticket. UGC structures appeals—it does not bypass platform review.",
+    "limitations": "UGC does not guarantee account restoration. Results vary by case type and platform policy.",
+    "requirements": [
+      "Windows 10 or 11 (64-bit).",
+      "Internet access for workflow sync and updates.",
+      "Administrator access for installation."
+    ],
+    "features": [
+      "Custom appeal workflows",
+      "Multi-platform recovery workspace",
+      "Template library",
+      "Automation for repetitive steps",
+      "Restriction tracking dashboard",
+      "Secure portal delivery",
+      "Monthly and lifetime USD plans"
+    ]
+  }
+}

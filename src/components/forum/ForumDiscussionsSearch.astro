@@ -1,0 +1,47 @@
+---
+import Icon from '../icons/Icon.astro';
+
+interface Props {
+  id?: string;
+  placeholder: string;
+  searchAria: string;
+  clearAria?: string;
+}
+
+const {
+  id = 'forum-discussions-search',
+  placeholder,
+  searchAria,
+  clearAria = 'Clear search',
+} = Astro.props;
+---
+
+<div class="forum-discussions-search" data-forum-discussions-search>
+  <label class="sr-only" for={id}>{searchAria}</label>
+  <Icon name="search" size={16} aria-hidden="true" class="forum-discussions-search__icon" />
+  <input
+    id={id}
+    type="text"
+    inputmode="search"
+    enterkeyhint="search"
+    role="searchbox"
+    autocomplete="off"
+    autocorrect="off"
+    autocapitalize="off"
+    spellcheck="false"
+    class="forum-discussions-search__input"
+    placeholder={placeholder}
+    aria-label={searchAria}
+    aria-describedby={`${id}-count`}
+    data-forum-discussions-search-input
+  />
+  <button
+    type="button"
+    class="forum-discussions-search__clear"
+    data-forum-discussions-search-clear
+    aria-label={clearAria}
+    hidden
+  >
+    <Icon name="x" size={14} aria-hidden="true" />
+  </button>
+</div>

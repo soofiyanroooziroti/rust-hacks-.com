@@ -1,0 +1,52 @@
+---
+import Icon from './icons/Icon.astro';
+
+interface Props {
+  postUrl: string;
+  readTime: string;
+}
+
+const { postUrl, readTime } = Astro.props;
+---
+
+<div
+  class="reading-tools"
+  data-blog-reading-tools
+  data-post-url={postUrl}
+  data-read-time={readTime}
+>
+  <div class="reading-tools__progress">
+    <div class="reading-tools__ring-wrap" aria-hidden="true">
+      <svg class="reading-tools__ring" viewBox="0 0 36 36" focusable="false">
+        <circle class="reading-tools__ring-track" cx="18" cy="18" r="15.5" fill="none" />
+        <circle class="reading-tools__ring-progress" data-reading-ring-progress cx="18" cy="18" r="15.5" fill="none" transform="rotate(-90 18 18)" />
+      </svg>
+      <span class="reading-tools__percent" data-reading-percent>0%</span>
+    </div>
+    <p class="reading-tools__minutes" data-reading-minutes-left aria-live="polite">—</p>
+  </div>
+
+  <div class="reading-tools__actions">
+    <button type="button" class="reading-tools__btn" data-reading-copy aria-pressed="false">
+      <span class="reading-tools__btn-icon" aria-hidden="true">
+        <span class="reading-tools__icon-layer" data-reading-copy-icon-default>
+          <Icon name="link" size={14} />
+        </span>
+        <span class="reading-tools__icon-layer is-hidden" data-reading-copy-icon-success>
+          <Icon name="check" size={14} />
+        </span>
+      </span>
+      <span data-reading-copy-label>Copy link</span>
+    </button>
+    <button type="button" class="reading-tools__btn" data-reading-top>
+      <span class="reading-tools__btn-icon" aria-hidden="true">
+        <Icon name="arrowUp" size={14} />
+      </span>
+      Back to top
+    </button>
+  </div>
+</div>
+
+<script>
+  import '../scripts/blog-reading-tools.ts';
+</script>

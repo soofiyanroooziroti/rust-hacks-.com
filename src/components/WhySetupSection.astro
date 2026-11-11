@@ -1,0 +1,274 @@
+---
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+import { formatActiveStatusLine } from "../data/status";
+import { setupStepIcons } from "../data/sectionIcons";
+import Icon from "./icons/Icon.astro";
+import { normalizeInternalPath } from "../utils/path";
+import { Button } from "@/components/starwind/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/starwind/card";
+
+const why = t.whyUs;
+const setup = t.setup;
+const lastRowIndex = why.rows.length - 1;
+---
+
+<section id="why-us" class="py-16 md:py-24" aria-labelledby="why-title">
+  <div class="mx-auto max-w-6xl px-5">
+    <header class="section-header section-header--wide">
+      <p class="section-header__eyebrow">{why.eyebrow}</p>
+      <h2 id="why-title" class="section-header__title">{why.title}</h2>
+      <p class="section-header__subtitle">{why.subtitle}</p>
+    </header>
+
+    {/* Desktop comparison — centered, reference-style columns */}
+    <div
+      class="mt-14 hidden justify-center lg:flex"
+      role="table"
+      aria-label="Rust Hacks compared with a typical provider"
+    >
+      <div
+        class="why-compare-layout grid w-full max-w-4xl grid-cols-[minmax(0,1fr)_9.25rem_9.25rem] items-stretch gap-x-10 xl:max-w-5xl xl:gap-x-14"
+      >
+        <div
+          class="why-compare-features flex min-w-0 flex-col pe-2"
+          role="rowgroup"
+        >
+          <span class="sr-only" role="columnheader">Feature</span>
+          {
+            why.rows.map((row) => (
+              <div
+                class="why-compare-feature-row flex flex-col justify-center gap-2"
+                role="row"
+              >
+                <h3 class="font-[family-name:var(--font-heading)] text-lg font-bold leading-snug text-foreground md:text-xl">
+                  {row.title}
+                </h3>
+                <p class="text-sm leading-relaxed text-muted-foreground">
+                  {row.desc}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+
+        <Card
+          class="why-compare-card why-compare-us-card flex h-full w-[9.25rem] shrink-0 flex-col gap-0 overflow-hidden py-0 ring-1 ring-primary"
+        >
+          <CardHeader
+            class="why-compare-card-head space-y-0 border-0 bg-transparent text-center"
+            role="columnheader"
+          >
+            <CardTitle
+              class="w-full text-center font-[family-name:var(--font-heading)] text-base font-bold normal-case leading-snug"
+            >
+              {why.usLabel}
+            </CardTitle>
+          </CardHeader>
+          <div class="flex min-h-0 flex-1 flex-col" role="rowgroup">
+            {
+              why.rows.map((row, i) => (
+                <div
+                  class:list={[
+                    "why-compare-card-row",
+                    i === lastRowIndex && "why-compare-card-row--last",
+                  ]}
+                  role="cell"
+                  aria-label={`${why.usLabel}: included — ${row.title}`}
+                >
+                  <span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/15 ring-1 ring-primary/40">
+                    <Icon name="circleCheck" size={20} />
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </Card>
+
+        <Card
+          class="why-compare-card why-compare-other-card flex h-full w-[9.25rem] shrink-0 flex-col gap-0 overflow-hidden py-0"
+        >
+          <CardHeader
+            class="why-compare-card-head card-title-band space-y-0 border-b text-center"
+            role="columnheader"
+          >
+            <CardTitle
+              class="w-full text-center font-[family-name:var(--font-heading)] text-base font-bold normal-case leading-snug text-muted-foreground"
+            >
+              {why.otherLabel}
+            </CardTitle>
+          </CardHeader>
+          <div class="flex min-h-0 flex-1 flex-col" role="rowgroup">
+            {
+              why.rows.map((row, i) => (
+                <div
+                  class:list={[
+                    "why-compare-card-row",
+                    i === lastRowIndex && "why-compare-card-row--last",
+                  ]}
+                  role="cell"
+                  aria-label={`${why.otherLabel}: not included — ${row.title}`}
+                >
+                  <span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-muted/80 ring-1 ring-border">
+                    <Icon name="x" size={18} class="text-muted-foreground" />
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </Card>
+      </div>
+    </div>
+
+    {/* Mobile / tablet stacked rows */}
+    <ul class="mt-10 space-y-4 lg:hidden" role="list">
+      {
+        why.rows.map((row) => (
+          <li>
+            <Card class="gap-0 overflow-hidden py-0">
+              <CardHeader class="card-title-band pb-4 pt-5">
+                <CardTitle class="text-base normal-case leading-snug">
+                  {row.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent class="pb-4 pt-4">
+                <p class="text-sm leading-relaxed text-muted-foreground">
+                  {row.desc}
+                </p>
+              </CardContent>
+              <CardFooter class="flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2 text-sm">
+                  <span class="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/15 ring-1 ring-primary/40">
+                    <Icon name="circleCheck" size={18} />
+                  </span>
+                  <span class="font-medium text-foreground">{why.usLabel}</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span class="flex size-9 shrink-0 items-center justify-center rounded-full bg-muted ring-1 ring-border">
+                    <Icon name="x" size={16} />
+                  </span>
+                  <span>{why.otherLabel}</span>
+                </div>
+              </CardFooter>
+            </Card>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div
+      class="mt-16 grid max-w-5xl gap-10 border-t border-border pt-12 text-left sm:grid-cols-3 sm:gap-8 lg:mx-auto lg:text-center"
+      aria-label="Platform metrics"
+    >
+      {
+        why.metrics.map((metric) => (
+          <div class="space-y-2">
+            <p class="font-[family-name:var(--font-heading)] text-4xl font-bold tracking-tight text-primary md:text-5xl">
+              {metric.value}
+            </p>
+            <p class="text-base font-semibold text-foreground">
+              {metric.title}
+            </p>
+            <p class="text-sm leading-relaxed text-muted-foreground">
+              {metric.desc}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section
+  id="setup-guide"
+  class="deployment-section border-y border-border py-14 md:py-16 lg:py-20"
+  aria-labelledby="setup-title"
+>
+  <div class="mx-auto max-w-6xl px-5 md:px-6">
+    <header class="section-header section-header--wide deployment-header">
+      <p class="section-header__eyebrow">{t.setup.eyebrow}</p>
+      <h2 id="setup-title" class="section-header__title">
+        {t.setup.titleLead}{" "}
+        <span
+          class="deployment-title-highlight relative inline-block whitespace-nowrap"
+        >
+          {t.setup.titleHighlight}
+          <span class="deployment-title-underline" aria-hidden="true"></span>
+        </span>
+      </h2>
+      <p class="section-header__subtitle">{t.setup.intro}</p>
+    </header>
+
+    <div class="deployment-steps mx-auto mt-10 max-w-5xl lg:mt-12">
+      <div class="deployment-steps-track" aria-hidden="true">
+        <div class="deployment-steps-line deployment-steps-line--base"></div>
+        <div class="deployment-steps-line deployment-steps-line--progress">
+        </div>
+      </div>
+      <ol class="deployment-steps-list list-none p-0">
+        {
+          t.setup.steps.map((step, i) => (
+            <li class="deployment-step">
+              <div
+                class="deployment-step-marker"
+                style={`--step-col: ${i + 1}`}
+              >
+                <Icon
+                  name={setupStepIcons[i] ?? "acqCheck"}
+                  size={20}
+                  class="deployment-step-marker-icon"
+                />
+              </div>
+              <h3 class="deployment-step-title" style={`--step-col: ${i + 1}`}>
+                {step.title}
+              </h3>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <div
+      class="deployment-status-strip mt-8 border-t border-border/80 pt-8 md:mt-10"
+      role="region"
+      aria-label="Live status and delivery"
+    >
+      <div
+        class="deployment-status-strip__bar flex flex-col gap-3 rounded-xl border border-primary/30 bg-card/90 px-4 py-3 shadow-sm ring-1 ring-primary/10 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4"
+      >
+        <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+          <p class="flex items-center gap-2 text-sm font-medium text-foreground">
+            <span class="deployment-status-dot" aria-hidden="true"></span>
+            {formatActiveStatusLine()}
+          </p>
+          <Button
+            as="a"
+            href={normalizeInternalPath(setup.statusStrip.aceStatusHref)}
+            variant="secondary"
+            size="sm"
+            class="deployment-status-strip__cta shrink-0 rounded-lg"
+          >
+            {setup.statusStrip.aceStatusCta}
+          </Button>
+        </div>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-2" role="list">
+          {
+            setup.statusStrip.perks.map((perk) => (
+              <li class="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                <Icon name={perk.icon} size={14} class="shrink-0 text-primary" />
+                {perk.label}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

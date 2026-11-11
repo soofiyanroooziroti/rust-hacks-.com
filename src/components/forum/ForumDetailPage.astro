@@ -1,0 +1,140 @@
+---
+import type { Locale } from '../../i18n/locales';
+import { getTranslations } from '../../i18n';
+import { getLocalizedPath, localizedPath } from '../../utils/path';
+import { pageTitle } from '../../config/seo';
+import { breadcrumbSchema, discussionForumPostingSchema } from '../../utils/schema';
+import '../../styles/forum.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import Icon from '../icons/Icon.astro';
+import { forumCategoryFilterKey } from '../../data/forum';
+import { getForumCategoryLabel, getForumPostForLocale, getForumPostsForLocale } from '../../data/forum-i18n';
+import { getForumUi } from '../../utils/forum-ui';
+import ForumCommentTree from './ForumCommentTree.astro';
+
+interface Props {
+  locale: Locale;
+  slug: string;
+}
+
+const { locale, slug } = Astro.props;
+const t = getTranslations(locale);
+const forumUi = getForumUi(t);
+const post = getForumPostForLocale(slug, locale);
+if (!post) {
+  return Astro.redirect(localizedPath('/forum/', locale));
+}
+
+const path = localizedPath(`/forum/${post.slug}/`, locale);
+const forumPath = localizedPath('/forum/', locale);
+const categoryLabel = getForumCategoryLabel(post.category, locale);
+const allPosts = getForumPostsForLocale(locale);
+const breadcrumbs = [
+  { name: t.breadcrumbs.home, path: localizedPath('/', locale) },
+  { name: forumUi.breadcrumb, path: forumPath },
+  { name: categoryLabel, path: forumPath },
+  { name: post.title, path },
+];
+const relatedPosts = [
+  ...allPosts.filter((item) => item.slug !== post.slug && item.category === post.category),
+  ...allPosts.filter((item) => item.slug !== post.slug && item.category !== post.category),
+].slice(0, 3);
+---
+
+<BaseLayout title={pageTitle(post.title)} description={post.description} jsonLd={[
+  discussionForumPostingSchema({
+    name: post.title,
+    text: post.body.join('\n\n'),
+    url: path,
+    author: post.author,
+    date: post.date,
+    comments: post.comments,
+    commentCount: post.commentsCount,
+    upvotes: post.upvotes,
+  }),
+  breadcrumbSchema(breadcrumbs),
+]}>
+  <section class="forum-page py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+      <div class="forum-layout forum-layout--detail">
+        <main class="forum-main">
+          <article class="forum-detail-card" data-forum-vote data-post-slug={post.slug} data-upvotes={post.upvotes}>
+            <div class="forum-vote forum-vote--detail" aria-label={forumUi.voteAria}>
+              <button class="forum-vote__up" type="button" data-vote-up aria-label={forumUi.upvoteAria}><Icon name="chevronDown" size={17} /></button>
+              <strong data-vote-count>{post.upvotes}</strong>
+              <button type="button" disabled aria-label={forumUi.downvoteUnavailable}><Icon name="chevronDown" size={17} /></button>
+            </div>
+            <div class="forum-detail-content">
+              <div class="forum-post-meta">
+                <span class={`forum-community-avatar tone-${post.categoryTone}`}><Icon name="users" size={15} /></span>
+                <a href={forumPath} class="forum-community-name">d/{categoryLabel.toLowerCase().replaceAll(' ', '')}</a>
+                <span>·</span><span><Icon name="userRound" size={13} /> u/{post.author}</span><span>{post.date}</span>
+              </div>
+              <h1>{post.title}</h1>
+              {post.flair && <span class={`forum-flair tone-${post.categoryTone}`}>{post.flair}</span>}
+              <div class="forum-detail-copy">{post.body.map((paragraph) => <p>{paragraph}</p>)}</div>
+              {post.sourceTitle && post.sourcePath && (
+                <p class="forum-source forum-source--detail">
+                  {forumUi.basedOn}{' '}
+                  <a href={getLocalizedPath(post.sourcePath, locale)}>{post.sourceTitle}</a>
+                </p>
+              )}
+              <div class="forum-post-actions forum-post-actions--detail">
+                <a href="#comments"><Icon name="messageCircle" size={16} /> {post.commentsCount} {forumUi.comments}</a>
+                {post.sourcePath && (
+                  <a href={getLocalizedPath(post.sourcePath, locale)}><Icon name="navBlog" size={15} /> {forumUi.readGuide}</a>
+                )}
+              </div>
+              <div class="forum-login-prompt">
+                <span class="forum-user-dot">i</span>
+                <span>{forumUi.previewDiscussion}</span>
+                <span>{forumUi.postingUnavailable}</span>
+              </div>
+              <section class="forum-comments" id="comments" aria-labelledby="comments-title">
+                <div class="forum-comments__heading">
+                  <h2 id="comments-title">{forumUi.commentsTitle} <span>{post.commentsCount}</span></h2>
+                  <span>{forumUi.commentsSubtitle}</span>
+                </div>
+                {post.comments.length ? (
+                  post.comments.map((comment) => (
+                    <ForumCommentTree
+                      comment={comment}
+                      tone={post.categoryTone}
+                      developerFlair={forumUi.developerFlair}
+                      pointsLabel={forumUi.points}
+                    />
+                  ))
+                ) : (
+                  <p class="forum-empty" role="status">{forumUi.noRepliesYet}</p>
+                )}
+              </section>
+            </div>
+          </article>
+        </main>
+        <aside class="forum-sidebar">
+          <section class="forum-side-card forum-related-card" aria-labelledby="forum-related-title">
+            <h2 class="forum-side-heading" id="forum-related-title">{forumUi.detailMoreTitle}</h2>
+            <ul class="forum-related-list">
+              {relatedPosts.map((item) => (
+                <li>
+                  <a href={localizedPath(`/forum/${item.slug}/`, locale)}>
+                    <span class="forum-related-list__category">{getForumCategoryLabel(item.category, locale)}</span>
+                    <b>{item.title}</b>
+                    <span class="forum-related-list__meta">{item.commentsCount} {forumUi.comments} <Icon name="arrowRight" size={14} /></span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a class="forum-related-card__all" href={forumPath}>{forumUi.detailViewAll} <Icon name="arrowRight" size={14} /></a>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<script>
+  import { initForumVotes } from '../../scripts/forum-votes.ts';
+  initForumVotes();
+</script>

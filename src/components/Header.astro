@@ -1,0 +1,227 @@
+---
+import { checkoutPath } from '../config/checkout';
+import { getLocaleFromAstro, getTranslations, localePath } from '../i18n';
+import AnimatedThemeSwitch from './AnimatedThemeSwitch.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import Icon from './icons/Icon.astro';
+import SlideRevealButton from './SlideRevealButton.astro';
+import BrandHeading from './BrandHeading.astro';
+import { localizedPath } from '../utils/path';
+import { logoAltForPath } from '../utils/logo-alt';
+
+import type { IconName } from './icons/types';
+
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+const homeHref = localePath('/', locale);
+
+const NAV_ICONS: IconName[] = [
+  'navHome',
+  'navProducts',
+  'layers',
+  'navBlog',
+  'messageCircle',
+  'navFaq',
+  'navSupport',
+];
+
+const purchaseUrl = checkoutPath('rustHack');
+const logoAlt = logoAltForPath(Astro.url.pathname);
+const navLinkClass = 'nav-link';
+const drawerId = 'header-menu-drawer';
+
+const NAV_KEYS = ['home', 'products', 'features', 'blog', 'forum', 'faq', 'support'] as const;
+type NavKey = (typeof NAV_KEYS)[number];
+const navShort = t.navShort;
+const navMoreLabel = t.navMore;
+const primaryNavCount = 4;
+const moreMenuId = 'header-nav-more-menu';
+
+function shortNavLabel(key: NavKey): string {
+  return navShort[key] ?? t.headerNavLabels[key] ?? '';
+}
+
+function drawerNavLabel(key: NavKey): string {
+  return t.headerNavLabels[key] ?? shortNavLabel(key);
+}
+---
+
+<header class="pointer-events-none fixed inset-x-0 top-0 z-50">
+  <div class="flex justify-center px-3 pt-3 sm:px-4 sm:pt-4" data-floating-nav>
+    <div class="site-header-pill pointer-events-auto w-full max-w-[1400px] text-foreground">
+      <a
+        href={homeHref}
+        class="site-header-logo inline-flex shrink-0 items-center gap-2 text-foreground max-sm:min-w-0"
+        aria-label={t.ui.homeAria}
+      >
+        <img src="/logo.webp" alt={logoAlt} width="36" height="36" class="site-header-logo__mark box-border size-9 shrink-0 rounded-lg object-contain p-1" decoding="async" />
+        <BrandHeading
+          as="span"
+          text={t.hero.titleLine1}
+          class="brand-heading--logo min-w-0 truncate sm:whitespace-nowrap"
+        />
+      </a>
+
+      <div class="header-nav-wrap">
+        <nav class="header-nav-pill" aria-label="Primary">
+          {t.nav.slice(0, primaryNavCount).map((link, index) => {
+            const navKey = NAV_KEYS[index] ?? 'products';
+            return (
+              <a
+                href={link.href}
+                class={navLinkClass}
+                data-nav-link
+                aria-label={link.label}
+                {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
+              >
+                <Icon name={NAV_ICONS[index] ?? 'navFeatures'} size={14} class="shrink-0" />
+                <span class="nav-link__label">{shortNavLabel(navKey)}</span>
+              </a>
+            );
+          })}
+          <div class="header-nav-more" data-header-nav-more>
+            <button
+              type="button"
+              class={`${navLinkClass} header-nav-more__trigger`}
+              data-nav-more-trigger
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls={moreMenuId}
+            >
+              <Icon name="messageCircle" size={14} class="shrink-0" aria-hidden="true" />
+              <span class="nav-link__label">{navMoreLabel}</span>
+              <Icon name="chevronDown" size={14} class="header-nav-more__chevron shrink-0" aria-hidden="true" />
+            </button>
+            <div
+              id={moreMenuId}
+              class="header-nav-more__menu"
+              role="menu"
+              data-nav-more-menu
+              aria-hidden="true"
+            >
+              {t.nav.slice(primaryNavCount).map((link, offset) => {
+                const index = offset + primaryNavCount;
+                const navKey = NAV_KEYS[index] ?? 'forum';
+                return (
+                  <a
+                    href={link.href}
+                    class="header-nav-more__item"
+                    role="menuitem"
+                    data-nav-link
+                    aria-label={link.label}
+                    {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
+                  >
+                    <Icon name={NAV_ICONS[index] ?? 'navFeatures'} size={14} class="shrink-0" />
+                    <span>{shortNavLabel(navKey)}</span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="header-actions">
+        <button
+          type="button"
+          class="header-search-btn inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border/80 bg-background/50 text-foreground transition-colors hover:bg-muted lg:h-9 lg:w-auto lg:px-2"
+          aria-label={t.ui.searchOpenAria ?? 'Search site'}
+          aria-haspopup="dialog"
+          aria-controls="site-search-dialog"
+          aria-expanded="false"
+          data-site-search-open
+        >
+          <Icon name="search" size={14} />
+          <span class="header-search-btn__hint" aria-hidden="true">
+            <kbd>/</kbd>
+          </span>
+        </button>
+
+        <SlideRevealButton
+          href={purchaseUrl}
+          class="header-bar__checkout header-bar__checkout--bar shrink-0"
+          ariaLabel={t.ui.checkoutAria}
+        >
+          {t.ui.browseCheats}
+        </SlideRevealButton>
+
+        <span class="header-lang-slot">
+          <LanguageSwitcher />
+        </span>
+
+        <AnimatedThemeSwitch
+          size="md"
+          ariaLabel={t.ui.themeLight}
+          class="header-theme-toggle shrink-0"
+        />
+
+        <div class="header-menu" data-header-menu>
+          <button
+            type="button"
+            class="header-menu-trigger inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border/80 bg-background/50 text-foreground transition-colors hover:bg-muted"
+            aria-label={t.ui.menuOpen}
+            aria-expanded="false"
+            aria-controls={drawerId}
+            data-header-menu-open
+          >
+            <Icon name="menu" size={20} />
+          </button>
+
+          <dialog
+            id={drawerId}
+            class="header-menu-dialog"
+            data-header-menu-dialog
+            aria-labelledby="header-menu-title"
+          >
+            <div class="header-menu-panel">
+              <div class="header-menu-panel__head">
+                <p id="header-menu-title" class="header-menu-panel__title">{t.site.name}</p>
+                <button
+                  type="button"
+                  class="header-menu-close inline-flex size-9 items-center justify-center rounded-lg border border-border/80 text-foreground transition-colors hover:bg-muted"
+                  data-header-menu-close
+                  aria-label={t.ui.menuClose}
+                >
+                  <Icon name="x" size={18} />
+                </button>
+              </div>
+
+              <span class="header-drawer-lang-slot">
+                <LanguageSwitcher variant="sheet" class="w-full" />
+              </span>
+
+              <nav class="header-drawer-nav flex flex-col gap-1" aria-label="Mobile">
+                {t.nav.map((link, index) => {
+                  const navKey = NAV_KEYS[index] ?? 'products';
+                  return (
+                    <a
+                      href={localizedPath(link.href, locale)}
+                      class="nav-link header-drawer-nav__link flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                      data-nav-link
+                      aria-label={link.label}
+                      {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
+                    >
+                      <Icon name={NAV_ICONS[index] ?? 'navFeatures'} size={16} />
+                      <span class="header-drawer-nav__label">{drawerNavLabel(navKey)}</span>
+                    </a>
+                  );
+                })}
+              </nav>
+
+              <a
+                href={purchaseUrl}
+                class="header-drawer-cta"
+                aria-label={t.ui.checkoutAria}
+                rel="nofollow sponsored"
+                data-astro-reload
+                data-astro-prefetch="false"
+              >
+                {t.ui.browseCheatsMobile}
+              </a>
+            </div>
+          </dialog>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

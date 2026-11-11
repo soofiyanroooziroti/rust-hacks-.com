@@ -1,0 +1,39 @@
+---
+interface Props {
+  class?: string;
+  ariaLabel?: string;
+  size?: 'default' | 'sm' | 'md';
+}
+
+const { class: className, ariaLabel = 'Toggle light and dark mode', size = 'default' } = Astro.props;
+---
+
+<label
+  class:list={[
+    'theme-mode-switch',
+    size === 'sm' && 'theme-mode-switch--sm',
+    size === 'md' && 'theme-mode-switch--md',
+    className,
+  ]}
+>
+  <input
+    type="checkbox"
+    aria-label={ariaLabel}
+    data-sw-theme-control
+    data-theme-on="dark"
+    data-theme-off="light"
+  />
+  <span class="theme-mode-switch__slider" aria-hidden="true"></span>
+</label>
+
+<script>
+  import { initThemeController } from '@starwind-ui/astro/theme';
+
+  const setupThemeController = () => {
+    initThemeController();
+  };
+
+  setupThemeController();
+  document.addEventListener('astro:after-swap', setupThemeController);
+  document.addEventListener('starwind:init', setupThemeController);
+</script>

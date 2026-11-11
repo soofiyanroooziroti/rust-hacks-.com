@@ -1,0 +1,315 @@
+---
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+import Icon from './icons/Icon.astro';
+
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+
+const searchPlaceholder = t.ui.searchPlaceholder ?? 'Search products, guides, FAQ…';
+const searchEmpty = t.ui.searchEmpty ?? 'Type to search the site.';
+const searchNoResults = t.ui.searchNoResults ?? 'No results. Try another term.';
+const searchCloseAria = t.ui.searchCloseAria ?? 'Close search';
+const searchTitle = t.ui.searchTitle ?? 'Search';
+---
+
+<dialog id="site-search-dialog" class="site-search-dialog" aria-labelledby="site-search-title">
+  <div class="site-search-panel">
+    <div class="site-search-panel__head">
+      <h2 id="site-search-title" class="sr-only">{searchTitle}</h2>
+      <Icon name="search" size={18} class="shrink-0 text-muted-foreground" aria-hidden="true" />
+      <div class="site-search-panel__input-wrap">
+        <label for="site-search-input" class="sr-only">{searchTitle}</label>
+        <input
+          id="site-search-input"
+          name="q"
+          type="search"
+          class="site-search-input"
+          placeholder={searchPlaceholder}
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          data-site-search-input
+        />
+        <p class="site-search-count" data-site-search-count hidden></p>
+      </div>
+      <button type="button" class="site-search-close" data-site-search-close aria-label={searchCloseAria}>
+        <Icon name="x" size={18} />
+      </button>
+    </div>
+    <p class="site-search-empty" data-site-search-empty>{searchEmpty}</p>
+    <p class="site-search-no-results" data-site-search-no-results hidden>{searchNoResults}</p>
+    <ul class="site-search-results" data-site-search-results role="listbox" aria-label="Search results"></ul>
+    <p class="site-search-hint text-xs text-muted-foreground">
+      <kbd class="site-search-kbd">↑</kbd>
+      <kbd class="site-search-kbd">↓</kbd>
+      navigate ·
+      <kbd class="site-search-kbd">Enter</kbd>
+      open ·
+      <kbd class="site-search-kbd">Esc</kbd>
+      close
+    </p>
+  </div>
+</dialog>
+
+<style is:global>
+  .site-search-dialog {
+    width: min(640px, 92vw);
+    max-height: 70vh;
+    margin: 22vh auto auto;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--card);
+    color: var(--foreground);
+    box-shadow: 0 24px 48px color-mix(in oklch, var(--foreground) 12%, transparent);
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.96);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .site-search-dialog[open] {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-search-dialog {
+      transition: none;
+    }
+  }
+
+  .site-search-dialog::backdrop {
+    background: rgb(0 0 0 / 0.72);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .site-search-dialog[open]::backdrop {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-search-dialog::backdrop {
+      transition: none;
+    }
+  }
+
+  .site-search-panel {
+    display: flex;
+    max-height: 70vh;
+    flex-direction: column;
+  }
+
+  .site-search-panel__head {
+    display: flex;
+    flex-shrink: 0;
+    align-items: flex-start;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 1rem;
+  }
+
+  .site-search-panel__input-wrap {
+    min-width: 0;
+    flex: 1;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+    padding: 0.1rem 0.35rem;
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .site-search-panel__input-wrap:focus-within {
+    border-color: color-mix(in oklch, var(--primary) 50%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary) 20%, transparent);
+  }
+
+  .site-search-input {
+    display: block;
+    width: 100%;
+    border: 0;
+    background: transparent;
+    font-size: 0.9375rem;
+    color: var(--foreground);
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .site-search-input:focus,
+  .site-search-input:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .site-search-input::-webkit-search-decoration,
+  .site-search-input::-webkit-search-cancel-button,
+  .site-search-input::-webkit-search-results-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .site-search-input::placeholder {
+    color: var(--muted-foreground);
+  }
+
+  .site-search-count {
+    margin: 0.35rem 0 0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+  }
+
+  .site-search-close {
+    display: inline-flex;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--muted-foreground);
+    cursor: pointer;
+  }
+
+  .site-search-close:hover {
+    background: var(--muted);
+    color: var(--foreground);
+  }
+
+  .site-search-kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.35rem;
+    padding: 0.1rem 0.35rem;
+    border: 1px solid var(--border);
+    border-radius: 0.35rem;
+    font-size: 0.65rem;
+    font-family: inherit;
+    line-height: 1.2;
+    color: var(--muted-foreground);
+    background: color-mix(in oklch, var(--primary) 8%, var(--muted));
+  }
+
+  .site-search-results {
+    min-height: 0;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-y: auto;
+  }
+
+  .site-search-results:empty {
+    display: none;
+  }
+
+  .site-search-results > li:last-child .site-search-result {
+    border-bottom: 0;
+  }
+
+  .site-search-result {
+    display: block;
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid transparent;
+    border-radius: 0.5rem;
+    padding: 12px 14px;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    transition:
+      background-color 0.12s ease,
+      border-color 0.12s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-search-result {
+      transition: none;
+    }
+  }
+
+  .site-search-result:hover,
+  .site-search-result.is-active {
+    background: color-mix(in oklch, var(--primary) 14%, var(--muted));
+    border-left-color: var(--primary);
+  }
+
+  .site-search-result__type {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+    border-radius: 9999px;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: color-mix(in oklch, var(--primary) 12%, transparent);
+  }
+
+  .site-search-result__title {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--foreground);
+  }
+
+  .site-search-result__excerpt {
+    display: -webkit-box;
+    margin-top: 0.35rem;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--muted-foreground);
+  }
+
+  .site-search-result__path {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: var(--muted-foreground);
+    opacity: 0.85;
+  }
+
+  .site-search-result mark.site-search-mark,
+  .site-search-mark {
+    border-radius: 0.15rem;
+    padding: 0 0.1em;
+    font-weight: inherit;
+    color: var(--primary);
+    background: color-mix(in oklch, var(--primary) 22%, transparent);
+  }
+
+  .site-search-empty,
+  .site-search-no-results {
+    margin: 0;
+    padding: 1.25rem 1rem;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    text-align: center;
+  }
+
+  .site-search-hint {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0.5rem 1rem 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+
+  body.site-search-scroll-lock {
+    overflow: hidden;
+  }
+</style>

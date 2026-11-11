@@ -1,0 +1,69 @@
+---
+import '../styles/blog-pages.css';
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+import Icon from './icons/Icon.astro';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'blog-sort-select' } = Astro.props;
+
+const sortOptions = [
+  { value: 'newest', label: t.blog.sortNewest },
+  { value: 'oldest', label: t.blog.sortOldest },
+  { value: 'short', label: t.blog.sortShortRead },
+  { value: 'long', label: t.blog.sortLongRead },
+];
+---
+
+<div id={id} class="blog-sort-field flex w-full flex-col gap-1.5 sm:w-auto sm:min-w-[12rem]" data-blog-sort-wrap>
+  <p
+    id={`${id}-label`}
+    class="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-muted-foreground"
+  >
+    <Icon name="settings" size={14} class="text-primary" aria-hidden="true" />
+    {t.blog.sortLabel}
+  </p>
+  <div class="blog-sort-field__control">
+    <button
+      type="button"
+      class="blog-sort-field__trigger"
+      data-blog-sort-trigger
+      aria-labelledby={`${id}-label`}
+      aria-haspopup="listbox"
+      aria-expanded="false"
+      aria-controls={`${id}-menu`}
+    >
+      <Icon name="refresh" size={15} class="shrink-0 text-primary" aria-hidden="true" />
+      <span class="blog-sort-field__trigger-label" data-blog-sort-label>{t.blog.sortNewest}</span>
+    </button>
+    <ul
+      id={`${id}-menu`}
+      class="blog-sort-field__menu"
+      data-blog-sort-menu
+      role="listbox"
+      aria-labelledby={`${id}-label`}
+      hidden
+    >
+      {
+        sortOptions.map((option) => (
+          <li role="presentation">
+            <button
+              type="button"
+              role="option"
+              class="blog-sort-field__option"
+              data-blog-sort-option={option.value}
+              data-blog-sort-label={option.label}
+              aria-selected={option.value === 'newest' ? 'true' : 'false'}
+            >
+              {option.label}
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

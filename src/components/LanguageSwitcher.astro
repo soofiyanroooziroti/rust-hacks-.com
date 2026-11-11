@@ -1,0 +1,209 @@
+---
+import { Globe } from '@lucide/astro';
+import {
+  getLocaleFromAstro,
+  getTranslations,
+  localeMeta,
+  localePath,
+  locales,
+  stripLocaleFromPath,
+} from '../i18n';
+import type { Locale } from '../i18n/locales';
+import { getBlogLocalesForSlug } from '../data/blog';
+import Icon from './icons/Icon.astro';
+
+interface Props {
+  class?: string;
+  variant?: 'header' | 'sheet';
+}
+
+const { class: className = '', variant = 'header' } = Astro.props;
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+const languageUi = t.language ?? { label: 'Language', selectAria: 'Select site language' };
+const basePath = stripLocaleFromPath(Astro.url.pathname);
+const blogSlugMatch = basePath.match(/^\/blog\/([^/]+)\/?$/);
+const blogLocalesForPage = blogSlugMatch ? getBlogLocalesForSlug(blogSlugMatch[1]!) : null;
+
+const options = locales.map((code) => {
+  let href = localePath(basePath, code);
+  if (blogLocalesForPage && !blogLocalesForPage.includes(code)) {
+    href = localePath('/', code);
+  }
+  return {
+    code,
+    name: localeMeta[code].nativeName,
+    shortLabel: localeMeta[code].shortLabel,
+    href,
+    selected: code === locale,
+  };
+});
+const shortLabel = localeMeta[locale].shortLabel;
+---
+
+{options.length < 2 ? null : (
+
+<div
+  class:list={[
+    'language-switcher relative',
+    variant === 'header' ? 'language-switcher--header' : 'language-switcher--sheet w-full',
+    className,
+  ]}
+  data-language-switcher
+  data-language-variant={variant}
+>
+  <button
+    type="button"
+    class:list={[
+      'language-switcher__trigger',
+      variant === 'header' ? 'language-switcher__trigger--bar' : 'language-switcher__trigger--sheet w-full justify-between px-3 py-2 text-sm',
+    ]}
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-label={languageUi.selectAria}
+    data-language-trigger
+  >
+    {variant === 'header' ? (
+      <>
+        <Globe class="language-switcher__globe shrink-0 opacity-80" aria-hidden="true" />
+        <span data-language-short>{shortLabel}</span>
+      </>
+    ) : (
+      <>
+        <span class="truncate" data-language-label>{localeMeta[locale].nativeName}</span>
+        <Icon name="chevronDown" size={16} class="shrink-0 opacity-70" aria-hidden="true" />
+      </>
+    )}
+  </button>
+  <ul
+    class="language-switcher__menu pointer-events-none rounded-lg border border-border bg-background p-1 opacity-0 shadow-lg transition-[opacity,transform] dark:border-white/10 dark:bg-background/95"
+    role="listbox"
+    aria-label={languageUi.label}
+    hidden
+    data-language-menu
+  >
+    {
+      options.map((opt) => (
+        <li role="option" aria-selected={opt.selected}>
+          <a
+            href={opt.href}
+            class:list={[
+              'block rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted hover:text-primary',
+              opt.selected ? 'bg-muted/80 font-semibold text-primary' : 'text-muted-foreground',
+            ]}
+            hreflang={localeMeta[opt.code].hreflang}
+            lang={localeMeta[opt.code].htmlLang}
+            data-locale-option={opt.code}
+          >
+            {variant === 'header' ? opt.shortLabel : opt.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+)}
+
+<style>
+  :global(.header-lang-slot),
+  :global(.header-drawer-lang-slot),
+  :global(.header-actions),
+  :global(.site-header-pill),
+  :global([data-floating-nav]) {
+    overflow: visible;
+  }
+
+  .language-switcher {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .language-switcher__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin: 0;
+    border: 1px solid color-mix(in oklch, var(--border) 80%, transparent);
+    background: color-mix(in oklch, var(--background) 50%, transparent);
+    color: var(--foreground);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .language-switcher__trigger--bar {
+    box-sizing: border-box;
+    height: 2.25rem;
+    padding: 6px 8px;
+    border-radius: 0.5rem;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .language-switcher__trigger--bar:hover {
+    background: var(--muted);
+  }
+
+  .language-switcher__globe {
+    width: 14px;
+    height: 14px;
+  }
+
+  .language-switcher--header {
+    display: none;
+  }
+
+  @media (min-width: 68.75rem) {
+    .language-switcher--header {
+      display: block;
+    }
+  }
+
+  .language-switcher__trigger--sheet {
+    border-radius: 0.5rem;
+    font-weight: 500;
+  }
+
+  .language-switcher--header .language-switcher__menu {
+    position: fixed;
+    z-index: 250;
+    min-width: 10.5rem;
+    max-height: none;
+    overflow: visible;
+    transform: translate3d(0, -4px, 0);
+  }
+
+  .language-switcher--sheet .language-switcher__menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: 0;
+    z-index: 70;
+    max-height: none;
+    overflow: visible;
+    transform: translate3d(0, -4px, 0);
+  }
+
+  .language-switcher__menu:not([hidden]) {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media (max-height: 720px) {
+    .language-switcher__menu:not([hidden]) {
+      max-height: min(70dvh, 22rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .language-switcher__menu {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>

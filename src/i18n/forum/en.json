@@ -1,0 +1,195 @@
+{
+  "categories": {
+    "General": "General",
+    "Guides & Builds": "Guides & Builds",
+    "Patch Talk": "Patch Talk",
+    "Community": "Community"
+  },
+  "posts": {
+    "ace-status-before-launch": {
+      "title": "Do I launch after an ACE update if the site still says online?",
+      "excerpt": "Client patched overnight. I have a monthly key and I do not want to open the loader on a stale build.",
+      "body": [
+        "Windows 11, monthly key for Rust Hacks. The game client updated this morning. The site banner still looked like yesterday.",
+        "Is “online” from last night enough, or do I wait until someone confirms the build after EasyAnti-Cheat moves?"
+      ],
+      "flair": "Question",
+      "comments": [
+        {
+          "author": "HarborWatch",
+          "body": "Wait. Check rust-hacks.com after the client or ACE update, not the banner you remember from last night. Nothing here is a promise that a session stays clean. If status is not current, leave the loader closed.",
+          "replies": [
+            {
+              "author": "NightRaid",
+              "body": "Held the queue. I will only open it after the page is updated for this patch."
+            }
+          ]
+        },
+        {
+          "author": "ExtractLate",
+          "body": "Same habit. I read the anti-cheat post so I stop treating a green banner as a guarantee.",
+          "replies": []
+        }
+      ]
+    },
+    "aim-fov-feels-sticky": {
+      "title": "Aim assist yanks on close fights. What do I turn down?",
+      "excerpt": "FOV is wide, smooth is low, bone is head. Visible check is already on.",
+      "body": [
+        "Aimbot options on my menu: FOV, smooth, speed, stickiness, filter, bone, two keybinds, visible check, ignore knocked, draw FOV, target line.",
+        "Close hallway fight, it pulls hard to the head. I only want help on the operator I am already looking at."
+      ],
+      "flair": "Question",
+      "comments": [
+        {
+          "author": "ScopeQuiet",
+          "body": "I raised smooth and cut FOV until the circle barely covered the player in front of me. Head bone was the yank.",
+          "replies": [
+            {
+              "author": "HarborWatch",
+              "body": "Change one slider at a time. Higher smooth and a tighter FOV is the usual fix. Bone can stay on closest or chest while you test. Draw FOV is for setup, then turn it off. Save that layout in the config system so the next launch does not reset it."
+            }
+          ]
+        }
+      ]
+    },
+    "esp-labels-cover-the-fight": {
+      "title": "Player ESP covers the screen in a squad fight",
+      "excerpt": "Skeleton, box, name, weapon, helmet, and armor are all on. I cannot see the crosshair.",
+      "body": [
+        "Both player visual groups are maxed: skeleton, head circle, box, distance, name, team, weapon, view direction, health, snaplines, helmet, armor, chest bag, hero name.",
+        "I only need who is up and how far. What do people actually leave enabled?"
+      ],
+      "flair": "Discussion",
+      "comments": [
+        {
+          "author": "HarborWatch",
+          "body": "Start with box or skeleton, health, and distance. Add helmet or armor level only if you read it. Set a max distance so far operators drop off. Custom colors and size are there so the label stays readable, not so every field is on.",
+          "replies": []
+        },
+        {
+          "author": "SquadNoise",
+          "body": "Dropped snaplines and names. The fight is readable again.",
+          "replies": []
+        }
+      ]
+    },
+    "loot-filter-price": {
+      "title": "Loot names cover every container. How do I cut the noise?",
+      "excerpt": "Item name, rarity, and price are on. Corpses and computers too. The raid looks like a spreadsheet.",
+      "body": [
+        "Loot visuals: item name, rarity, price, minimum price filter, player corpses, AI corpses, computers.",
+        "I want high-value items and player bodies, not every AI drop."
+      ],
+      "flair": "Question",
+      "comments": [
+        {
+          "author": "HarborWatch",
+          "body": "Raise the minimum price filter first. Leave player corpses on if you loot leftover gear, and turn AI corpses off until you need them. Computers are a separate marker. The filter does not hide the player ESP group.",
+          "replies": []
+        }
+      ]
+    },
+    "chams-or-esp": {
+      "title": "Is chams the same thing as the player ESP labels?",
+      "excerpt": "I turned on static chams for players and still see boxes. Do I need both?",
+      "body": [
+        "Chams menu: applies to player, AI, weapon, hands, or self. Enable, style static or RGB, static color picker.",
+        "ESP still draws the box and the name. I thought chams replaced that."
+      ],
+      "flair": "Question",
+      "comments": [
+        {
+          "author": "HarborWatch",
+          "body": "They are separate. Chams is a color pass on the model. Player ESP is the label group: skeleton, box, name, gear. You can run one, the other, or both. Self and hands are for your own view, not for finding enemies.",
+          "replies": []
+        }
+      ]
+    },
+    "camera-fov-vs-aim-fov": {
+      "title": "Camera FOV and aim FOV feel like the same slider",
+      "excerpt": "I widened the camera and the aim circle got huge. Are those the same control?",
+      "body": [
+        "Misc has camera FOV, third person, arm and weapon scale, crosshair, and combat mode hides.",
+        "Aimbot also has FOV. I changed the camera and the aim assist started grabbing people at the edge."
+      ],
+      "flair": "Question",
+      "comments": [
+        {
+          "author": "HarborWatch",
+          "body": "They are different. Camera FOV changes how wide the view is. Aim FOV is only the cone the assist searches. Set the camera first, then retune aim FOV. Third person is its own hotkey. Combat mode hides markers for player, AI, item, dead container, or computer. It does not turn the assist off.",
+          "replies": []
+        }
+      ]
+    },
+    "lifetime-includes-spoofer": {
+      "title": "Does the $150 lifetime key include the HWID spoofer?",
+      "excerpt": "I am on the $35 month. I want to know if lifetime on the hack also unlocks the spoofer.",
+      "body": [
+        "Rust Hacks and UGC are $35 for 30 days or $150 lifetime. The HWID Spoofer is $50 monthly or $150 lifetime on its card.",
+        "If I buy lifetime on the hack, do I also get the spoofer, or is that another checkout?"
+      ],
+      "flair": "Question",
+      "comments": [
+        {
+          "author": "HarborWatch",
+          "body": "Separate products. Lifetime on Rust Hacks does not include HWID Spoofer or UGC Account recovery. Each one is its own key. Starting on monthly does not promise a credit toward lifetime. The prices are the same numbers on every card, not one bundle.",
+          "replies": [
+            {
+              "author": "PlanMath",
+              "body": "Clear. I will keep the month on the hack and buy the spoofer only if the PC is the thing that is flagged."
+            }
+          ]
+        }
+      ]
+    },
+    "when-to-buy-hwid": {
+      "title": "Fresh accounts die on this PC and work on a laptop. Is that HWID?",
+      "excerpt": "The game account is new. A second machine gets in. I am not sure the spoofer is the right buy.",
+      "body": [
+        "Two PCs. New accounts fail on the desktop and play on the laptop. I already own the hack month.",
+        "Is the HWID spoofer for the desktop, or do I need the UGC appeal workspace instead?"
+      ],
+      "flair": "Question",
+      "comments": [
+        {
+          "author": "HarborWatch",
+          "body": "If a new account fails on one machine and works on another, that pattern is the hardware-ID case the spoofer is for. UGC is the appeal workspace for the account itself. The spoofer does not undo an account-only restriction, and it is not included with the hack key.",
+          "replies": []
+        }
+      ]
+    },
+    "loader-is-not-dma": {
+      "title": "Search results say DMA. Is this store selling a DMA card?",
+      "excerpt": "I want the Windows loader from checkout, not a hardware card from a random download.",
+      "body": [
+        "People search “rust dma” and land on download pages. This site sells a Windows loader after checkout.",
+        "I do not want a firmware card or a repacked zip. Where is the actual install path?"
+      ],
+      "flair": "Discussion",
+      "comments": [
+        {
+          "author": "HarborWatch",
+          "body": "This product is a Windows loader from checkout, not a DMA card and not a public zip. Buy on the product page, then use the portal. Do not run a file that arrived from a search result or a direct message. A DMA device is a different category and is not what this key delivers.",
+          "replies": []
+        }
+      ]
+    },
+    "requirements-before-install": {
+      "title": "Loader will not start. Do I turn security features off?",
+      "excerpt": "Windows 11. Someone in chat said to disable core isolation. I have not touched it.",
+      "body": [
+        "The product page lists Windows 10/11, Intel or AMD, and HVCI, core isolation, TPM, and secure boot left on.",
+        "A forum post from another game said to disable those. I stopped before changing the PC."
+      ],
+      "flair": "Question",
+      "comments": [
+        {
+          "author": "HarborWatch",
+          "body": "Leave them on. The supported setup is Windows 10 or 11 with HVCI, core isolation, TPM, and secure boot on. Do not follow a guide that tells you to turn those off. If the loader still fails, send the portal order ID and the exact loader text through support.",
+          "replies": []
+        }
+      ]
+    }
+  }
+}

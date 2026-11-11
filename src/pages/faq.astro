@@ -1,0 +1,52 @@
+---
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllFaqs } from '../data/faq';
+import { resolvePageSeo } from '../config/seo';
+import { breadcrumbSchema, faqPageSchema, webPageSchema } from '../utils/schema';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SiteFaqSection from '../components/SiteFaqSection.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+
+const seo = resolvePageSeo('/faq/');
+const breadcrumbs = [
+  { name: t.breadcrumbs.home, path: '/' },
+  { name: t.breadcrumbs.faq, path: '/faq/' },
+];
+
+const faqs = getAllFaqs();
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({
+      name: 'FAQ — Rust Hacks & Products',
+      description:
+        'Answers about Rust Hacks, the HWID spoofer, UGC recovery, ACE risk, and checkout on rust-hacks.com.',
+      url: '/faq/',
+    }),
+    faqPageSchema(faqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') }))),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <section class="border-b border-border bg-muted/10 py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+      <div class="mt-6">
+        <SectionHeader
+          eyebrow={t.faqPage.eyebrow}
+          title={t.faqPage.title}
+          desc={t.faqPage.subtitle}
+          titleId="faq-page-title"
+          heading="h1"
+        />
+      </div>
+    </div>
+  </section>
+
+  <SiteFaqSection items={faqs} variant="full" titleId="faq-page-list" />
+</BaseLayout>

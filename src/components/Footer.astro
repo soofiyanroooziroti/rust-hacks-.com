@@ -1,0 +1,164 @@
+---
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+import { PRODUCT_BASE, SITE_DOMAIN } from '../config/site';
+import { footerSisterSites } from '../data/sister-sites';
+import { Separator } from '@/components/starwind/separator';
+import { localizedPath } from '../utils/path';
+import { logoAltForPath } from '../utils/logo-alt';
+
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+const logoAlt = logoAltForPath(Astro.url.pathname);
+
+const footerHeadingClass =
+  'text-xs font-bold uppercase tracking-wider text-foreground';
+
+const resourceMeta = t.footer.resourceLinks ?? [];
+const resourceLinks = [
+  {
+    href: localizedPath('/blog/', locale),
+    label: resourceMeta[0]?.label ?? 'Blog archive',
+    ariaLabel: resourceMeta[0]?.ariaLabel ?? 'Blog',
+  },
+  {
+    href: localizedPath(`${PRODUCT_BASE}rust-cheat/`, locale),
+    label: resourceMeta[1]?.label ?? 'Rust Hacks',
+    ariaLabel: resourceMeta[1]?.ariaLabel ?? 'Rust Hacks',
+  },
+  {
+    href: localizedPath(PRODUCT_BASE, locale),
+    label: resourceMeta[2]?.label ?? 'Products & utilities',
+    ariaLabel: resourceMeta[2]?.ariaLabel ?? 'Products',
+  },
+  {
+    href: localizedPath('/support/', locale),
+    label: t.footer.support,
+    ariaLabel: t.footer.support,
+  },
+];
+
+const legalLinks = [
+  { href: localizedPath('/about/', locale), label: t.footer.about },
+  { href: localizedPath('/privacy/', locale), label: t.footer.privacy },
+  { href: localizedPath('/terms/', locale), label: t.footer.terms },
+];
+
+/** External sister sites — footer only; excluded from sitemap and on-site search index. */
+const moreSiteLinks = footerSisterSites(SITE_DOMAIN);
+---
+
+<footer class="site-footer-defer border-t border-border bg-muted/30 py-16">
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="footer-grid">
+      <div class="footer-brand space-y-4">
+        <a href={localizedPath('/', locale)} class="inline-flex items-center gap-2.5 font-[family-name:var(--font-heading)] text-lg font-bold" aria-label={t.ui.homeAria}>
+          <img src="/logo.webp" alt={logoAlt} width="36" height="36" class="box-border size-9 shrink-0 rounded-lg object-contain p-1" decoding="async" />
+        </a>
+        <p class="footer-brand__tagline text-sm text-muted-foreground">{t.footer.tagline}</p>
+      </div>
+
+      <nav class="footer-col" aria-label={t.footer.explore}>
+        <p class={footerHeadingClass}>{t.footer.explore}</p>
+        <ul class="mt-3 space-y-2">
+          {t.footer.exploreLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-muted-foreground hover:text-primary"
+                aria-label={link.ariaLabel}
+                {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label={t.footer.support}>
+        <p class={footerHeadingClass}>{t.footer.support}</p>
+        <ul class="mt-3 space-y-2">
+          {resourceLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-muted-foreground hover:text-primary" aria-label={link.ariaLabel}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label={t.footer.legal}>
+        <p class={footerHeadingClass}>{t.footer.legal}</p>
+        <ul class="mt-3 space-y-2">
+          {legalLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-muted-foreground hover:text-primary">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav class="footer-col" data-sitemap-exclude="true" aria-label={t.footer.moreSites}>
+        <p class={footerHeadingClass}>{t.footer.moreSites}</p>
+        <ul class="mt-3 space-y-2">
+          {moreSiteLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-muted-foreground hover:text-primary"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+
+    <Separator class="my-8" />
+    <p class="text-left text-sm text-muted-foreground">
+      &copy; {new Date().getFullYear()} {t.site.name} · {t.site.domain}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer-grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-brand__tagline {
+    max-width: 40ch;
+  }
+
+  @media (min-width: 30rem) and (max-width: 639px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .footer-brand {
+      grid-column: auto;
+    }
+  }
+</style>

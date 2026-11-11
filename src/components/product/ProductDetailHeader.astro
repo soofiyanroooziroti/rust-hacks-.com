@@ -1,0 +1,25 @@
+---
+import type { ProductPage } from '../../data/products';
+import Icon from '../icons/Icon.astro';
+import { Badge } from '@/components/starwind/badge';
+
+interface Props {
+  product: ProductPage;
+  pageH1?: string;
+}
+
+const { product, pageH1 } = Astro.props;
+const heading = pageH1 ?? product.title;
+---
+
+<header class="product-detail-header space-y-4">
+  <div class="flex flex-wrap items-center gap-2">
+    <Badge variant="secondary">{product.badge}</Badge>
+    {product.variant === 'popular' && <Badge>Popular</Badge>}
+    {product.variant === 'limited' && <Badge variant="warning">Limited</Badge>}
+    <Badge variant="outline">Rust</Badge>
+    <Badge variant="outline">Windows PC</Badge>
+  </div>
+  <h1 class="max-w-3xl text-3xl font-bold normal-case leading-tight md:text-4xl">{heading}</h1>
+  <p class="max-w-2xl text-lg leading-relaxed text-muted-foreground">{product.subtitle || product.desc}</p>
+</header>

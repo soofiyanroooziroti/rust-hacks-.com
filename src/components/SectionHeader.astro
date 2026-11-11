@@ -1,0 +1,27 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  desc?: string;
+  titleId?: string;
+  centered?: boolean;
+  wide?: boolean;
+  /** Page title uses h1. Sections under an existing h1 use h2. */
+  heading?: 'h1' | 'h2';
+}
+
+const { eyebrow, title, desc, titleId, centered = false, wide = false, heading = 'h2' } = Astro.props;
+const TitleTag = heading;
+---
+
+<header
+  class:list={[
+    'section-header space-y-0',
+    wide && 'section-header--wide',
+    centered && 'mx-auto text-center',
+  ]}
+>
+  <p class="section-header__eyebrow">{eyebrow}</p>
+  <TitleTag id={titleId} class="section-header__title">{title}</TitleTag>
+  {desc ? <p class="section-header__subtitle">{desc}</p> : null}
+</header>

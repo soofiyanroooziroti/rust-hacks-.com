@@ -1,0 +1,43 @@
+---
+import type { SiteFaqItem, FaqTopic } from '../data/faq';
+import FaqSection from './FaqSection.astro';
+import { getLocaleFromAstro } from '../i18n';
+import { SITE_FAQ_FILTER_TOPICS, faqFilterTopicsForItems, getSiteFaqSectionCopy } from '../data/faq-locale';
+
+interface Props {
+  items: SiteFaqItem[];
+  id?: string;
+  titleId?: string;
+  class?: string;
+  variant?: 'full' | 'contextual';
+  filterTopics?: FaqTopic[];
+}
+
+const {
+  items,
+  id,
+  titleId = 'faq-heading',
+  class: className,
+  variant = 'contextual',
+  filterTopics: filterTopicsProp,
+} = Astro.props;
+
+const locale = getLocaleFromAstro(Astro);
+const copy = getSiteFaqSectionCopy(variant, locale);
+const filterTopics =
+  filterTopicsProp ?? (variant === 'full' ? SITE_FAQ_FILTER_TOPICS : faqFilterTopicsForItems(items));
+const showFilters = filterTopics.length > 1;
+---
+
+<FaqSection
+  id={id}
+  items={items}
+  eyebrow={copy.eyebrow}
+  title={copy.title}
+  subtitle={copy.subtitle}
+  titleId={titleId}
+  showFilters={showFilters}
+  filterTopics={filterTopics}
+  useNativeDetails={variant === 'contextual'}
+  class={className}
+/>

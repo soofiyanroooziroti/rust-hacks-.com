@@ -1,0 +1,205 @@
+---
+import type { IconName } from './icons/types';
+import Icon from './icons/Icon.astro';
+import SlideRevealButton from './SlideRevealButton.astro';
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+import { Badge } from '@/components/starwind/badge';
+import { Button } from '@/components/starwind/button';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/starwind/card';
+import {
+  checkoutUrlWithPlan,
+  formatPlanPrice,
+  getDefaultPlan,
+  getProductPlans,
+} from '../data/productPricing';
+
+interface Props {
+  label: string;
+  title: string;
+  href: string;
+  buyUrl: string;
+  productSlug: string;
+  features: string[];
+  more?: number;
+  icon?: IconName;
+  badge?: string;
+  variant?: 'essential' | 'popular' | 'limited';
+  buyLabel?: string;
+  viewLabel?: string;
+  maxFeatures?: number;
+  featured?: boolean;
+  class?: string;
+}
+
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+const pricing = t.pricing as Record<string, string>;
+const catalog = t.catalog as Record<string, string>;
+
+const {
+  label,
+  title,
+  href,
+  buyUrl,
+  productSlug,
+  features,
+  more = 0,
+  icon = 'package',
+  badge,
+  variant,
+  buyLabel = catalog.buyNow ?? 'Buy now',
+  viewLabel = catalog.viewDetails ?? 'View details',
+  maxFeatures = 3,
+  featured = false,
+  class: className,
+} = Astro.props;
+
+const displayFeatures = features.slice(0, maxFeatures);
+const extraCount = more > 0 ? more : Math.max(0, features.length - displayFeatures.length);
+const plans = getProductPlans(productSlug);
+const defaultPlan = getDefaultPlan(productSlug);
+const buyHref = checkoutUrlWithPlan(buyUrl, defaultPlan.id);
+const monthlyPlan = plans.find((p) => p.id === 'mon');
+const lifetimePlan = plans.find((p) => p.id === 'lifetime');
+const lifetimeSaveUsd =
+  monthlyPlan && lifetimePlan ? monthlyPlan.priceUsd * 12 - lifetimePlan.priceUsd : 0;
+const plansJson = JSON.stringify(
+  plans.map((p) => ({ id: p.id, label: p.label, priceUsd: p.priceUsd, priceNote: p.priceNote })),
+);
+
+const statusBadgeIcon = (text: string): IconName => {
+  if (/limited/i.test(text)) return 'alert';
+  if (/private/i.test(label)) return 'shieldCheck';
+  return 'circleCheck';
+};
+---
+
+<Card
+  class:list={[
+    'catalog-card group relative flex h-full flex-col gap-0 overflow-visible py-0 ring-0',
+    featured ? 'catalog-card--featured' : 'catalog-card--secondary',
+    className,
+  ]}
+  data-catalog-card
+  data-buy-url={buyUrl}
+  data-plans={plansJson}
+>
+  {
+    featured && (
+      <div class="catalog-card__ribbon" aria-hidden="true">
+        <span>{pricing.mostPopular ?? catalog.mostPopular ?? 'Most Popular'}</span>
+      </div>
+    )
+  }
+
+  <CardHeader class="catalog-card__header space-y-1.5 pb-1 pt-3">
+    <CardTitle
+      class:list={[
+        'catalog-card__title flex flex-wrap items-center gap-2 text-base normal-case leading-snug md:text-lg',
+        featured && 'catalog-card__title--featured',
+      ]}
+    >
+      <a href={href} class="hover:text-primary">{title}</a>
+    </CardTitle>
+    <div class="catalog-card__badges flex flex-wrap items-center gap-1">
+      <Badge tone="primary" appearance="outline" size="sm" class="catalog-card__badge gap-1">
+        <Icon name={icon} size={12} class="shrink-0" />
+        {label}
+      </Badge>
+      {
+        badge && (
+          <Badge
+            tone={/limited/i.test(badge) ? 'warning' : 'success'}
+            appearance="soft"
+            size="sm"
+            class="catalog-card__badge gap-1"
+          >
+            <Icon name={statusBadgeIcon(badge)} size={12} class="shrink-0" />
+            {badge}
+          </Badge>
+        )
+      }
+      {variant === 'popular' && !featured && (
+        <Badge tone="primary" appearance="solid" size="sm" class="catalog-card__badge gap-1">
+          <Icon name="zap" size={12} class="shrink-0" />
+          {catalog.popular ?? 'Popular'}
+        </Badge>
+      )}
+    </div>
+  </CardHeader>
+
+  <CardContent class="flex flex-1 flex-col gap-2.5 px-4 pb-2 pt-0">
+    <ul class="catalog-card__features space-y-1.5 text-sm text-muted-foreground">
+      {displayFeatures.map((feature) => (
+        <li class="flex items-start gap-2">
+          <Icon name="check" size={14} class="mt-0.5 shrink-0 text-primary" />
+          <span>{feature}</span>
+        </li>
+      ))}
+      {extraCount > 0 && (
+        <li class="text-xs font-medium text-muted-foreground/90">
+          {(catalog.plusMore ?? '+{count} more').replace('{count}', String(extraCount))}
+        </li>
+      )}
+    </ul>
+
+    <div class="catalog-card__commerce mt-auto">
+      <p
+        class:list={['catalog-card__price-line', featured && 'catalog-card__price-line--featured']}
+        data-catalog-price-line
+      >
+        {formatPlanPrice(defaultPlan.priceUsd)}
+        {defaultPlan.id === 'mon'
+          ? (pricing.monthlySuffix ?? catalog.monthlySuffix ?? ' monthly')
+          : (pricing.lifetimeSuffix ?? catalog.lifetimeSuffix ?? ' lifetime')}
+      </p>
+
+      <div class="catalog-card__plan-toggle" role="group" aria-label={catalog.selectPlanAria ?? pricing.selectPlanAria ?? 'Select plan length'}>
+        {
+          plans.map((plan) => (
+            <button
+              type="button"
+              class:list={['catalog-card__plan-btn', plan.id === defaultPlan.id && 'is-active']}
+              data-catalog-plan={plan.id}
+              aria-pressed={plan.id === defaultPlan.id ? 'true' : 'false'}
+            >
+              <span>{plan.id === 'mon' ? (pricing.oneMonth ?? '1 Month') : (pricing.lifetime ?? 'Lifetime')}</span>
+              {lifetimeSaveUsd > 0 && (
+                <span
+                  class:list={[
+                    'catalog-card__save',
+                    plan.id === 'mon' && 'catalog-card__save--reserve',
+                  ]}
+                  aria-hidden={plan.id === 'mon' ? 'true' : undefined}
+                >
+                  Pay once, use forever
+                </span>
+              )}
+            </button>
+          ))
+        }
+      </div>
+
+      <SlideRevealButton
+        href={buyHref}
+        block
+        class:list={['catalog-card__buy slide-reveal-btn rounded-lg', featured && 'catalog-card__buy--featured slide-reveal-btn--emphasis']}
+      >
+        {buyLabel}
+      </SlideRevealButton>
+    </div>
+  </CardContent>
+
+  <CardFooter class="catalog-card__footer border-t border-border/60 bg-muted/10 px-4 pb-3 pt-2">
+    <Button as="a" href={href} variant="outline" size="sm" class="h-8 w-full justify-center text-xs">
+      {viewLabel}
+      <Icon name="eye" size={14} />
+    </Button>
+  </CardFooter>
+</Card>

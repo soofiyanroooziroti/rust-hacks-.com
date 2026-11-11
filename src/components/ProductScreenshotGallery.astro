@@ -1,0 +1,278 @@
+---
+import type { ProductSlide } from '../data/products';
+import ResponsiveImage from './ResponsiveImage.astro';
+import Icon from './icons/Icon.astro';
+import {
+  DEFAULT_IMAGE_WIDTHS,
+  defaultWebpSrc,
+  hasResponsiveWebpVariants,
+  responsiveSrcSet,
+} from '../utils/responsiveImage';
+import { Badge } from '@/components/starwind/badge';
+
+interface Props {
+  images: ProductSlide[];
+  id?: string;
+  /** Utility pages — cover crops; fill stretches to the frame without cropping. */
+  imageFill?: 'cover' | 'fill';
+  showBuildBadge?: boolean;
+}
+
+const { images, id = 'product-screenshots', imageFill, showBuildBadge = true } = Astro.props;
+const imgWidth = imageFill === 'fill' ? 960 : 1330;
+const imgHeight = imageFill === 'fill' ? 540 : 840;
+const hasMultiple = images.length > 1;
+const first = images[0];
+const mainSizes = '(min-width: 1024px) 640px, 100vw';
+
+function slideSrc(src: string) {
+  return hasResponsiveWebpVariants(src) ? defaultWebpSrc(src, DEFAULT_IMAGE_WIDTHS) : src;
+}
+
+function slideSrcSet(src: string) {
+  return hasResponsiveWebpVariants(src) ? responsiveSrcSet(src, DEFAULT_IMAGE_WIDTHS) : '';
+}
+
+const gallerySlides = images.map((img) => ({
+  src: slideSrc(img.src),
+  srcset: slideSrcSet(img.src),
+  sizes: mainSizes,
+  alt: img.alt,
+}));
+---
+
+<div
+  class:list={[
+    'product-gallery',
+    !hasMultiple && 'product-gallery--single',
+    imageFill === 'cover' && 'product-gallery--cover',
+    imageFill === 'fill' && 'product-gallery--fill',
+  ]}
+  id={id}
+  data-product-gallery
+  data-gallery-slides={JSON.stringify(gallerySlides)}
+  data-gallery-autoplay={hasMultiple ? 'true' : undefined}
+  data-gallery-delay="4500"
+>
+  <div
+    class:list={[
+      'product-gallery__frame relative min-h-0 min-w-0 overflow-hidden rounded-xl border border-border',
+      imageFill === 'fill' ? 'bg-muted/20' : '',
+    ]}
+  >
+    <div class="product-gallery__main min-h-0 overflow-hidden">
+      {
+        first && (
+          <ResponsiveImage
+            src={first.src}
+            alt={first.alt}
+            width={imgWidth}
+            height={imgHeight}
+            loading="eager"
+            fetchPriority="high"
+            sizes="(min-width: 1024px) 640px, 100vw"
+            class="product-gallery__image"
+          />
+        )
+      }
+    </div>
+    {
+      hasMultiple && (
+        <>
+          <button
+            type="button"
+            class="product-gallery__nav product-gallery__nav--prev"
+            aria-label="Previous screenshot"
+            data-gallery-prev
+          >
+            <Icon name="chevronLeft" size={18} />
+          </button>
+          <button
+            type="button"
+            class="product-gallery__nav product-gallery__nav--next"
+            aria-label="Next screenshot"
+            data-gallery-next
+          >
+            <Icon name="chevronRight" size={18} />
+          </button>
+          <div class="product-gallery__dots pointer-events-none" aria-hidden="true">
+            {images.map((_, i) => (
+              <span class:list={['product-gallery__dot', i === 0 && 'is-active']} data-gallery-dot />
+            ))}
+          </div>
+        </>
+      )
+    }
+    {
+      showBuildBadge && (
+        <Badge
+          tone="neutral"
+          appearance="frosted"
+          size="sm"
+          class="pointer-events-none absolute bottom-3 left-3 z-[1] shadow-sm"
+        >
+          Screenshot from the build
+        </Badge>
+      )
+    }
+  </div>
+</div>
+
+<script>
+  const AUTOPLAY_MS_DEFAULT = 4500;
+
+  type GallerySlide = {
+    src: string;
+    srcset: string;
+    sizes: string;
+    alt: string;
+  };
+
+  function applyGallerySlide(main: HTMLImageElement, slide: GallerySlide) {
+    const picture = main.closest('picture');
+    const source = picture?.querySelector('source');
+
+    if (slide.srcset) {
+      if (source) source.setAttribute('srcset', slide.srcset);
+      main.srcset = slide.srcset;
+    } else {
+      source?.removeAttribute('srcset');
+      main.removeAttribute('srcset');
+    }
+    if (slide.sizes) {
+      if (source) source.setAttribute('sizes', slide.sizes);
+      main.sizes = slide.sizes;
+    }
+    if (slide.src) main.src = slide.src;
+    if (slide.alt) main.alt = slide.alt;
+  }
+
+  function showGallerySlide(
+    main: HTMLImageElement,
+    dots: HTMLElement[],
+    slides: GallerySlide[],
+    index: number,
+  ) {
+    const slide = slides[index];
+    if (!slide) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const finish = () => {
+      applyGallerySlide(main, slide);
+      main.classList.remove('is-fading');
+      void main.offsetWidth;
+      main.style.opacity = '';
+    };
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === index);
+    });
+
+    if (reducedMotion) {
+      applyGallerySlide(main, slide);
+      return;
+    }
+
+    main.classList.add('is-fading');
+    window.setTimeout(finish, 220);
+  }
+
+  const initProductGalleries = () => {
+    document.querySelectorAll<HTMLElement>('[data-product-gallery]').forEach((root) => {
+      if (root.dataset.galleryBound === 'true') return;
+      root.dataset.galleryBound = 'true';
+
+      const main = root.querySelector<HTMLImageElement>('.product-gallery__image');
+      let slides: GallerySlide[] = [];
+      try {
+        slides = JSON.parse(root.dataset.gallerySlides ?? '[]') as GallerySlide[];
+      } catch {
+        slides = [];
+      }
+
+      const dots = Array.from(root.querySelectorAll<HTMLElement>('[data-gallery-dot]'));
+      if (!main || slides.length < 2) return;
+
+      let activeIndex = 0;
+      const goTo = (index: number) => {
+        activeIndex = ((index % slides.length) + slides.length) % slides.length;
+        showGallerySlide(main, dots, slides, activeIndex);
+      };
+
+      root.querySelector('[data-gallery-prev]')?.addEventListener('click', () => {
+        goTo(activeIndex - 1);
+        restartAutoplay();
+      });
+      root.querySelector('[data-gallery-next]')?.addEventListener('click', () => {
+        goTo(activeIndex + 1);
+        restartAutoplay();
+      });
+
+      let timer: number | null = null;
+      const delay = Number(root.dataset.galleryDelay) || AUTOPLAY_MS_DEFAULT;
+      const wantsAutoplay = root.dataset.galleryAutoplay === 'true' && slides.length > 1;
+
+      const stopAutoplay = () => {
+        if (timer != null) {
+          window.clearInterval(timer);
+          timer = null;
+        }
+      };
+
+      const startAutoplay = () => {
+        if (!wantsAutoplay) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        stopAutoplay();
+        timer = window.setInterval(() => {
+          if (document.hidden) return;
+          goTo(activeIndex + 1);
+        }, delay);
+      };
+
+      const restartAutoplay = () => {
+        stopAutoplay();
+        startAutoplay();
+      };
+
+      root.addEventListener('mouseenter', stopAutoplay);
+      root.addEventListener('mouseleave', startAutoplay);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAutoplay();
+        else startAutoplay();
+      });
+
+      startAutoplay();
+    });
+  };
+
+  initProductGalleries();
+  document.addEventListener('astro:page-load', initProductGalleries);
+  document.addEventListener('astro:after-swap', initProductGalleries);
+</script>
+
+<style>
+  .product-gallery__nav {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklch, var(--border) 70%, white);
+    background: rgb(10 12 16 / 72%);
+    color: white;
+  }
+
+  .product-gallery__nav--prev {
+    left: 0.65rem;
+  }
+
+  .product-gallery__nav--next {
+    right: 0.65rem;
+  }
+</style>

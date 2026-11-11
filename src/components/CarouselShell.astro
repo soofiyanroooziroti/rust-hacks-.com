@@ -1,0 +1,26 @@
+---
+import { carousel } from '@/components/starwind/carousel/variants';
+
+interface Props {
+  class?: string;
+  autoInit?: boolean;
+  opts?: Record<string, unknown>;
+  dataHeroEmbla?: boolean;
+}
+
+const { class: className, autoInit = true, opts = {}, dataHeroEmbla, ...rest } = Astro.props;
+---
+
+<div
+  class={carousel({ class: className })}
+  data-sw-carousel
+  data-auto-init={autoInit ? undefined : 'false'}
+  data-axis="x"
+  role="region"
+  aria-roledescription="carousel"
+  data-opts={JSON.stringify(opts)}
+  data-hero-embla={dataHeroEmbla || undefined}
+  {...rest}
+>
+  <slot />
+</div>

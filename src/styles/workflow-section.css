@@ -1,0 +1,237 @@
+/* How it works — index.html arc + steps locked to path coordinates (viewBox 120×920) */
+.workflow-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+  padding: 3rem 0 3.5rem;
+  overflow: hidden;
+}
+
+html:not(.dark) .workflow-section {
+  background: #fdfaf7;
+}
+
+.workflow-section__inner {
+  display: grid;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .workflow-section__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 3rem;
+    overflow: visible;
+  }
+}
+
+@media (min-width: 1280px) {
+  .workflow-section__inner {
+    gap: 2.5rem 4rem;
+  }
+}
+
+.workflow-section__lead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.workflow-section__badge {
+  display: inline-flex;
+  margin: 1.25rem 0 0;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--foreground);
+  color: var(--background);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.workflow-section__title-accent {
+  color: var(--primary);
+}
+
+.workflow-section__cta-row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .workflow-section__cta-row {
+    gap: 1rem;
+  }
+}
+
+.workflow-section__cta {
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .workflow-section__lead {
+    align-items: center;
+    text-align: center;
+  }
+
+  .workflow-section__cta-row {
+    justify-content: center;
+  }
+}
+
+/*
+ * Arc + steps share one box (920 viewBox height).
+ * Circle center = arc-left + (pathX/120)×arc-width; step margin-left offsets row.
+ */
+.workflow-section__steps-panel {
+  --wf-arc-left: 1.125rem;
+  --wf-arc-width: 7.5rem;
+  --wf-circle: 3.5rem;
+  --wf-circle-r: 1.75rem;
+  --wf-path-h: 920;
+  --wf-ml-left: calc(var(--wf-arc-left) + 10 / 120 * var(--wf-arc-width) - var(--wf-circle-r));
+  --wf-ml-right: calc(var(--wf-arc-left) + 76 / 120 * var(--wf-arc-width) - var(--wf-circle-r));
+
+  position: relative;
+  /* 80% of prior timeline height — arc/steps use % tops so alignment stays the same */
+  min-height: 28.8rem;
+  padding: 0.5rem 0 2rem;
+}
+
+@media (min-width: 1024px) {
+  .workflow-section__steps-panel {
+    min-height: 32rem;
+  }
+}
+
+.workflow-section__arc {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: var(--wf-arc-left);
+  z-index: 0;
+  width: var(--wf-arc-width);
+  height: 100%;
+  pointer-events: none;
+  color: color-mix(in oklch, var(--foreground) 72%, transparent);
+}
+
+@media (min-width: 768px) {
+  .workflow-section__arc {
+    display: block;
+  }
+}
+
+.workflow-section__steps {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-height: inherit;
+}
+
+@media (min-width: 768px) {
+  .workflow-step {
+    position: absolute;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transform: translateY(-50%);
+  }
+
+  /* 01 left (unchanged) → 02 right → 03 left → 04 right on the index.html arc */
+  .workflow-step--1 {
+    top: calc(26 / var(--wf-path-h) * 100%);
+    margin-left: var(--wf-ml-left);
+  }
+
+  .workflow-step--2 {
+    top: calc(346 / var(--wf-path-h) * 100%);
+    margin-left: var(--wf-ml-right);
+  }
+
+  .workflow-step--3 {
+    top: calc(630 / var(--wf-path-h) * 100%);
+    margin-left: var(--wf-ml-left);
+  }
+
+  .workflow-step--4 {
+    top: calc(930 / var(--wf-path-h) * 100%);
+    margin-left: var(--wf-ml-right);
+  }
+}
+
+@media (max-width: 767px) {
+  .workflow-section__steps-panel {
+    min-height: auto;
+  }
+
+  .workflow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .workflow-step:not(:last-child) {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.workflow-step__num {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: var(--wf-circle);
+  height: var(--wf-circle);
+  border: 1px solid color-mix(in oklch, var(--foreground) 55%, var(--border));
+  border-radius: 999px;
+  background: var(--background);
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--foreground);
+}
+
+html:not(.dark) .workflow-step__num {
+  background: #fdfaf7;
+}
+
+.workflow-step__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-heading, ui-serif, Georgia, serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--foreground);
+}
+
+.workflow-step__desc {
+  margin: 0;
+  max-width: 21rem;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: color-mix(in oklch, var(--foreground) 70%, transparent);
+}
+
+@media (max-width: 767px) {
+  .workflow-section {
+    padding: 2.5rem 0 3rem;
+  }
+
+  .workflow-step__desc {
+    max-width: none;
+  }
+}

@@ -1,0 +1,44 @@
+---
+import ForumCommentTree from './ForumCommentTree.astro';
+import type { ForumComment } from '../../data/forum';
+
+interface Props {
+  comment: ForumComment;
+  tone: 'purple' | 'blue' | 'green' | 'orange';
+  nested?: boolean;
+  developerFlair?: string;
+  pointsLabel?: string;
+}
+
+const { comment, tone, nested = false, developerFlair = 'Developer', pointsLabel = 'points' } = Astro.props;
+const initial = comment.author.replace(/^u\//, '').slice(0, 1).toUpperCase();
+---
+
+<article class:list={['forum-comment', nested && 'forum-comment--reply']}>
+  <div class="forum-comment__rail">
+    <span class="forum-comment__avatar">{initial}</span>
+    {!nested && <span class="forum-comment__line"></span>}
+  </div>
+  <div class="forum-comment__body">
+    <div class="forum-comment__meta">
+      <b>u/{comment.author}</b>
+      {comment.developer && <span class={`forum-flair tone-${tone}`}>{developerFlair}</span>}
+      <span>·</span>
+      <span>{comment.age}</span>
+      <span>·</span>
+      <span>{comment.score} {pointsLabel}</span>
+    </div>
+    <p>{comment.body}</p>
+    {
+      comment.replies?.map((reply) => (
+        <ForumCommentTree
+          comment={reply}
+          tone={tone}
+          nested
+          developerFlair={developerFlair}
+          pointsLabel={pointsLabel}
+        />
+      ))
+    }
+  </div>
+</article>

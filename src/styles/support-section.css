@@ -1,0 +1,89 @@
+/* Support section — layout only (background matches other sections via Tailwind) */
+.support-section__inner {
+  position: relative;
+}
+
+.support-section__header {
+  margin: 0;
+}
+
+.support-section__cards {
+  display: grid;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 3rem 0 0;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .support-section__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .support-section__cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+html:not(.dark) .support-section__icon {
+  color: var(--primary);
+}
+
+html.dark .support-section__icon {
+  color: #ffffff;
+}
+
+.support-section__tips {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+
+.support-section__tips-title {
+  margin: 0 0 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.support-section__tips-list {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 48rem;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .support-section__tips-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.support-section__tips-item-title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.support-section__tips-item-desc {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 639px) {
+  .support-section__cards {
+    margin-top: 2.25rem;
+  }
+}

@@ -1,0 +1,22 @@
+---
+import { iconRegistry } from './registry';
+import type { IconName } from './types';
+
+interface Props {
+  name: IconName;
+  size?: number;
+  class?: string;
+  strokeWidth?: number;
+}
+
+const { name, size = 20, class: className = '', strokeWidth = 1.75 } = Astro.props;
+
+const LucideIcon = iconRegistry[name];
+---
+
+<LucideIcon
+  size={size}
+  stroke-width={strokeWidth}
+  class:list={['icon-app', 'shrink-0', className]}
+  aria-hidden="true"
+/>

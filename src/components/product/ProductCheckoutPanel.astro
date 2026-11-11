@@ -1,0 +1,177 @@
+---
+import { getLocaleFromAstro, getTranslations } from '../../i18n';
+import { ROUTES, getLocalizedPath } from '../../utils/path';
+
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+import type { ProductPage } from '../../data/products';
+import {
+  checkoutUrlWithPlan,
+  formatPlanPrice,
+  getProductPlans,
+} from '../../data/productPricing';
+import Icon from '../icons/Icon.astro';
+import ProductIconWell from './ProductIconWell.astro';
+import { Button } from '@/components/starwind/button';
+import { RadioGroup, RadioGroupItem } from '@/components/starwind/radio-group';
+
+interface Props {
+  product: ProductPage;
+}
+
+const { product } = Astro.props;
+const plans = getProductPlans(product.slug);
+const defaultPlan = plans[0]!;
+const isSinglePlan = plans.length === 1;
+const monthlyPlan = plans.find((p) => p.id === 'mon');
+const lifetimePlan = plans.find((p) => p.id === 'lifetime');
+const lifetimeSaveUsd =
+  monthlyPlan && lifetimePlan ? monthlyPlan.priceUsd * 12 - lifetimePlan.priceUsd : 0;
+
+const isRustCheat = product.slug === 'rust-cheat';
+const isUgc = product.slug === 'ugc';
+const isSpoofer = product.slug === 'spoofer';
+const statusHref = getLocalizedPath(ROUTES.status, locale);
+const rustModuleChips = ['ESP', 'Aimbot', 'Weapon', 'Misc', 'Config', 'Windows 10/11'];
+const ugcModuleChips = ['Account recovery', 'Ban fix', 'Windows 10/11'];
+const spooferModuleChips = ['HWID Spoofer', 'Cleaner', 'Windows 10/11'];
+---
+
+<aside
+  class="product-checkout text-left lg:sticky lg:top-24"
+  aria-labelledby={`checkout-${product.slug}`}
+  data-product-checkout
+  data-buy-url={product.buyUrl}
+  data-plans={JSON.stringify(plans)}
+>
+  <div
+    class:list={[
+      'product-checkout__shell overflow-hidden rounded-2xl border border-primary/35 bg-card shadow-md ring-1 ring-primary/15',
+    ]}
+  >
+    <div class="card-title-band relative z-[1] flex items-center justify-start gap-3 px-5 py-4 text-left">
+      <ProductIconWell name="acqPackage" iconSize={20} class="bg-primary/15" />
+      <div class="min-w-0 text-left">
+        <p class="text-xs font-medium uppercase tracking-wider text-muted-foreground">{t.pricing.checkout}</p>
+        <h2 id={`checkout-${product.slug}`} class="text-base font-semibold leading-snug">
+          {isSinglePlan ? t.pricing.purchaseOption : t.pricing.selectSubscription}
+        </h2>
+      </div>
+    </div>
+
+    <div class="relative z-[1] space-y-5 px-5 pb-5 pt-5">
+      {
+        isUgc && (
+          <div class="product-checkout__modules rounded-xl border border-border bg-background p-3">
+            <ul
+              class="product-checkout__module-chips m-0 flex list-none flex-wrap gap-1.5 p-0"
+              aria-label="Product scope"
+            >
+              {ugcModuleChips.map((chip) => (
+                <li class="product-checkout__module-chip">{chip}</li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+      {
+        isSpoofer && (
+          <div class="product-checkout__modules rounded-xl border border-border bg-background p-3">
+            <ul
+              class="product-checkout__module-chips m-0 flex list-none flex-wrap gap-1.5 p-0"
+              aria-label="Product scope"
+            >
+              {spooferModuleChips.map((chip) => (
+                <li class="product-checkout__module-chip">{chip}</li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+      {
+        isRustCheat && (
+          <div class="product-checkout__modules rounded-xl border border-border bg-background p-3">
+            <ul class="product-checkout__module-chips m-0 flex list-none flex-wrap gap-1.5 p-0" aria-label="Modules included">
+              {rustModuleChips.map((chip) => (
+                <li class="product-checkout__module-chip">{chip}</li>
+              ))}
+            </ul>
+            <p class="product-checkout__module-links mt-2 text-xs text-muted-foreground">
+              <a href="#requirements" class="text-primary hover:underline">
+                Requirements
+              </a>
+              <span class="text-border" aria-hidden="true">
+                {' · '}
+              </span>
+              <a href={statusHref} class="text-primary hover:underline">
+                Status page
+              </a>
+            </p>
+          </div>
+        )
+      }
+
+      <RadioGroup
+        defaultValue={defaultPlan.id}
+        name={`plan-${product.slug}`}
+        legend={isSinglePlan ? t.pricing.purchaseOption : t.pricing.selectSubscription}
+        class="flex flex-col gap-2"
+      >
+        {
+          plans.map((plan) => (
+            <label class="product-checkout__plan flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-border bg-background p-3.5 transition-[border-color,box-shadow,transform,background] duration-200 ease-out has-data-checked:border-primary has-data-checked:bg-primary/10 hover:scale-[1.015]">
+              <span class="flex min-w-0 flex-col gap-1">
+                <span class="flex flex-wrap items-center gap-2">
+                  <span class="flex items-center gap-3">
+                    <RadioGroupItem value={plan.id} variant="primary" />
+                    <span class="text-sm font-medium">{plan.label}</span>
+                  </span>
+                  {plan.id === 'lifetime' && (
+                    <span class="product-checkout__best-value">{t.pricing.bestValue}</span>
+                  )}
+                </span>
+                {plan.id === 'lifetime' && lifetimeSaveUsd > 0 && (
+                  <span class="product-checkout__save pl-8">Pay once, use forever</span>
+                )}
+              </span>
+              <span class="shrink-0 text-sm font-semibold tabular-nums text-foreground">
+                {formatPlanPrice(plan.priceUsd)}
+              </span>
+            </label>
+          ))
+        }
+      </RadioGroup>
+
+      <div class="flex items-end justify-between gap-3 border-t border-border pt-4">
+        <span class="text-xs font-medium uppercase tracking-wider text-muted-foreground">{t.pricing.total}</span>
+        <p class="text-right font-[family-name:var(--font-heading)] text-2xl font-bold leading-none text-primary">
+          <span class="product-checkout__total" data-checkout-total>{formatPlanPrice(defaultPlan.priceUsd)}</span>
+          <span class="product-checkout__total-note block text-sm font-medium text-muted-foreground" data-checkout-note>
+            {defaultPlan.priceNote}
+          </span>
+        </p>
+      </div>
+      <Button
+        as="a"
+        href={checkoutUrlWithPlan(product.buyUrl, defaultPlan.id)}
+        variant="primary"
+        size="lg"
+        class="product-checkout__buy group/buy w-full rounded-xl"
+        data-checkout-buy
+        rel="nofollow sponsored"
+        data-astro-reload
+        data-astro-prefetch="false"
+      >
+        {t.pricing.buyNow}
+        <span class="product-checkout__buy-arrow inline-flex transition-transform duration-200 ease-out group-hover/buy:translate-x-1">
+          <Icon name="arrowRight" size={17} />
+        </span>
+      </Button>
+    </div>
+  </div>
+</aside>
+
+<script>
+  import { setupProductCheckoutPanels } from '../../scripts/product-checkout.ts';
+  setupProductCheckoutPanels();
+</script>

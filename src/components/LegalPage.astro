@@ -1,0 +1,58 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Icon from './icons/Icon.astro';
+import { Button } from '@/components/starwind/button';
+import { Prose } from '@/components/starwind/prose';
+import { normalizeInternalPath, ROUTES } from '../utils/path';
+
+function linkify(text: string): string {
+  return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label: string, href: string) => {
+    return `<a href="${normalizeInternalPath(href)}">${label}</a>`;
+  });
+}
+
+interface Props {
+  title: string;
+  description: string;
+  breadcrumbLabel: string;
+  sections: { heading: string; paragraphs: string[] }[];
+}
+
+const { title, description, breadcrumbLabel, sections } = Astro.props;
+---
+
+<article class="py-8 md:py-12">
+  <div class="mx-auto max-w-3xl px-5">
+    <div class="text-left">
+    <Breadcrumbs
+      items={[
+        { name: 'Home', path: '/' },
+        { name: breadcrumbLabel, path: Astro.url.pathname },
+      ]}
+    />
+    </div>
+    <header class="mt-4 space-y-4 text-center">
+      <h1 class="text-3xl font-bold normal-case md:text-4xl">{title}</h1>
+      <p class="text-lg leading-relaxed text-muted-foreground">{description}</p>
+    </header>
+
+    <Prose class="mt-10 max-w-none text-left">
+      {sections.map((section) => (
+        <section class="mt-8">
+          <h2>{section.heading}</h2>
+          {section.paragraphs.map((paragraph) => (
+            <p set:html={linkify(paragraph)} />
+          ))}
+        </section>
+      ))}
+    </Prose>
+
+    <div class="mt-12 flex flex-wrap justify-center gap-3 border-t border-border pt-8">
+      <Button as="a" href={ROUTES.support} variant="primary" size="sm">
+        Contact support
+        <Icon name="mail" size={16} />
+      </Button>
+      <Button as="a" href={ROUTES.home} variant="outline" size="sm">Back to home</Button>
+    </div>
+  </div>
+</article>

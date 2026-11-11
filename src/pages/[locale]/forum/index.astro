@@ -1,0 +1,10 @@
+---
+import { localeOnlyPaths } from '../../../i18n/paths';
+import ForumIndexPage from '../../../components/forum/ForumIndexPage.astro';
+
+export function getStaticPaths() {
+  return localeOnlyPaths();
+}
+---
+
+<ForumIndexPage locale={Astro.params.locale!} />

@@ -1,0 +1,78 @@
+---
+import Icon from './icons/Icon.astro';
+import { getTranslations, type Locale } from '../i18n';
+import { getProductPlans, formatPlanPrice } from '../data/productPricing';
+import { localizedPath, ROUTES } from '../utils/path';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+const side = (t.blogSidebar ?? {}) as Record<string, string>;
+
+const cheatPlans = getProductPlans('loader');
+const spooferPlans = getProductPlans('hwid-spoofer');
+const mCheat = cheatPlans.find((p) => p.id === 'mon')!;
+const lCheat = cheatPlans.find((p) => p.id === 'lifetime')!;
+const mSpoofer = spooferPlans.find((p) => p.id === 'mon')!;
+const lSpoofer = spooferPlans.find((p) => p.id === 'lifetime')!;
+
+const productsHref = localizedPath(ROUTES.products, locale);
+
+const off = side.priceEstimatorOff ?? 'Off';
+const days = side.priceEstimator31d ?? side.priceEstimator30d ?? '31d';
+const life = side.priceEstimatorLifetime ?? 'Life';
+---
+
+<div class="blog-estimator" data-blog-price-estimator aria-labelledby="blog-estimator-title">
+  <h3 id="blog-estimator-title" class="blog-estimator__title">
+    <Icon name="navProducts" size={14} class="text-primary" aria-hidden="true" />
+    {side.priceEstimatorTitle ?? 'Price estimate'}
+  </h3>
+  <p class="blog-estimator__hint">{side.priceEstimatorHint ?? 'Tap a term. Totals add up.'}</p>
+
+  <div class="blog-estimator__rows">
+    <div class="blog-estimator__line" data-estimator-line>
+      <span class="blog-estimator__label">{side.productCheats ?? 'Menu'}</span>
+      <div class="blog-estimator__choices" role="group" aria-label={side.productCheats ?? 'Menu'}>
+        <button type="button" class="is-on" data-price="0" aria-pressed="true">{off}</button>
+        <button type="button" data-price={String(mCheat.priceUsd)} aria-pressed="false">
+          {days} {formatPlanPrice(mCheat.priceUsd)}
+        </button>
+        <button type="button" data-price={String(lCheat.priceUsd)} aria-pressed="false">
+          {life} {formatPlanPrice(lCheat.priceUsd)}
+        </button>
+      </div>
+    </div>
+    <div class="blog-estimator__line" data-estimator-line>
+      <span class="blog-estimator__label">{side.hwidSpoofer ?? 'HWID Spoofer'}</span>
+      <div class="blog-estimator__choices" role="group" aria-label={side.hwidSpoofer ?? 'HWID Spoofer'}>
+        <button type="button" class="is-on" data-price="0" aria-pressed="true">{off}</button>
+        <button type="button" data-price={String(mSpoofer.priceUsd)} aria-pressed="false">
+          {days} {formatPlanPrice(mSpoofer.priceUsd)}
+        </button>
+        <button type="button" data-price={String(lSpoofer.priceUsd)} aria-pressed="false">
+          {life} {formatPlanPrice(lSpoofer.priceUsd)}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <p class="blog-estimator__total" aria-live="polite">
+    <span>{side.priceEstimatorTotal ?? 'Est. total'}</span>
+    <strong class="blog-estimator__total-value" data-estimator-total>$0</strong>
+  </p>
+
+  <p class="blog-estimator__note">{side.priceEstimatorNote ?? ''}</p>
+
+  <a href={productsHref} class="blog-estimator__link">
+    {side.priceEstimatorProducts ?? 'Products'}
+    <Icon name="arrowUpRight" size={12} aria-hidden="true" />
+  </a>
+</div>
+
+<script>
+  import '../scripts/blog-price-estimator.ts';
+</script>

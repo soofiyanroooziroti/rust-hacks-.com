@@ -1,0 +1,51 @@
+{
+  "fr": {
+    "homePrimary": "hacks Rust",
+    "cheatsProduct": "hack Rust",
+    "spoofer": "spoofer HWID Rust",
+    "ugc": "récupération compte UGC Rust",
+    "terms": "aimbot, ESP, loot, EAC"
+  },
+  "tr": {
+    "homePrimary": "Rust hileleri",
+    "cheatsProduct": "Rust hile",
+    "spoofer": "Rust HWID spoofer",
+    "ugc": "UGC hesap kurtarma Rust",
+    "terms": "aimbot, ESP, loot, HWID spoofer, EAC"
+  },
+  "pt-br": {
+    "homePrimary": "hacks Rust",
+    "cheatsProduct": "hack Rust",
+    "spoofer": "spoofer HWID Rust",
+    "ugc": "recuperação de conta UGC Rust",
+    "terms": "aimbot, ESP, loot, spoofer HWID, EAC"
+  },
+  "es": {
+    "homePrimary": "hacks Rust",
+    "cheatsProduct": "hack Rust",
+    "spoofer": "spoofer HWID Rust",
+    "ugc": "recuperación de cuenta UGC Rust",
+    "terms": "aimbot, ESP, loot, spoofer HWID, EAC"
+  },
+  "de": {
+    "homePrimary": "Rust Hacks",
+    "cheatsProduct": "Rust Hack",
+    "spoofer": "Rust HWID Spoofer",
+    "ugc": "UGC Account Recovery Rust",
+    "terms": "Aimbot, ESP, Loot, HWID Spoofer, EAC"
+  },
+  "pl": {
+    "homePrimary": "hacki Rust",
+    "cheatsProduct": "hack Rust",
+    "spoofer": "spoofer HWID Rust",
+    "ugc": "odzyskiwanie konta UGC Rust",
+    "terms": "aimbot, ESP, loot, spoofer HWID, EAC"
+  },
+  "th": {
+    "homePrimary": "Rust hacks",
+    "cheatsProduct": "Rust hack",
+    "spoofer": "Rust HWID spoofer",
+    "ugc": "UGC account recovery Rust",
+    "terms": "aimbot, ESP, loot, HWID spoofer, EAC"
+  }
+}

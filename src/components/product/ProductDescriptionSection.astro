@@ -1,0 +1,58 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { Button } from '@/components/starwind/button';
+import { Prose } from '@/components/starwind/prose';
+import { getLocaleFromAstro, getTranslations } from '../../i18n';
+
+interface Block {
+  type: 'h2' | 'p';
+  text: string;
+}
+
+interface Props {
+  overviewTitle?: string;
+  blocks: Block[];
+  showToggle: boolean;
+}
+
+const catalog = getTranslations(getLocaleFromAstro(Astro)).catalog ?? {};
+const { overviewTitle, blocks, showToggle } = Astro.props;
+---
+
+<section
+  class="border-t border-border bg-background py-12 md:py-16"
+  aria-labelledby="product-description-title"
+>
+  <div class="mx-auto max-w-6xl px-5">
+    <SectionHeader
+      eyebrow={catalog.overviewEyebrow ?? 'Overview'}
+      title={overviewTitle ?? (catalog.productDescription ?? 'Product description')}
+      desc={catalog.overviewDesc ?? 'What this product includes and how delivery works on Windows PC.'}
+      titleId="product-description-title"
+      wide
+    />
+
+    <div class:list={['desc-wrap product-detail__narrow mt-8', showToggle && 'collapsible']} data-desc-wrap>
+      <Prose class="description-content max-w-none">
+        {blocks.map((block) => (block.type === 'h2' ? <h2>{block.text}</h2> : <p>{block.text}</p>))}
+      </Prose>
+      {
+        showToggle && (
+          <div class="mt-6 flex justify-start lg:justify-center">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              class="rounded-full"
+              data-desc-toggle
+              data-more={catalog.showMore ?? 'Show more'}
+              data-less={catalog.showLess ?? 'Show less'}
+            >
+              {catalog.showMore ?? 'Show more'}
+            </Button>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

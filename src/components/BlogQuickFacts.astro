@@ -1,0 +1,67 @@
+---
+import Icon from './icons/Icon.astro';
+import { Button } from '@/components/starwind/button';
+import { getTranslations, type Locale } from '../i18n';
+import { localizedPath, ROUTES } from '../utils/path';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+const side = (t.blogSidebar ?? {}) as Record<string, string>;
+const heroMetrics = (
+  t.hero as { metrics?: Array<{ label?: string; strong?: string }> } | undefined
+)?.metrics;
+
+const antiCheat =
+  side.quickFactsAntiCheat ??
+  (heroMetrics?.[0] ? `${heroMetrics[0].label ?? 'Anti-cheat'}: ${heroMetrics[0].strong ?? 'EA Javelin'}` : 'EA Javelin Anticheat');
+const platform =
+  side.quickFactsPlatform ??
+  (heroMetrics?.[1] ? `${heroMetrics[1].strong ?? 'Windows PC'}` : 'Windows PC');
+const plans =
+  side.quickFactsPlans ??
+  (heroMetrics?.[2] ? `${heroMetrics[2].label ?? 'Plans'} ${heroMetrics[2].strong ?? '$35 / $150'}` : 'Plans $35 / $150');
+const support =
+  side.quickFactsSupport ??
+  (heroMetrics?.[3] ? `${heroMetrics[3].strong ?? '24/7'} ${heroMetrics[3].label ?? 'support'}` : '24/7 Discord support');
+
+const facts = [
+  { title: antiCheat, body: '' },
+  { title: platform, body: '' },
+  { title: plans, body: '' },
+  { title: support, body: '' },
+];
+
+const statusHref = localizedPath(ROUTES.status, locale);
+const loaderHref = localizedPath(ROUTES.productsElite, locale);
+---
+
+<div class="blog-quick-facts" aria-labelledby="blog-quick-facts-title">
+  <h3 id="blog-quick-facts-title" class="blog-quick-facts__title">
+    <Icon name="liveStatus" size={14} class="text-primary" aria-hidden="true" />
+    {side.quickFactsTitle ?? 'Quick facts'}
+  </h3>
+
+  <div class="blog-quick-facts__list">
+    {
+      facts.map((fact) => (
+        <div class="product-shop-hero__info-item rounded-lg border border-border/80 bg-muted/15 px-3 py-2.5">
+          <h4 class="m-0 text-sm font-medium leading-snug text-foreground">{fact.title}</h4>
+          {fact.body ? <p class="m-0 mt-1.5 text-xs leading-relaxed text-muted-foreground">{fact.body}</p> : null}
+        </div>
+      ))
+    }
+  </div>
+
+  <a href={statusHref} class="blog-quick-facts__status">
+    {side.quickFactsCheckStatus ?? 'Check status'}
+    <Icon name="arrowUpRight" size={12} aria-hidden="true" />
+  </a>
+
+  <Button as="a" href={loaderHref} variant="primary" size="sm" class="blog-quick-facts__cta w-full justify-center">
+    {side.quickFactsViewProduct ?? 'View Rust Hacks'}
+  </Button>
+</div>

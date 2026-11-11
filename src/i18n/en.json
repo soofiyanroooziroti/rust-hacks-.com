@@ -1,0 +1,1171 @@
+{
+  "site": {
+    "name": "Rust Hacks",
+    "domain": "rust-hacks.com",
+    "title": "Rust Hacks",
+    "description": "Rust hacks and rust game hacks for Windows PC—player visuals, resource filters, and raid tools. Compare the hack loader, HWID spoofer, and account recovery on rust-hacks.com.",
+    "discord": "https://discord.com/invite/2gMnnaPWq"
+  },
+  "nav": [
+    {
+      "href": "/",
+      "label": "Home"
+    },
+    {
+      "href": "/product/",
+      "label": "Products"
+    },
+    {
+      "href": "/product/rust-cheat/#features",
+      "label": "Features"
+    },
+    {
+      "href": "/blog/",
+      "label": "Blog"
+    },
+    {
+      "href": "/forum/",
+      "label": "Forum"
+    },
+    {
+      "href": "/faq/",
+      "label": "FAQ"
+    },
+    {
+      "href": "/support/",
+      "label": "Support"
+    }
+  ],
+  "headerNavLabels": {
+    "home": "Homepage",
+    "products": "Product catalog",
+    "features": "Feature list",
+    "blog": "Guide archive",
+    "forum": "Community threads",
+    "faq": "Checkout questions",
+    "support": "Help desk"
+  },
+  "navMore": "More",
+  "navShort": {
+    "home": "Home",
+    "products": "Products",
+    "features": "Features",
+    "blog": "Blog",
+    "forum": "Forum",
+    "faq": "FAQ",
+    "support": "Support"
+  },
+  "hero": {
+    "status": "Updated · can be used",
+    "eyebrow": "Windows PC",
+    "titleLine1": "Rust Hacks",
+    "titleLine2": "Rust Hacks",
+    "subtitle": "Rust hacks and rust game hacks for Windows PC—player visuals, resource filters, raid overlays, and monument reads, with instant delivery and Discord support.",
+    "ctaPrimary": "View products",
+    "ctaDiscord": "Buy now",
+    "modesLabel": "Modes",
+    "modes": [
+      "Vanilla",
+      "Modded",
+      "Monthly",
+      "Wipe day"
+    ],
+    "metrics": [
+      {
+        "label": "Anti-cheat",
+        "strong": "EAC"
+      },
+      {
+        "label": "Platform",
+        "strong": "Windows PC"
+      },
+      {
+        "label": "Plans",
+        "strong": "$35–$50 / $150"
+      },
+      {
+        "label": "Support",
+        "strong": "24/7"
+      }
+    ]
+  },
+  "features": {
+    "eyebrow": "Features",
+    "title": "Six menu groups on one license",
+    "subtitle": "Player ESP, world readouts, weapon tuning, aimbot, misc movement, and overlay config for Rust on Windows PC.",
+    "seeAllLabel": "See all features",
+    "items": [
+      {
+        "title": "Visual ESP Features",
+        "subtitle": "30 menu options",
+        "desc": "",
+        "tags": []
+      },
+      {
+        "title": "Visual ESP Features 2",
+        "subtitle": "27 menu options",
+        "desc": "",
+        "tags": []
+      },
+      {
+        "title": "Weapon Options",
+        "subtitle": "23 menu options",
+        "desc": "",
+        "tags": []
+      },
+      {
+        "title": "Aimbot Options",
+        "subtitle": "6 menu options",
+        "desc": "",
+        "tags": []
+      },
+      {
+        "title": "Misc Options",
+        "subtitle": "18 menu options",
+        "desc": "",
+        "tags": []
+      },
+      {
+        "title": "Config Options",
+        "subtitle": "10 menu options",
+        "desc": "",
+        "tags": []
+      }
+    ]
+  },
+  "whyUs": {
+    "eyebrow": "Why us",
+    "title": "Ranked tooling backed by patches—not promises",
+    "subtitle": "One hack product, one HWID spoofer, and one account recovery workspace. Rust Hacks and UGC are $35 monthly or $150 lifetime; the HWID spoofer is $50 monthly or $150 lifetime. A ban is still possible under EasyAnti-Cheat.",
+    "usLabel": "Rust Hacks",
+    "otherLabel": "Typical provider",
+    "rows": [
+      {
+        "title": "Patch-day loader updates",
+        "desc": "Check rust-hacks.com after a Rust or ACE update before you open the loader."
+      },
+      {
+        "title": "Separate aim sliders",
+        "desc": "Aim smooth, FOV, and bone choice are separate sliders. Change one at a time and save the config."
+      },
+      {
+        "title": "Loader and config help",
+        "desc": "Setup questions cover the Windows loader, saved configs, and which product matches a hardware flag versus an account case."
+      },
+      {
+        "title": "Separate product checkouts",
+        "desc": "The hack, the HWID spoofer, and UGC recovery stay separate checkouts. Lifetime on the hack does not add the spoofer."
+      },
+      {
+        "title": "Saved configs",
+        "desc": "Save aim, visuals, loot, chams, and camera settings in the config system instead of rebuilding them each launch."
+      },
+      {
+        "title": "HWID is its own product",
+        "desc": "A machine that fails new accounts is the spoofer case. An account-only restriction is the UGC case. Neither is included with the hack key."
+      }
+    ],
+    "metrics": [
+      {
+        "value": "ACE",
+        "title": "Check after a patch",
+        "desc": "Recheck the site after a Rust or EasyAnti-Cheat update before you launch."
+      },
+      {
+        "value": "2",
+        "title": "Plans on every card",
+        "desc": "Hack and UGC monthly is $35 for 30 days; the HWID spoofer is $50. Lifetime is $150 on each product. There is no weekly plan."
+      },
+      {
+        "value": "3",
+        "title": "Separate products",
+        "desc": "Rust Hacks, the HWID spoofer, and UGC recovery. Each one is its own key."
+      }
+    ]
+  },
+  "setup": {
+    "eyebrow": "Setup guide",
+    "titleLead": "From checkout to ranked queue in just",
+    "titleHighlight": "three simple steps",
+    "intro": "Getting started is checkout, the portal loader, then a saved config. Check the site after an EasyAnti-Cheat update before you launch Rust.",
+    "ctaPrimary": "View products",
+    "ctaSecondary": "Setup FAQ",
+    "ctaPrimaryHref": "/product/",
+    "ctaSecondaryHref": "/faq/",
+    "statusStrip": {
+      "aceStatusCta": "Check EAC status",
+      "aceStatusHref": "/status/",
+      "perks": [
+        {
+          "icon": "instantDelivery",
+          "label": "Instant delivery"
+        },
+        {
+          "icon": "support247",
+          "label": "24/7 support"
+        },
+        {
+          "icon": "refresh",
+          "label": "Lifetime updates"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step": "Step 1",
+        "title": "Unlock portal & download loader",
+        "desc": "Complete checkout, open your operator dashboard, and pull the latest patch loader build for Windows."
+      },
+      {
+        "step": "Step 2",
+        "title": "Launch & configure modules",
+        "desc": "Run the loader, then tune aim, visuals, loot, and chams one slider at a time."
+      },
+      {
+        "step": "Step 3",
+        "title": "Check status, then launch",
+        "desc": "Confirm the site is current for this client, then open Rust with the config you saved."
+      }
+    ]
+  },
+  "compatibility": {
+    "eyebrow": "Platform support",
+    "title": "Runs on your rig.",
+    "subtitle": "Check the site after a Rust or EAC update before you launch.",
+    "items": [
+      "Windows 10 & 11",
+      "Intel or AMD",
+      "HVCI on",
+      "Core isolation on",
+      "TPM on",
+      "Secure boot on",
+      "Discord support",
+      "Config save"
+    ]
+  },
+  "cheats": {
+    "eyebrow": "Game hack",
+    "title": "Rust Hacks",
+    "subtitle": "Aim tuning, player visuals, world markers, and misc tools for Windows PC.",
+    "viewAll": "View details",
+    "explore": "Explore",
+    "items": [
+      {
+        "badge": "Active",
+        "tier": "Full suite",
+        "name": "Rust",
+        "title": "Rust Hacks",
+        "desc": "Six Rust hack menu groups with player ESP, ores, traps, weapons, aimbot, misc movement, and overlay config.",
+        "features": [
+          "Visual ESP Features",
+          "Visual ESP Features 2",
+          "Weapon Options",
+          "Aimbot Options",
+          "Misc Options",
+          "Config Options"
+        ],
+        "more": 108,
+        "href": "/product/rust-cheat/",
+        "variant": "popular"
+      }
+    ]
+  },
+  "products": {
+    "eyebrow": "Products",
+    "title": "Hacks, monthly and lifetime plans for Rust",
+    "subtitle": "Rust hack loader, HWID spoofer and UGC account recovery for Windows PC. Hack and UGC are $35 monthly or $150 lifetime; the HWID spoofer is $50 monthly or $150 lifetime. Each is a separate checkout.",
+    "viewAll": "View details",
+    "get": "Buy now",
+    "explore": "Explore",
+    "items": [
+      {
+        "badge": "Active",
+        "category": "HWID spoofer",
+        "title": "HWID Spoofer",
+        "subtitle": "Hardware ID recovery",
+        "desc": "Rust HWID spoofer with cleaner—rotate disk, MAC, and GPU IDs before relaunching after hardware flags.",
+        "features": [
+          "Hardware spoofer + cleaner",
+          "Compatibility scan",
+          "Verification steps",
+          "Portal workflow"
+        ],
+        "more": 4,
+        "href": "/product/spoofer/"
+      },
+      {
+        "badge": "Active",
+        "category": "UGC Account recovery",
+        "title": "UGC Account recovery",
+        "subtitle": "Appeals & recovery",
+        "desc": "Rust account recovery workspace—custom appeal workflows, templates, and restriction tracking.",
+        "features": [
+          "Custom appeal workflows",
+          "Multi-platform profiles",
+          "Template library",
+          "Status dashboard"
+        ],
+        "more": 4,
+        "href": "/product/ugc/"
+      }
+    ]
+  },
+  "blog": {
+    "eyebrow": "Blog",
+    "title": "Guides and updates",
+    "subtitle": "Setup notes, aimbot and ESP guides, loot and chams explainers, and pricing answers for Rust on Windows PC.",
+    "latestTitle": "Latest Windows guides for aim, ESP, loot, chams, and setup",
+    "latestSubtitle": "Filter by topic or sort to find setup guides, feature deep-dives, and patch-day notes.",
+    "filterAll": "All articles",
+    "sortLabel": "Sort by",
+    "sortNewest": "Newest first",
+    "sortOldest": "Oldest first",
+    "sortShortRead": "Shortest read",
+    "sortLongRead": "Longest read",
+    "emptyFilter": "No articles match this filter.",
+    "emptyCatalog": "Guides are coming soon. Browse products or FAQ for help today.",
+    "viewAll": "View all articles",
+    "read": "Read",
+    "items": [],
+    "minRead": "min read",
+    "filterByTopicAria": "Filter articles by topic",
+    "continueReadingAria": "Continue reading",
+    "tagLabels": {
+      "Review": "Review",
+      "Install": "Install",
+      "Safety": "Safety",
+      "Plans": "Plans",
+      "Aim": "Aim",
+      "ESP": "ESP",
+      "Loot": "Loot",
+      "Visuals": "Visuals",
+      "Camera": "Camera"
+    }
+  },
+  "toolkit": {
+    "eyebrow": "Software",
+    "title": "Organized, easy to configure",
+    "subtitle": "Every module is grouped for quick tuning mid-match without tabbing through chaos.",
+    "items": [
+      {
+        "num": "01",
+        "label": "Aim",
+        "title": "Cone, speed, and bone",
+        "desc": "FOV, smooth, speed, stickiness, visible check, and a head, neck, chest, or closest bone."
+      },
+      {
+        "num": "02",
+        "label": "Visuals",
+        "title": "Labels you can actually read",
+        "desc": "Skeleton, box, health, gear level, and a max distance so the fight stays clear."
+      },
+      {
+        "num": "03",
+        "label": "Loot",
+        "title": "Price filter first",
+        "desc": "Item name, rarity, price, corpses, and computers, with a minimum price so junk drops off."
+      },
+      {
+        "num": "04",
+        "label": "Chams",
+        "title": "Color on the model",
+        "desc": "Static or RGB on players, AI, weapons, hands, or yourself. Separate from ESP labels."
+      },
+      {
+        "num": "05",
+        "label": "Camera",
+        "title": "View width, not aim width",
+        "desc": "Camera FOV, third person, arm and weapon scale, and combat-mode hides."
+      },
+      {
+        "num": "06",
+        "label": "Config",
+        "title": "Save the layout",
+        "desc": "Store the sliders you tested so the next launch does not start from zero."
+      }
+    ]
+  },
+  "workflow": {
+    "eyebrow": "How it works",
+    "badge": "4 easy steps",
+    "titleBefore": "From status check to",
+    "titleHighlight": "saved profile.",
+    "subtitle": "A straight path from a status check to a saved Rust config.",
+    "ctaLabel": "View products",
+    "ctaHref": "/product/",
+    "ctaSecondary": "Setup FAQ",
+    "ctaSecondaryHref": "/faq/",
+    "items": [
+      {
+        "num": "01",
+        "phase": "Before purchase",
+        "title": "Check ACE status",
+        "desc": "Read rust-hacks.com after a client or EasyAnti-Cheat update before you buy or launch."
+      },
+      {
+        "num": "02",
+        "phase": "Checkout",
+        "title": "Choose the product",
+        "desc": "Rust Hacks, HWID Spoofer, or UGC. Hack and UGC monthly is $35; spoofer monthly is $50. Lifetime is $150. They are separate keys."
+      },
+      {
+        "num": "03",
+        "phase": "Loader",
+        "title": "Launch & configure",
+        "desc": "Download from the portal. Leave HVCI, core isolation, TPM, and secure boot on."
+      },
+      {
+        "num": "04",
+        "phase": "In-game",
+        "title": "Save your profile",
+        "desc": "When the aim cone and the ESP labels feel right, save the config."
+      }
+    ]
+  },
+  "fieldNotes": {
+    "eyebrow": "Field notes",
+    "title": "Built for Rust on Windows PC.",
+    "items": [
+      {
+        "num": "01",
+        "title": "Patch-day check",
+        "desc": "After a Rust or EasyAnti-Cheat update, check the status page. Green means you can use the loader until it turns red or blue."
+      },
+      {
+        "num": "02",
+        "title": "One slider at a time",
+        "desc": "Change FOV, smooth, or distance alone so you know which setting caused the pull or the clutter."
+      },
+      {
+        "num": "03",
+        "title": "Separate products",
+        "desc": "The hack, the HWID spoofer, and UGC recovery are three checkouts. Lifetime on one does not unlock the others."
+      }
+    ]
+  },
+  "support": {
+    "eyebrow": "Support",
+    "title": "Rust support: loader, checkout, and HWID PC",
+    "subtitle": "Support for the loader, checkout, and HWID spoofer. Include your portal order ID and the exact loader text.",
+    "channels": [
+      {
+        "icon": "users",
+        "title": "Chat before checkout",
+        "desc": "Ask about the hack, the spoofer, or UGC before you pay.",
+        "linkLabel": "Start checkout",
+        "href": "/go/rust/"
+      },
+      {
+        "icon": "messageCircle",
+        "title": "Community forum",
+        "desc": "Setup, aim, ESP, and plan questions with marked developer replies.",
+        "linkLabel": "Open the forum",
+        "href": "/forum/"
+      },
+      {
+        "icon": "navFaq",
+        "title": "Read the FAQ",
+        "desc": "Compatibility, bans and setup—before you buy.",
+        "linkLabel": "View all FAQ",
+        "href": "/faq/"
+      },
+      {
+        "icon": "clock",
+        "title": "Live operators",
+        "desc": "Discord engineers on shift 24/7.",
+        "linkLabel": "Open contact page",
+        "href": "/support/"
+      }
+    ],
+    "ticketTitle": "Include in your ticket",
+    "ticketItems": [
+      {
+        "title": "Portal order ID",
+        "desc": "The address used at checkout on rust-hacks.com."
+      },
+      {
+        "title": "Platform",
+        "desc": "Windows 10 or 11, and whether HVCI, core isolation, TPM, and secure boot are on."
+      },
+      {
+        "title": "Error detail",
+        "desc": "The exact loader message, not a paraphrase."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Straight answers before checkout.",
+    "subtitle": "Compatibility, bans and access—no vague promises.",
+    "items": [
+      {
+        "id": "status",
+        "topic": "setup",
+        "icon": "faqStatus",
+        "q": "Where do I check if the loader is current?",
+        "a": "After a Rust or EasyAnti-Cheat update, open the <a href=\"/status/\">status page</a>. If the label is green, you can use the loader. Keep using it until the label is red or blue."
+      },
+      {
+        "id": "after-buy",
+        "topic": "setup",
+        "icon": "faqAfterBuy",
+        "q": "What happens after I buy?",
+        "a": "Checkout opens the portal with the loader for the product you paid for. Save a config after you tune it. HVCI, core isolation, TPM, and secure boot stay on."
+      },
+      {
+        "id": "ban-risk",
+        "topic": "safety",
+        "icon": "faqBanRisk",
+        "q": "Can I get banned?",
+        "a": "Yes. EasyAnti-Cheat can act on the account. Nothing on this site is a guarantee that a session stays clean."
+      },
+      {
+        "id": "hwid-ban-risk",
+        "topic": "safety",
+        "icon": "faqBanRisk",
+        "q": "What is an HWID flag, and does the hack key fix it?",
+        "a": "A hardware flag follows the PC. New accounts can fail on that machine and work on another. That is the <a href=\"/product/spoofer/\">HWID Spoofer</a>, sold separately. It does not undo an account-only restriction, and lifetime on <a href=\"/product/rust-cheat/\">Rust Hacks</a> does not include it."
+      },
+      {
+        "id": "platforms",
+        "topic": "setup",
+        "icon": "faqPlatforms",
+        "q": "Which PCs are supported?",
+        "a": "Windows 10 or 11 on Intel or AMD, with HVCI, core isolation, TPM, and secure boot on. macOS and Linux are not supported."
+      },
+      {
+        "id": "license-move",
+        "topic": "products",
+        "icon": "faqLicenseMove",
+        "q": "Can I move a key to another PC?",
+        "a": "Open support with the portal order ID. A machine that fails new accounts is an HWID Spoofer purchase, not a free move of the hack key."
+      },
+      {
+        "id": "products-page",
+        "topic": "products",
+        "icon": "faqProductsPage",
+        "q": "What is for sale?",
+        "a": "<a href=\"/product/rust-cheat/\">Rust Hacks</a>, the <a href=\"/product/spoofer/\">HWID Spoofer</a>, and <a href=\"/product/ugc/\">UGC Account recovery</a> are listed on the <a href=\"/product/\">products page</a>. Rust Hacks and UGC are $35 for 30 days or $150 lifetime; the HWID spoofer is $50 for 30 days or $150 lifetime. They are three checkouts."
+      },
+      {
+        "id": "plans-same-price",
+        "topic": "plans",
+        "icon": "faqComparePlans",
+        "q": "Does $150 lifetime include the spoofer?",
+        "a": "No. Lifetime on Rust Hacks is that product only. The HWID spoofer and UGC recovery are separate keys—UGC matches the hack at $35 monthly or $150 lifetime; the spoofer is $50 monthly or $150 lifetime. A monthly start does not promise a credit toward lifetime.",
+        "scopes": [
+          "rust-cheat",
+          "spoofer",
+          "ugc"
+        ]
+      },
+      {
+        "id": "aim-vs-camera",
+        "topic": "esp",
+        "icon": "faqWhatIsEsp",
+        "q": "Is camera FOV the same slider as aim FOV?",
+        "a": "No. Camera FOV changes how wide the view is. Aim FOV is only the cone the assist searches. Set the camera first, then retune aim FOV.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "esp-clutter",
+        "topic": "esp",
+        "icon": "faqWhatIsEsp",
+        "q": "Why does player ESP cover the fight?",
+        "a": "Start with box or skeleton, health, and distance. Add gear levels only if you read them. A max distance drops far operators. Chams is a separate color pass, not a replacement for those labels.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "not-dma",
+        "topic": "scripts",
+        "icon": "faqExternalLoader",
+        "q": "Is this a DMA card?",
+        "a": "No. Rust Hacks is a Windows loader from checkout. A DMA device is a different product and is not what this key delivers. Do not run a file that arrived from a search result.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "ugc-scope",
+        "topic": "products",
+        "icon": "faqProductsPage",
+        "q": "What does UGC Account recovery do?",
+        "a": "<a href=\"/product/ugc/\">UGC Account recovery</a> is an appeal workspace: templates, evidence lists, and follow-up. It is not a guaranteed unban, and it is not the HWID spoofer.",
+        "scopes": [
+          "ugc"
+        ]
+      },
+      {
+        "id": "spoofer-scope",
+        "topic": "products",
+        "icon": "faqProductsPage",
+        "q": "When is the HWID spoofer the right buy?",
+        "a": "Use <a href=\"/product/spoofer/\">HWID Spoofer</a> when a new account fails on one PC and works on another. It does not fix an account-only restriction. Buy <a href=\"/product/ugc/\">UGC Account recovery</a> for that case instead.",
+        "scopes": [
+          "spoofer"
+        ]
+      },
+      {
+        "id": "stickiness-vs-smooth",
+        "topic": "scripts",
+        "icon": "faqExternalLoader",
+        "q": "Is stickiness the same control as smooth?",
+        "a": "No. Smooth slows how fast the crosshair closes the gap. Stickiness holds the assist on the current operator a little longer when they strafe or leave the edge of the cone. Speed is a third slider: how fast the assist moves once a target is already inside that cone. Change one, then save the config.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "visible-check",
+        "topic": "scripts",
+        "icon": "faqWhatIsEsp",
+        "q": "Does visible check stop labels through cover?",
+        "a": "No. Visible check only gates aim assist: it engages when the operator is in line of sight, not through solid cover. Skeleton, box, and chams are separate toggles and can still draw when that check is on.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "ignore-knocked",
+        "topic": "esp",
+        "icon": "faqWhatIsEsp",
+        "q": "Why does the assist stay on a downed operator?",
+        "a": "Turn on Ignore Knocked so aim assist skips operators who are already down. Show Knocked is only a visual switch that keeps those bodies on the overlay. One does not turn the other off.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "bone-and-filter",
+        "topic": "scripts",
+        "icon": "faqExternalLoader",
+        "q": "What does bone selection do if the aim filter is already on?",
+        "a": "The aimbot filter limits which models the assist may pick. Bone selection then chooses Closest, Head, Neck, or Chest as the preferred hitbox on those models. Set the filter first, then the bone.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "controller-binds",
+        "topic": "setup",
+        "icon": "faqPlatforms",
+        "q": "Can I put aim assist on a controller without a remap tool?",
+        "a": "Yes. This build has two aim keys, and one of them can be a native controller bind. You do not install a separate remap app for that second key.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "squad-read",
+        "topic": "esp",
+        "icon": "faqWhatIsEsp",
+        "q": "How do I tell squads apart without more boxes?",
+        "a": "Use team number, hero name, and view direction. A head circle marks the head hitbox. Snaplines run from your view to a player. Leave helmet, armor, and chest-bag levels off until you actually read them.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "loot-price-floor",
+        "topic": "esp",
+        "icon": "faqWhatIsEsp",
+        "q": "Loot names still cover every container. What do I cut first?",
+        "a": "Set a minimum price so cheap items drop off. Keep player corpses, AI corpses, and computers as their own markers instead of turning the whole loot group off. Color, size, transparency, and brightness sit on the player visual group, not on this price floor.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "scale-and-crosshair",
+        "topic": "scripts",
+        "icon": "faqExternalLoader",
+        "q": "Do arm scale and weapon scale move the same model?",
+        "a": "No. Arms scale offset moves the arms on X, Y, and Z. Weapon scale offset moves the gun on its own axes. Enable Crosshair only draws a fixed center mark. Third person is a separate hotkey and does not change either scale.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "combat-mode",
+        "topic": "scripts",
+        "icon": "faqExternalLoader",
+        "q": "Does combat mode turn aim assist off?",
+        "a": "No. Combat mode hides the markers you pick: player, AI, item, dead container, or computer. Aim assist, camera width, and chams stay on until you toggle those groups yourself.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      },
+      {
+        "id": "encryption-bypass",
+        "topic": "setup",
+        "icon": "faqStatus",
+        "q": "What is the encryption bypass toggle?",
+        "a": "It is a Misc menu option in this build. It is not a second product and it is not a hardware card. Leave it off unless the current note on rust-hacks.com says to use it for this client.",
+        "scopes": [
+          "rust-cheat"
+        ]
+      }
+    ],
+    "filterTopics": {
+      "all": "All",
+      "plans": "Plans",
+      "esp": "Map hack / ESP",
+      "scripts": "Scripts",
+      "safety": "Safety",
+      "products": "Products",
+      "blog": "Blog",
+      "setup": "Setup"
+    }
+  },
+  "footer": {
+    "tagline": "Rust Hacks, HWID spoofer, and UGC recovery for Windows PC. rust-hacks.com",
+    "explore": "Explore",
+    "exploreLinks": [
+      {
+        "href": "/",
+        "label": "Feature overview",
+        "ariaLabel": "Features",
+        "scrollTarget": "features"
+      },
+      {
+        "href": "/product/rust-cheat/",
+        "label": "Loader feature page",
+        "ariaLabel": "Loader feature page"
+      },
+      {
+        "href": "/product/",
+        "label": "All products",
+        "ariaLabel": "Products"
+      },
+      {
+        "href": "/blog/",
+        "label": "Read patch guides",
+        "ariaLabel": "Blog"
+      },
+      {
+        "href": "/faq/",
+        "label": "Pre-purchase FAQ",
+        "ariaLabel": "FAQ"
+      }
+    ],
+    "support": "Contact the team",
+    "legal": "Legal",
+    "moreSites": "More sites",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "about": "About",
+    "resourceLinks": [
+      {
+        "label": "Blog archive",
+        "ariaLabel": "Blog"
+      },
+      {
+        "label": "Windows loader",
+        "ariaLabel": "Windows loader"
+      },
+      {
+        "label": "Products & utilities",
+        "ariaLabel": "Products"
+      }
+    ]
+  },
+  "legalPages": {
+    "about": {
+      "title": "About this Rust store",
+      "description": "rust-hacks.com sells Rust Hacks, an HWID spoofer, and UGC account recovery for Windows PC, with setup notes and honest ban risk.",
+      "sections": [
+        {
+          "heading": "Who we are",
+          "paragraphs": [
+            "rust-hacks.com is a Windows PC store for Rust Hacks, an HWID spoofer, and UGC account recovery. The hack is one product: aimbot options, two player visual groups, loot filters, chams, and camera tools. It is not a ladder of Lite, Pro, and Elite tiers, and it is not a DMA card.",
+            "Rust Hacks and UGC are $35 for 30 days or $150 lifetime; the HWID spoofer is $50 for 30 days or $150 lifetime. A lifetime key on the hack does not include the spoofer or the recovery workspace. Starting on a month does not promise a credit toward lifetime.",
+            "Product names on this site identify what we sell. They are not a claim that the game publisher endorses the software. Delivery is a portal download for Windows 10 or 11. You keep HVCI, core isolation, TPM, and secure boot on, then open the loader only when the site still matches the current client."
+          ]
+        },
+        {
+          "heading": "What we publish",
+          "paragraphs": [
+            "The [Rust Hacks](/product/rust-cheat/) page lists the menu names and the Windows requirements: Windows 10 or 11, Intel or AMD, with HVCI, core isolation, TPM, and secure boot left on. The [products page](/product/) is where you compare the hack, the [HWID Spoofer](/product/spoofer/), and [UGC Account recovery](/product/ugc/).",
+            "Guides on the [blog](/blog/) explain aim FOV versus camera FOV, how loot filters work, and why a hardware flag is a different buy from an account appeal. The [forum](/forum/) is for those same questions, with developer replies marked on the thread. Read the [terms](/terms/) before checkout. Sales are final, including bans.",
+            "EasyAnti-Cheat can still act on an account. Nothing here is a guarantee that a session stays clean after the next patch. Check this site after a client update before you open the loader. If the page is not current for that build, leave the software closed.",
+            "Status notes on the homepage describe whether the published build still matches the client. They are not a promise that EasyAnti-Cheat will ignore the software. If you are unsure, leave the loader closed and read the matching guide on the blog before you queue again."
+          ]
+        },
+        {
+          "heading": "Support",
+          "paragraphs": [
+            "Loader errors, a key that will not move, and checkout questions go through the [support page](/support/). Include the portal order ID, Windows version, and the exact loader text. Do not turn HVCI, core isolation, TPM, or secure boot off because a chat message from another game said to."
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "How rust-hacks.com handles analytics, cookies, and contact data.",
+      "sections": [
+        {
+          "heading": "Information we collect",
+          "paragraphs": [
+            "We may collect standard web analytics such as page views, device type, browser, and approximate region through Google Analytics when enabled. Checkout and license delivery happen on external checkout pages. We do not store payment card data on rust-hacks.com."
+          ]
+        },
+        {
+          "heading": "How we use data",
+          "paragraphs": [
+            "Analytics help us understand which guides and product pages are useful so we can improve content and fix broken links. Support tickets may retain the portal account and message content you provide until the issue is resolved."
+          ]
+        },
+        {
+          "heading": "Cookies",
+          "paragraphs": [
+            "We use minimal cookies required for analytics. You can block cookies in your browser settings; core site content remains accessible without them."
+          ]
+        },
+        {
+          "heading": "Support",
+          "paragraphs": [
+            "For privacy questions, use the options on the Support page. Purchase and refund rules are in our Terms & Conditions."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "description": "Purchase, license, refund, and use terms for products sold on rust-hacks.com.",
+      "sections": [
+        {
+          "heading": "Agreement",
+          "paragraphs": [
+            "Last updated: October 2026. By using rust-hacks.com or completing checkout for any product listed here, you agree to these Terms & Conditions and our Privacy Policy."
+          ]
+        },
+        {
+          "heading": "What you purchase",
+          "paragraphs": [
+            "We sell Rust Hacks, an HWID spoofer, and UGC account recovery. Each product is its own license: hack and UGC are $35 for 30 days or $150 lifetime; the spoofer is $50 for 30 days or $150 lifetime, delivered through a portal and loader for Windows PC.",
+            "Feature lists on each product page describe what is included at the time of purchase. Modules can change when Rust or EasyAnti-Cheat updates. A lifetime cheat key does not include the spoofer or UGC."
+          ]
+        },
+        {
+          "heading": "Checkout and delivery",
+          "paragraphs": [
+            "Payment and license delivery run on external checkout pages. rust-hacks.com does not process or store payment card numbers.",
+            "After purchase, use the portal from your order to download the current loader before you launch Rust. Leave HVCI, core isolation, TPM, and secure boot on."
+          ]
+        },
+        {
+          "heading": "License use",
+          "paragraphs": [
+            "Licenses are for your personal use only. Do not share loader files, portal logins, or license keys. A hardware-ID problem is a separate HWID Spoofer purchase."
+          ]
+        },
+        {
+          "heading": "Refunds and purchases",
+          "paragraphs": [
+            "All sales are final once checkout completes. We do not refund change-of-mind purchases, account bans, EasyAnti-Cheat penalties, or issues caused by ignoring the setup notes or launching while the site is not current for that patch.",
+            "If the product does not work as described on a supported setup—Windows 10 or 11 with HVCI, core isolation, TPM, and secure boot on, and the current loader from the portal—contact us through the Support page. Include your portal order ID, Windows version, and the exact loader text.",
+            "We may, at our discretion, offer a fix, replacement access, or partial/full refund when we confirm a fault on our side. We are not obligated to approve every request."
+          ]
+        },
+        {
+          "heading": "Availability and risk",
+          "paragraphs": [
+            "Third-party tools for Rust can conflict with game updates and EasyAnti-Cheat. You use this software at your own risk, including possible account action.",
+            "Check the homepage status banner before every session. Do not queue ranked while modules are offline or misaligned after a patch."
+          ]
+        },
+        {
+          "heading": "Changes",
+          "paragraphs": [
+            "We may update these terms. The “Last updated” date at the top will change when we do. Continued use of the site after changes means you accept the revised terms."
+          ]
+        },
+        {
+          "heading": "Support",
+          "paragraphs": [
+            "For terms, billing, or loader questions, use the buttons on the Support page. See also our Privacy Policy for how we handle site data."
+          ]
+        }
+      ]
+    },
+    "support": {
+      "title": "Rust support",
+      "description": "Loader, HWID spoofer, UGC, and checkout help for rust-hacks.com."
+    }
+  },
+  "sectionSearch": {
+    "blogHeading": "Filter guides by topic",
+    "supportHeading": "Browse help topics"
+  },
+  "ui": {
+    "skipLink": "Skip to main content",
+    "browseCheats": "Try Now",
+    "browseCheatsMobile": "Start checkout",
+    "homeAria": "Rust Hacks home",
+    "checkoutAria": "Start checkout",
+    "discordAria": "Buy Rust Hacks",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "themeLight": "Switch to light mode",
+    "themeDark": "Switch to dark mode",
+    "searchPlaceholder": "Search products, guides, FAQ…",
+    "searchEmpty": "Type to search the site.",
+    "searchNoResults": "No results. Try another term.",
+    "searchCloseAria": "Close search",
+    "searchTitle": "Search",
+    "searchOpenAria": "Search site"
+  },
+  "language": {
+    "label": "Language",
+    "selectAria": "Select site language"
+  },
+  "exploreSection": {
+    "eyebrow": "Explore",
+    "title": "Everything on the site, one click",
+    "titleAccent": "away",
+    "subtitle": "Jump to products, patch notes, guides, and help without hunting the menu.",
+    "badgeProduct": "PRODUCT",
+    "badgeActive": "Active",
+    "cards": {
+      "cheats": {
+        "title": "Rust Hacks",
+        "desc": "Aimbot, ESP, loot, and chams for Windows PC."
+      },
+      "spoofer": {
+        "title": "HWID Spoofer",
+        "desc": "Hardware profile rotation after a machine flag."
+      },
+      "ugc": {
+        "title": "UGC Account Recovery",
+        "desc": "Appeal workspace for locked gaming accounts."
+      },
+      "plans": {
+        "title": "Plans",
+        "desc": "Compare 1 Month $50 and Lifetime $150."
+      },
+      "features": {
+        "title": "Features",
+        "desc": "15+ modules: aimbot, ESP, loot, and chams."
+      },
+      "status": {
+        "title": "Status",
+        "desc": "Patch notes and portal update reminders."
+      },
+      "faq": {
+        "title": "FAQ",
+        "desc": "Plans, setup, ACE risk, and products."
+      },
+      "support": {
+        "title": "Support",
+        "desc": "Loader, checkout, and portal help."
+      },
+      "blog": {
+        "title": "Blog",
+        "desc": "Aim, ESP, loot, and patch-day guides."
+      },
+      "forum": {
+        "title": "Forum",
+        "desc": "Threads with marked developer replies."
+      }
+    }
+  },
+  "pricing": {
+    "checkout": "Checkout",
+    "purchaseOption": "Purchase option",
+    "selectSubscription": "Select subscription",
+    "bestValue": "Best value",
+    "savePrefix": "Save",
+    "total": "Total",
+    "buyNow": "Buy now",
+    "oneMonth": "1 Month",
+    "lifetime": "Lifetime",
+    "mostPopular": "Most Popular",
+    "plusMore": "+N more",
+    "monthlySuffix": " monthly",
+    "lifetimeSuffix": " lifetime",
+    "saveAmount": "Save ${amount}",
+    "selectPlanAria": "Select plan length"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found",
+    "description": "That URL does not exist or may have moved. Head back to the homepage or browse the products.",
+    "metaDescription": "The page you requested could not be found on rust-hacks.com.",
+    "metaTitleSuffix": "Page not found",
+    "backHome": "Back to home",
+    "viewProducts": "View products",
+    "openForum": "Open the forum"
+  },
+  "status": {
+    "eyebrow": "Status",
+    "title": "Rust Hacks status",
+    "subtitle": "Rust Hacks on rust-hacks.com. Read the color before you launch.",
+    "breadcrumb": "Status",
+    "aceReminderLabel": "ACE reminder",
+    "recentTitle": "Recent updates",
+    "activeLinePrefix": "Last checked",
+    "storeLineup": "Store lineup",
+    "latestLabel": "Latest"
+  },
+  "forum": {
+    "eyebrow": "Community",
+    "title": "Forum: Rust community setup and plans",
+    "subtitle": "This forum covers setup, aim, ESP, and plan questions. Developer replies are marked on each thread.",
+    "breadcrumb": "Forum",
+    "postsAria": "Community posts",
+    "sortAria": "Post sorting",
+    "searchPlaceholder": "Search discussions ✨",
+    "searchAria": "Search discussions",
+    "voteAria": "Discussion voting",
+    "fromGuide": "From the guide:",
+    "comments": "comments",
+    "readDiscussion": "Read discussion",
+    "readGuide": "Read the guide",
+    "basedOn": "Based on:",
+    "paginationAria": "Discussion pages",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "exploreGuides": "Explore the guides",
+    "sortPopular": "Popular",
+    "sortLatest": "Latest",
+    "sortTop": "Most discussed",
+    "filterAria": "Filter discussions by topic",
+    "allTopics": "All topics",
+    "discussionOne": "discussion",
+    "discussionMany": "discussions",
+    "emptyFilter": "No discussions match. Try another search or topic.",
+    "previous": "Previous",
+    "next": "Next",
+    "sidebarAboutTitle": "Forum: Rust community",
+    "sidebarAboutCopy": "Questions about the hack, the HWID spoofer, and UGC recovery. Developer replies stay on the thread.",
+    "sidebarTopics": "topics",
+    "sidebarExploreGuides": "Explore all guides",
+    "sidebarCommunities": "Communities",
+    "sidebarBrowseQa": "Browse related threads",
+    "sidebarBrowseAll": "Browse all communities",
+    "sidebarGuidelines": "Community guidelines",
+    "guideline1": "Keep it friendly and constructive",
+    "guideline2": "Stay on topic and add context",
+    "guideline3": "Mark spoilers and sensitive content",
+    "sidebarReadGuidelines": "Read the full guidelines",
+    "sidebarFootAbout": "About · Guidelines · Privacy · Terms",
+    "upvoteAria": "Upvote this discussion",
+    "downvoteUnavailable": "Downvoting is unavailable",
+    "showingRange": "Showing {from}–{to} of {total}",
+    "zeroDiscussions": "0 discussions",
+    "developerFlair": "Developer",
+    "points": "points",
+    "previewDiscussion": "Preview discussion",
+    "postingUnavailable": "Posting and voting are unavailable here",
+    "commentsTitle": "Comments",
+    "commentsSubtitle": "Developer replies are marked",
+    "detailInTopic": "in this topic",
+    "detailBrowse": "Browse discussions",
+    "detailMoreTitle": "More discussions",
+    "detailViewAll": "View all discussions",
+    "colThread": "Thread",
+    "colReplies": "Replies",
+    "replyOne": "Reply",
+    "colVotes": "Votes",
+    "colLastReply": "Last reply",
+    "closedThread": "Closed",
+    "noRepliesYet": "No replies yet 👀"
+  },
+  "readingTools": {
+    "copyLink": "Copy link",
+    "backToTop": "Back to top",
+    "copied": "Copied"
+  },
+  "blogArticle": {
+    "viewProducts": "View products",
+    "moreArticles": "More articles",
+    "imagePlaceholder": "Image placeholder",
+    "breadcrumbBlog": "Blog"
+  },
+  "breadcrumbs": {
+    "home": "Main page",
+    "products": "Pricing",
+    "blog": "Guide index",
+    "forum": "Threads",
+    "faq": "Questions",
+    "status": "Status page"
+  },
+  "faqPage": {
+    "eyebrow": "Help center",
+    "title": "Faq – Plans, Setup, and ACE Risk Before You Checkout",
+    "subtitle": "This FAQ covers plans, setup, and ACE risk before checkout, including the loader, spoofer, and account tool.",
+    "schemaName": "FAQ — Rust Hacks & Products",
+    "schemaDescription": "Answers about Rust Hacks, the HWID spoofer, UGC recovery, ACE risk, and checkout on rust-hacks.com."
+  },
+  "siteFaqSection": {
+    "allTopicsEyebrow": "All topics",
+    "allTopicsTitle": "Faq: Browse by category",
+    "allTopicsSubtitle": "Plans, visuals, the loader, the spoofer, UGC, and setup.",
+    "contextualEyebrow": "FAQ",
+    "contextualTitle": "Questions about this page",
+    "contextualSubtitle": "Answers tied to what you are reading—visit the FAQ page for every topic."
+  },
+  "catalog": {
+    "viewDetails": "View details",
+    "buyNow": "Buy now",
+    "mostPopular": "Most Popular",
+    "popular": "Popular",
+    "plusMore": "+{count} more",
+    "monthlySuffix": " monthly",
+    "lifetimeSuffix": " lifetime",
+    "saveAmount": "Save ${amount}",
+    "selectPlanAria": "Select plan length",
+    "utilityLabel": "Utility",
+    "atAGlance": "At a glance",
+    "keyCapabilities": "Key capabilities",
+    "focusesBefore": "What {name} focuses on before you open the full module list.",
+    "moreModules": "Plus {count} additional modules in the operator portal—see the full list below.",
+    "allModules": "All modules",
+    "modulesEyebrow": "Modules",
+    "whatsIncluded": "What's included",
+    "moduleNote": "Every module shipped with {name}. Each line is the menu name plus a short note on what it changes.",
+    "optionOne": "option",
+    "optionMany": "options",
+    "experienceEyebrow": "Experience",
+    "inTheClient": "In the client · After you buy",
+    "experienceSubtitle": "Use the screenshots above for {name}—below is what each layer means and how access works after checkout.",
+    "inGameLayers": "In-game layers",
+    "layerLabel": "Layer {label}",
+    "previewLabel": "Getting started",
+    "accessLabel": "",
+    "overviewEyebrow": "Overview",
+    "overviewDesc": "What this product includes and how delivery works on Windows PC.",
+    "productDescription": "Product description",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "guidesEyebrow": "Guides",
+    "learnMore": "Learn more about {name}",
+    "guidesDesc": "Curated articles for setup, tuning, and patch-day checks that match this product."
+  },
+  "blogSidebar": {
+    "ariaLabel": "Article sidebar",
+    "inThisArticle": "In this article",
+    "relatedGuides": "Related guides",
+    "ourProducts": "Our products",
+    "readingTools": "Reading tools",
+    "productCheats": "Rust Hacks",
+    "allProducts": "All products",
+    "hwidSpoofer": "HWID Spoofer",
+    "ugcRecovery": "UGC Account recovery",
+    "tocAria": "Table of contents",
+    "tocFallbackLabel": "Start of article",
+    "quickFactsTitle": "Quick facts",
+    "quickFactsAntiCheat": "EasyAnti-Cheat (EAC)",
+    "quickFactsPlatform": "Windows PC",
+    "quickFactsPlans": "Hack/UGC $35 · Spoofer $50 · Lifetime $150",
+    "quickFactsSupport": "Discord support",
+    "quickFactsCheckStatus": "Check status",
+    "quickFactsViewProduct": "View Rust Hacks",
+    "utilityGuides": "HWID spoofer guides",
+    "moreGuides": "More guides"
+  }
+}

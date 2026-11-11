@@ -1,0 +1,68 @@
+---
+import Icon from '../icons/Icon.astro';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/starwind/card';
+import { getLocaleFromAstro } from '../../i18n';
+import { ROUTES, getLocalizedPath } from '../../utils/path';
+
+const locale = getLocaleFromAstro(Astro);
+const statusHref = getLocalizedPath(ROUTES.status, locale);
+
+const moduleCardClass =
+  'product-modules__card flex flex-col border-border/80 bg-muted/15 py-0 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-lg hover:shadow-primary/5';
+
+const systemRequirements = ['HVCI: ON', 'Core Isolation: ON', 'TPM: ON', 'Secure Boot: ON'];
+const operatingSystem = ['Windows 10 and 11 both supported'];
+---
+
+<section
+  id="requirements"
+  class="border-b border-border bg-muted/20 py-12 md:py-16 scroll-mt-24"
+  aria-labelledby="product-rust-req-title"
+>
+  <div class="mx-auto max-w-6xl px-5">
+    <h2 id="product-rust-req-title" class="text-2xl font-bold leading-tight md:text-3xl">Rust Hack Requirements</h2>
+
+    <div class="product-modules mt-10 grid gap-6 md:grid-cols-2">
+      <Card class={moduleCardClass}>
+        <CardHeader class="space-y-1 border-b border-border/60 pb-4 pt-5">
+          <CardTitle class="text-base font-semibold normal-case leading-snug">System Requirements</CardTitle>
+        </CardHeader>
+        <CardContent class="pb-5 pt-4">
+          <ul class="space-y-2.5 text-sm text-muted-foreground" role="list">
+            {
+              systemRequirements.map((item) => (
+                <li class="flex items-start gap-2.5">
+                  <Icon name="check" size={15} class="product-feature-check mt-0.5 shrink-0 icon-app--primary" />
+                  <span class="font-medium text-foreground">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card class={moduleCardClass}>
+        <CardHeader class="space-y-1 border-b border-border/60 pb-4 pt-5">
+          <CardTitle class="text-base font-semibold normal-case leading-snug">Operating System</CardTitle>
+        </CardHeader>
+        <CardContent class="pb-5 pt-4">
+          <ul class="space-y-2.5 text-sm text-muted-foreground" role="list">
+            {
+              operatingSystem.map((item) => (
+                <li class="flex items-start gap-2.5">
+                  <Icon name="check" size={15} class="product-feature-check mt-0.5 shrink-0 icon-app--primary" />
+                  <span class="font-medium text-foreground">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </CardContent>
+      </Card>
+    </div>
+
+    <p class="mt-8 text-sm leading-relaxed text-muted-foreground">
+      Check that the <a href={statusHref} class="text-primary hover:underline">status page</a> shows green before you use
+      the hack.
+    </p>
+  </div>
+</section>

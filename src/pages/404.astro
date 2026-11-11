@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/icons/Icon.astro';
+import { Button } from '@/components/starwind/button';
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+import { localizedRoutes } from '../utils/path';
+
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+const routes = localizedRoutes(locale);
+const pageTitle = `${t.notFound!.metaTitleSuffix} | ${t.site.name}`;
+---
+
+<BaseLayout title={pageTitle} description={t.notFound!.metaDescription} noindex={true}>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-lg px-5 text-center">
+      <p class="text-sm font-semibold uppercase tracking-wider text-primary">{t.notFound!.code}</p>
+      <h1 class="mt-3 text-3xl font-bold uppercase md:text-4xl">{t.notFound!.title}</h1>
+      <p class="mt-4 text-muted-foreground">{t.notFound!.description}</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <Button as="a" href={routes.home} variant="primary">
+          {t.notFound!.backHome}
+          <Icon name="arrowRight" size={17} />
+        </Button>
+        <Button as="a" href={routes.products} variant="outline">{t.notFound!.viewProducts}</Button>
+        <Button as="a" href={routes.forum} variant="outline">{t.notFound!.openForum}</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

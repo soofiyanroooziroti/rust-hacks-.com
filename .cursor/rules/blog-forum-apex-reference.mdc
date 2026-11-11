@@ -1,0 +1,16 @@
+---
+description: Blog and forum UI must match cheatsapexlegends.org (local cheats_apexlegends_.com)
+globs: src/pages/**/blog/**,src/pages/**/forum/**,src/components/Blog*.astro,src/components/forum/**,src/styles/blog*.css,src/styles/forum.css,src/data/forum.ts,src/scripts/forum*.ts
+alwaysApply: false
+---
+
+# Blog & forum — Apex reference
+
+**Canonical UI:** [cheatsapexlegends.org](https://cheatsapexlegends.org/) — source repo `cheats_apexlegends_.com`.
+
+When editing blog or forum pages, components, CSS, or scripts on **rust-hacks.com**:
+
+1. **Do not** invent new layout (e.g. Reddit card forum). Use Apex patterns: blog index grid + tag filters; article sidebar; forum **table** index with `ForumDiscussionsSearch`, hero stats, category chips.
+2. Before large changes, **diff** the same file under `cheats_apexlegends_.com/src/`.
+3. New posts go in `src/content/blog/{locale}/*.md`; new threads in `src/data/forum.ts` `rawPosts`.
+4. Keep Rust-specific **copy** only; structure and class names stay aligned with Apex.

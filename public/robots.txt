@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /go/
+Disallow: /cheats/
+Disallow: /contact/
+
+Sitemap: https://rust-hacks.com/sitemap.xml

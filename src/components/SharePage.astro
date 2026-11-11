@@ -1,0 +1,33 @@
+---
+import { canonicalUrl } from '../config/seo';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const pageUrl = canonicalUrl(Astro.url.pathname);
+const encodedUrl = encodeURIComponent(pageUrl);
+const encodedText = encodeURIComponent(title);
+---
+
+<nav class="mx-auto flex max-w-6xl flex-wrap gap-x-5 gap-y-2 px-5 py-4 text-sm" aria-label="Share this page">
+  <a
+    href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedText}`}
+    class="text-muted-foreground underline-offset-2 hover:text-primary hover:underline"
+    target="_blank"
+    rel="noopener noreferrer"
+  >Share on X</a>
+  <a
+    href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+    class="text-muted-foreground underline-offset-2 hover:text-primary hover:underline"
+    target="_blank"
+    rel="noopener noreferrer"
+  >Share on Facebook</a>
+  <a
+    href={`https://www.reddit.com/submit?url=${encodedUrl}&title=${encodedText}`}
+    class="text-muted-foreground underline-offset-2 hover:text-primary hover:underline"
+    target="_blank"
+    rel="noopener noreferrer"
+  >Share on Reddit</a>
+</nav>

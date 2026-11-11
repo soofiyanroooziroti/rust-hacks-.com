@@ -1,0 +1,107 @@
+---
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+import '../styles/explore-section.css';
+import type { IconName } from './icons/types';
+import Icon from './icons/Icon.astro';
+import { ROUTES, getLocalizedPath, normalizeInternalPath, productPath } from '../utils/path';
+
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+const ex = t.exploreSection as {
+  eyebrow: string;
+  title: string;
+  titleAccent: string;
+  subtitle: string;
+  badgeProduct: string;
+  badgeActive: string;
+  cards: Record<
+    string,
+    { title: string; desc: string }
+  >;
+};
+
+type ExploreCard = {
+  href: string;
+  icon: IconName;
+  cardKey: keyof typeof ex.cards;
+  badge?: 'product' | 'active';
+  product?: boolean;
+};
+
+const rustHackFeaturesHref = `${productPath('rust-cheat', locale)}#features`;
+
+const cards: ExploreCard[] = [
+  { href: productPath('rust-cheat', locale), icon: 'crosshair', cardKey: 'cheats', badge: 'product', product: true },
+  { href: productPath('spoofer', locale), icon: 'systemUtility', cardKey: 'spoofer', badge: 'product', product: true },
+  { href: productPath('ugc', locale), icon: 'accountRecovery', cardKey: 'ugc', badge: 'product', product: true },
+  { href: getLocalizedPath(ROUTES.products, locale), icon: 'featureUtilitySuite', cardKey: 'plans' },
+  { href: rustHackFeaturesHref, icon: 'layers', cardKey: 'features' },
+  { href: getLocalizedPath(ROUTES.status, locale), icon: 'liveStatus', cardKey: 'status', badge: 'active' },
+  { href: getLocalizedPath(ROUTES.faq, locale), icon: 'faqStatus', cardKey: 'faq' },
+  { href: getLocalizedPath(ROUTES.support, locale), icon: 'headphones', cardKey: 'support' },
+  { href: getLocalizedPath(ROUTES.blog, locale), icon: 'navBlog', cardKey: 'blog' },
+  { href: getLocalizedPath(ROUTES.forum, locale), icon: 'messageCircle', cardKey: 'forum' },
+];
+---
+
+<section
+  id="explore"
+  class="explore-section"
+  aria-labelledby="explore-title"
+  data-explore-section
+>
+  <div class="mx-auto max-w-6xl px-5">
+    <header class="section-header section-header--wide">
+      <p class="section-header__eyebrow">{ex.eyebrow}</p>
+      <h2 id="explore-title" class="section-header__title">
+        {ex.title} <span class="explore-section__title-accent">{ex.titleAccent}</span>
+      </h2>
+      <p class="section-header__subtitle">{ex.subtitle}</p>
+    </header>
+
+    <div class="explore-grid">
+      {
+        cards.map((card) => {
+          const copy = ex.cards[card.cardKey];
+          return (
+          <a
+            href={normalizeInternalPath(card.href)}
+            class:list={['explore-card', card.product && 'explore-card--product']}
+            data-explore-card
+          >
+            <span class="explore-card__spotlight" aria-hidden="true"></span>
+            <span class="explore-card__badge-slot">
+              {
+                card.badge === 'product' ? (
+                  <span class="explore-card__badge">{ex.badgeProduct}</span>
+                ) : card.badge === 'active' ? (
+                  <span class="explore-card__badge explore-card__badge--active">
+                    <span class="explore-card__badge-dot" aria-hidden="true"></span>
+                    {ex.badgeActive}
+                  </span>
+                ) : null
+              }
+            </span>
+            <span class="explore-card__icon" aria-hidden="true">
+              <Icon name={card.icon} size={18} />
+            </span>
+            <h3 class="explore-card__title">{copy.title}</h3>
+            <p class="explore-card__desc">{copy.desc}</p>
+            <span class="explore-card__arrow" aria-hidden="true">
+              <Icon name="arrowRight" size={18} />
+            </span>
+          </a>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initExploreSections } from '../scripts/explore-section.ts';
+
+  initExploreSections();
+  document.addEventListener('astro:page-load', initExploreSections);
+  document.addEventListener('astro:after-swap', initExploreSections);
+</script>

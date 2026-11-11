@@ -1,0 +1,37 @@
+---
+import type { BreadcrumbItem } from '../utils/schema';
+import {
+  Breadcrumb,
+  BreadcrumbItem as CrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/starwind/breadcrumb';
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<Breadcrumb class="mb-4">
+  <BreadcrumbList>
+    {items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <>
+          <CrumbItem>
+            {isLast ? (
+              <BreadcrumbPage>{item.name}</BreadcrumbPage>
+            ) : (
+              <BreadcrumbLink href={item.path}>{item.name}</BreadcrumbLink>
+            )}
+          </CrumbItem>
+          {!isLast && <BreadcrumbSeparator />}
+        </>
+      );
+    })}
+  </BreadcrumbList>
+</Breadcrumb>

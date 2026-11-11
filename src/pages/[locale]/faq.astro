@@ -1,0 +1,48 @@
+---
+import { localeOnlyPaths } from '../../i18n/paths';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllFaqs } from '../../data/faq-locale';
+import { getTranslations } from '../../i18n';
+import { resolvePageSeo } from '../../config/seo';
+import { breadcrumbSchema, faqPageSchema, webPageSchema } from '../../utils/schema';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SiteFaqSection from '../../components/SiteFaqSection.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { localizedPath } from '../../utils/path';
+
+const locale = Astro.params.locale!;
+const t = getTranslations(locale);
+const seo = resolvePageSeo('/faq/', locale);
+const faqs = getAllFaqs(locale);
+
+export function getStaticPaths() {
+  return localeOnlyPaths();
+}
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({ name: t.faqPage.schemaName, description: t.faqPage.schemaDescription, url: localizedPath('/faq/', locale) }),
+    faqPageSchema(faqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') }))),
+    breadcrumbSchema([
+      { name: t.breadcrumbs.home, path: localizedPath('/', locale) },
+      { name: t.breadcrumbs.faq, path: localizedPath('/faq/', locale) },
+    ]),
+  ]}
+>
+  <section class="border-b border-border bg-muted/10 py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={[
+        { name: t.breadcrumbs.home, path: localizedPath('/', locale) },
+        { name: t.breadcrumbs.faq, path: localizedPath('/faq/', locale) },
+      ]} />
+      <div class="mt-6">
+        <SectionHeader eyebrow={t.faqPage.eyebrow} title={t.faqPage.title} desc={t.faqPage.subtitle} titleId="faq-page-title" heading="h1" />
+      </div>
+    </div>
+  </section>
+  <SiteFaqSection items={faqs} variant="full" titleId="faq-page-list" />
+</BaseLayout>

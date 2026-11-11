@@ -1,0 +1,87 @@
+---
+import {
+  DEFAULT_IMAGE_WIDTHS,
+  defaultWebpSrc,
+  hasResponsiveWebpVariants,
+  responsiveSrcSet,
+} from '../utils/responsiveImage';
+
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  loading?: 'lazy' | 'eager';
+  fetchPriority?: 'high' | 'low' | 'auto';
+  sizes?: string;
+  widths?: readonly number[];
+  class?: string;
+  desktopOnly?: boolean;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  fetchPriority,
+  sizes = '(min-width: 1024px) 640px, 100vw',
+  widths = DEFAULT_IMAGE_WIDTHS,
+  class: className,
+  desktopOnly = false,
+} = Astro.props;
+
+const isRaster = /\.(png|jpe?g|webp)$/i.test(src);
+const useResponsiveWebp = isRaster && hasResponsiveWebpVariants(src);
+const srcSet = useResponsiveWebp ? responsiveSrcSet(src, widths) : undefined;
+const imgSrc = desktopOnly
+  ? 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+  : useResponsiveWebp
+    ? defaultWebpSrc(src, widths)
+    : src;
+const pictureSizes = desktopOnly ? '(min-width: 1024px) 490px, 1px' : sizes;
+const pictureMedia = desktopOnly ? '(min-width: 1024px)' : undefined;
+---
+
+{
+  isRaster && useResponsiveWebp ? (
+    <picture>
+      <source type="image/webp" srcset={srcSet} sizes={pictureSizes} media={pictureMedia} />
+      <img
+        src={imgSrc}
+        srcset={desktopOnly ? undefined : srcSet}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={loading}
+        decoding="async"
+        fetchpriority={fetchPriority}
+        sizes={pictureSizes}
+        class={className}
+      />
+    </picture>
+  ) : isRaster ? (
+    <img
+      src={imgSrc}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding="async"
+      fetchpriority={fetchPriority}
+      class={className}
+    />
+  ) : (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding="async"
+      fetchpriority={fetchPriority}
+      class={className}
+    />
+  )
+}

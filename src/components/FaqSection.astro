@@ -1,0 +1,147 @@
+---
+import type { SiteFaqItem, FaqTopic } from '../data/faq';
+import SectionHeader from './SectionHeader.astro';
+import Icon from './icons/Icon.astro';
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+import { localizeInternalLinksInHtml } from '../utils/path';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/starwind/accordion';
+
+interface Props {
+  items: SiteFaqItem[];
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  titleId?: string;
+  showFilters?: boolean;
+  filterTopics?: FaqTopic[];
+  centered?: boolean;
+  contentAlign?: 'left' | 'center';
+  id?: string;
+  class?: string;
+  useNativeDetails?: boolean;
+}
+
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+const faqUi = t.faq;
+const filterTopicLabels = (faqUi as { filterTopics?: Record<FaqTopic, string> }).filterTopics;
+
+const {
+  items,
+  eyebrow = faqUi.eyebrow,
+  title = faqUi.title,
+  subtitle = faqUi.subtitle,
+  titleId = 'faq-heading',
+  showFilters = false,
+  filterTopics,
+  centered = false,
+  contentAlign = 'center',
+  id: sectionId,
+  class: className,
+  useNativeDetails = false,
+} = Astro.props;
+
+const defaultTopicLabels: Record<FaqTopic, string> = {
+  all: 'All',
+  plans: 'Plans',
+  esp: 'Map hack / ESP',
+  scripts: 'Scripts',
+  safety: 'Safety',
+  products: 'Products',
+  blog: 'Blog',
+  setup: 'Setup',
+};
+
+const topicLabels: Record<FaqTopic, string> = { ...defaultTopicLabels, ...filterTopicLabels };
+
+const filters = filterTopics ?? (['all', 'plans', 'esp', 'scripts', 'safety', 'products'] as FaqTopic[]);
+---
+
+<section
+  id={sectionId}
+  class:list={['py-16 md:py-24', className]}
+  aria-labelledby={titleId}
+  data-faq-section={showFilters ? '' : undefined}
+>
+  <div class="mx-auto max-w-6xl px-5">
+    <div class:list={[contentAlign === 'center' && 'mx-auto max-w-3xl', contentAlign === 'left' && 'product-detail__narrow max-w-3xl']}>
+    <SectionHeader
+      eyebrow={eyebrow}
+      title={title}
+      desc={subtitle}
+      titleId={titleId}
+      centered={centered}
+    />
+
+    {
+      showFilters && (
+        <div
+          class:list={[
+            'mt-8 flex flex-wrap gap-2',
+            contentAlign === 'center' ? 'justify-center' : 'justify-start',
+          ]}
+          data-faq-filters
+        >
+          {filters.map((topic, i) => (
+            <button
+              type="button"
+              class:list={[
+                'faq-filter-chip rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground',
+                { 'is-active': i === 0 },
+              ]}
+              data-faq-filter={topic}
+            >
+              {topicLabels[topic]}
+            </button>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      useNativeDetails ? (
+        <div class="mt-8 w-full" data-faq-list>
+          {items.map((faq) => (
+            <details class="border-b border-border/80 py-1" data-faq-topic={faq.topic}>
+              <summary class="flex cursor-pointer list-none items-center gap-2 py-4 text-left [&::-webkit-details-marker]:hidden">
+                <Icon name={faq.icon} size={16} class="shrink-0" />
+                <span class="min-w-0 flex-1 pe-4 font-semibold leading-snug">{faq.q}</span>
+                <Icon name="chevronDown" size={16} class="shrink-0 opacity-70" aria-hidden="true" />
+              </summary>
+              <div class="pb-4 ps-6">
+                <div
+                  class="prose prose-sm dark:prose-invert max-w-none text-muted-foreground"
+                  set:html={localizeInternalLinksInHtml(faq.aHtml ?? faq.a, locale)}
+                />
+              </div>
+            </details>
+          ))}
+        </div>
+      ) : (
+        <Accordion type="single" collapsible class="mt-8 w-full" data-faq-list>
+          {items.map((faq, i) => (
+            <div data-faq-topic={faq.topic}>
+              <AccordionItem value={`faq-${i}`}>
+                <AccordionTrigger class="text-left">
+                  <span class="flex items-center gap-2">
+                    <Icon name={faq.icon} size={16} class="shrink-0" />
+                    <span>{faq.q}</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div class="prose prose-sm dark:prose-invert max-w-none text-muted-foreground" set:html={localizeInternalLinksInHtml(faq.aHtml ?? faq.a, locale)} />
+                </AccordionContent>
+              </AccordionItem>
+            </div>
+          ))}
+        </Accordion>
+      )
+    }
+    </div>
+  </div>
+</section>

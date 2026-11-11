@@ -1,0 +1,171 @@
+---
+import type { Locale } from '../../i18n/locales';
+import { getTranslations } from '../../i18n';
+import { resolvePageSeo } from '../../config/seo';
+import { localizedPath } from '../../utils/path';
+import { breadcrumbSchema, collectionPageSchema } from '../../utils/schema';
+import '../../styles/forum.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import Icon from '../icons/Icon.astro';
+import { forumCategories, forumCategoryFilterKey, forumLastReply } from '../../data/forum';
+import { getForumCategoryLabel, getForumPostsForLocale } from '../../data/forum-i18n';
+import { getBlogPostTimestamp } from '../../data/blog';
+import { getForumUi } from '../../utils/forum-ui';
+import { logoAltForPath } from '../../utils/logo-alt';
+import ForumDiscussionsSearch from './ForumDiscussionsSearch.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+const forumUi = getForumUi(t);
+const forumPosts = getForumPostsForLocale(locale);
+const seo = resolvePageSeo('/forum/', locale);
+const forumPath = localizedPath('/forum/', locale);
+const blogPath = localizedPath('/blog/', locale);
+const breadcrumbs = [
+  { name: t.breadcrumbs.home, path: localizedPath('/', locale) },
+  { name: forumUi.breadcrumb, path: forumPath },
+];
+const categoryKey = (name: string) => forumCategoryFilterKey(name);
+const publishedTimestamp = (date: string) => getBlogPostTimestamp(date);
+const hasPosts = forumPosts.length > 0;
+---
+
+<BaseLayout title={seo.title} description={seo.description} jsonLd={[
+  collectionPageSchema({ name: forumUi.title, description: seo.description, url: forumPath }),
+  breadcrumbSchema(breadcrumbs),
+]}>
+  <section class="forum-page py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+      <header class="forum-hero">
+        <div class="forum-hero__lead">
+          <span class="forum-community-avatar forum-community-avatar--brand">
+            <img src="/logo.webp" alt={logoAltForPath(Astro.url.pathname)} width="34" height="34" class="box-border rounded-md object-contain p-0.5" />
+          </span>
+          <div>
+            <p class="section-header__eyebrow">{forumUi.eyebrow}</p>
+            <h1>{forumUi.title}</h1>
+            <p class="forum-hero__copy">{forumUi.sidebarAboutCopy}</p>
+            <div class="forum-stats forum-hero__stats">
+              <span><b>{forumPosts.length}</b> {forumUi.discussionMany}</span>
+              <span><b>{forumCategories.length}</b> {forumUi.sidebarTopics}</span>
+            </div>
+          </div>
+        </div>
+        <a class="forum-create" href={blogPath}><Icon name="messageCircle" size={17} /> {forumUi.sidebarExploreGuides}</a>
+      </header>
+
+      <div class="forum-layout">
+        <main
+          class="forum-main"
+          aria-label={forumUi.postsAria}
+          data-forum-index
+          data-forum-url={forumPath}
+          data-discussion-one={forumUi.discussionOne}
+          data-discussion-many={forumUi.discussionMany}
+          data-showing-range={forumUi.showingRange}
+          data-zero-discussions={forumUi.zeroDiscussions ?? '0 discussions'}
+        >
+          {hasPosts && (
+            <div class="forum-board-top">
+              <div class="forum-category-filters" role="group" aria-label={forumUi.filterAria}>
+                <button type="button" class="is-active" data-forum-filter="all" aria-pressed="true"><Icon name="layers" size={14} /> {forumUi.allTopics}</button>
+                {forumCategories.map((category) => (
+                  <button type="button" data-forum-filter={categoryKey(category.name)} aria-pressed="false"><Icon name={category.icon} size={14} /> {getForumCategoryLabel(category.name, locale)}</button>
+                ))}
+              </div>
+              <ForumDiscussionsSearch
+                placeholder={forumUi.searchPlaceholder}
+                searchAria={forumUi.searchAria}
+              />
+            </div>
+          )}
+          {hasPosts && (
+            <span id="forum-discussions-search-count" class="sr-only" data-forum-count>{forumPosts.length} {forumUi.discussionMany}</span>
+          )}
+          {hasPosts && (
+            <p class="sr-only" data-forum-visible-count aria-live="polite" aria-atomic="true">
+              {forumPosts.length} {forumUi.discussionMany}
+            </p>
+          )}
+
+          {hasPosts ? (
+            <div class="forum-table" aria-live="polite">
+              <div class="forum-table__head">
+                <span>{forumUi.colThread}</span>
+                <span>{forumUi.colReplies}</span>
+                <span>{forumUi.colVotes}</span>
+                <span>{forumUi.colLastReply}</span>
+              </div>
+              <div class="forum-post-list">
+                {forumPosts.map((post, index) => {
+                  const lastReply = forumLastReply(post.comments);
+                  const threadHref = localizedPath(`/forum/${post.slug}/`, locale);
+                  return (
+                    <article
+                      class="forum-row"
+                      data-forum-card
+                      data-post-slug={post.slug}
+                      data-upvotes={post.upvotes}
+                      data-category={categoryKey(post.category)}
+                      data-comments={post.commentsCount}
+                      data-published={publishedTimestamp(post.date)}
+                      data-order={index}
+                      data-forum-search-text={[post.title, post.excerpt, post.description, post.author, post.slug.replace(/-/g, ' '), getForumCategoryLabel(post.category, locale), post.flair, post.sourceTitle, ...post.body].filter(Boolean).join(' ')}
+                    >
+                      <a class="forum-row__thread" href={threadHref}>
+                        <span class="forum-row__topic">{getForumCategoryLabel(post.category, locale)}</span>
+                        <span class="forum-row__title">{post.title}</span>
+                        <span class="forum-row__excerpt">{post.excerpt}</span>
+                        {post.closed && <span class="forum-row__closed">{forumUi.closedThread}</span>}
+                      </a>
+                      <a class="forum-row__stat" href={threadHref}>
+                        <b>{post.commentsCount}</b>
+                        <small>{post.commentsCount === 1 ? forumUi.replyOne : forumUi.colReplies}</small>
+                      </a>
+                      <span class="forum-row__stat">
+                        <b data-vote-count>{post.upvotes}</b>
+                        <small>{forumUi.colVotes}</small>
+                      </span>
+                      <a class="forum-row__last" href={threadHref}>
+                        <small class="forum-row__col-label">{forumUi.colLastReply}</small>
+                        {lastReply ? (
+                          <>
+                            <time>{post.date}</time>
+                            <span>{lastReply.author}</span>
+                          </>
+                        ) : (
+                          <span>{forumUi.noRepliesYet}</span>
+                        )}
+                      </a>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <p class="forum-empty mt-8 text-center text-muted-foreground" role="status">{forumUi.emptyFilter}</p>
+          )}
+          {hasPosts && <p class="forum-empty" data-forum-empty hidden>{forumUi.emptyFilter}</p>}
+          {hasPosts && <nav class="forum-pagination" aria-label={forumUi.paginationAria} data-forum-pagination hidden>
+            <button type="button" data-page-previous aria-label={forumUi.previous}>{forumUi.previous}</button>
+            <div class="forum-pagination__pages" data-page-buttons></div>
+            <button type="button" data-page-next aria-label={forumUi.next}>{forumUi.next}</button>
+            <span class="forum-pagination__status" data-page-status aria-live="polite"></span>
+          </nav>}
+        </main>
+      </div>
+    </div>
+  </section>
+  {hasPosts && (
+    <script>
+      import { setupForumIndex } from '../../scripts/forum-index.ts';
+      setupForumIndex();
+    </script>
+  )}
+</BaseLayout>

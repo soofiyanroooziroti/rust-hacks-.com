@@ -1,0 +1,11 @@
+---
+import { forumPosts } from '../../../data/forum';
+import { localeSlugPaths } from '../../../i18n/paths';
+import ForumDetailPage from '../../../components/forum/ForumDetailPage.astro';
+
+export function getStaticPaths() {
+  return localeSlugPaths(forumPosts.map((post) => post.slug));
+}
+---
+
+<ForumDetailPage locale={Astro.params.locale!} slug={Astro.params.slug!} />

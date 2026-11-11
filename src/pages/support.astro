@@ -1,0 +1,38 @@
+---
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { resolvePageSeo } from '../config/seo';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContactSupportSection from '../components/ContactSupportSection.astro';
+import { breadcrumbSchema, webPageSchema } from '../utils/schema';
+
+const seo = resolvePageSeo('/support/');
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({
+      name: t.support.title,
+      description: t.support.subtitle,
+      url: '/support/',
+    }),
+    breadcrumbSchema([
+      { name: t.breadcrumbs.home, path: '/' },
+      { name: 'Help center', path: '/support/' },
+    ]),
+  ]}
+>
+  <div class="mx-auto max-w-6xl px-5 pt-8 md:pt-10">
+    <Breadcrumbs
+      items={[
+        { name: t.breadcrumbs.home, path: '/' },
+        { name: 'Help center', path: '/support/' },
+      ]}
+    />
+  </div>
+  <ContactSupportSection titleId="support-page-title" showTicketTips />
+</BaseLayout>

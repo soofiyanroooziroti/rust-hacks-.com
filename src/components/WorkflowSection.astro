@@ -1,0 +1,74 @@
+---
+import { getLocaleFromAstro, getTranslations } from '../i18n';
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+import '../styles/workflow-section.css';
+import { Button } from '@/components/starwind/button';
+
+const w = t.workflow;
+---
+
+<section id="workflow" class="workflow-section" aria-labelledby="workflow-title">
+  <div class="workflow-section__inner mx-auto max-w-6xl px-5">
+    <div class="workflow-section__lead">
+      <header class="section-header section-header--wide">
+        <p class="section-header__eyebrow">{w.eyebrow}</p>
+        <h2 id="workflow-title" class="section-header__title">
+          {w.titleBefore}{' '}
+          <span class="workflow-section__title-accent">{w.titleHighlight}</span>
+          {w.titleAfter ? ` ${w.titleAfter}` : null}
+        </h2>
+        <p class="section-header__subtitle">{w.subtitle}</p>
+      </header>
+      <p class="workflow-section__badge">{w.badge}</p>
+      <div class="workflow-section__cta-row">
+        <Button
+          as="a"
+          href={w.ctaHref}
+          variant="primary"
+          size="lg"
+          class="workflow-section__cta rounded-xl"
+        >
+          {w.ctaLabel}
+        </Button>
+        <Button
+          as="a"
+          href={w.ctaSecondaryHref}
+          variant="secondary"
+          size="lg"
+          class="workflow-section__cta rounded-xl"
+        >
+          {w.ctaSecondary}
+        </Button>
+      </div>
+    </div>
+
+    <div class="workflow-section__steps-panel">
+      <svg
+        class="workflow-section__arc"
+        viewBox="0 0 120 920"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M 10 26 C 100 158, 100 302, 40 460 C -10 618, -10 762, 80 894"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"></path>
+      </svg>
+      <ol class="workflow-section__steps">
+        {
+          w.items.map((item, i) => (
+            <li class:list={['workflow-step', `workflow-step--${i + 1}`]}>
+              <span class="workflow-step__num">{item.num}</span>
+              <div class="workflow-step__copy">
+                <h3 class="workflow-step__title">{item.title}</h3>
+                <p class="workflow-step__desc">{item.desc}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>

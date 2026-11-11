@@ -1,0 +1,91 @@
+---
+import { getLocaleFromAstro, getTranslations } from '../../i18n';
+const locale = getLocaleFromAstro(Astro);
+const t = getTranslations(locale);
+import '../../styles/product-cheat-page.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { productHub, productPages } from '../../data/products';
+import { cheatTierIcons, productCategoryIcons } from '../../data/sectionIcons';
+import { resolvePageSeo } from '../../config/seo';
+import { breadcrumbSchema, collectionPageSchema, itemListSchema } from '../../utils/schema';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CatalogCard from '../../components/CatalogCard.astro';
+import { productPath } from '../../utils/path';
+
+const seo = resolvePageSeo('/product/');
+const breadcrumbs = [
+  { name: t.breadcrumbs.home, path: '/' },
+  { name: t.breadcrumbs.products, path: productHub.path },
+];
+
+function cardIcon(product: (typeof productPages)[number]) {
+  if (product.kind === 'tier') {
+    return cheatTierIcons[product.name] ?? 'crosshair';
+  }
+  return productCategoryIcons[product.category ?? ''] ?? 'package';
+}
+
+function cardLabel(product: (typeof productPages)[number]) {
+  if (product.kind === 'tier') {
+    return product.tier ?? product.name;
+  }
+  return product.category ?? 'Utility';
+}
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    collectionPageSchema({
+      name: productHub.title,
+      description: productHub.description,
+      url: productHub.path,
+    }),
+    breadcrumbSchema(breadcrumbs),
+    itemListSchema(
+      productPages.map((product) => ({
+        name: product.title,
+        url: productPath(product.slug),
+      })),
+    ),
+  ]}
+>
+  <section class="py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <div class="mt-6 max-w-3xl space-y-3">
+        <h1 class="text-3xl font-bold uppercase md:text-4xl">{t.products.title}</h1>
+        <p class="text-lg text-muted-foreground">{t.products.subtitle}</p>
+      </div>
+
+      <div class="products-section__grid products-section__grid--wide mt-10">
+        {productPages.map((product) => (
+          <CatalogCard
+            class="catalog-card--products-section"
+            label={cardLabel(product)}
+            title={product.title}
+            href={productPath(product.slug)}
+            buyUrl={product.buyUrl}
+            productSlug={product.slug}
+            features={product.features}
+            more={product.more}
+            icon={cardIcon(product)}
+            badge={product.badge}
+            variant={product.variant}
+            featured={product.slug === 'rust-cheat'}
+            buyLabel={product.slug === 'spoofer' ? 'Buy the HWID spoofer' : product.slug === 'ugc' ? 'Buy UGC recovery' : 'Buy the loader'}
+            viewLabel="View details"
+            maxFeatures={3}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { setupCatalogCards } from '../../scripts/catalog-card.ts';
+  setupCatalogCards();
+</script>

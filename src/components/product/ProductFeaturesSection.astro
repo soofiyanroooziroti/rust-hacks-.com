@@ -1,0 +1,145 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import Icon from '../icons/Icon.astro';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/starwind/card';
+import type { ProductFeatureGroup } from '../../data/products';
+import { getLocaleFromAstro, getTranslations } from '../../i18n';
+
+interface Props {
+  features: string[];
+  productName: string;
+  featureGroups?: ProductFeatureGroup[];
+}
+
+const locale = getLocaleFromAstro(Astro);
+const catalog = getTranslations(locale).catalog ?? {};
+const { features, productName, featureGroups } = Astro.props;
+const groups = (featureGroups ?? []).filter((group) => group.items.length > 0);
+
+/** Greedy balance: heaviest groups first, assign to the lighter column by item count. */
+function distributeFeatureColumns(catalogGroups: ProductFeatureGroup[]) {
+  const sorted = [...catalogGroups].sort((a, b) => b.items.length - a.items.length);
+  const left: ProductFeatureGroup[] = [];
+  const right: ProductFeatureGroup[] = [];
+  let leftWeight = 0;
+  let rightWeight = 0;
+  for (const group of sorted) {
+    if (leftWeight <= rightWeight) {
+      left.push(group);
+      leftWeight += group.items.length;
+    } else {
+      right.push(group);
+      rightWeight += group.items.length;
+    }
+  }
+  return { left, right };
+}
+
+const featureColumns = groups.length >= 2 ? distributeFeatureColumns(groups) : null;
+
+const moduleCardClass =
+  'product-modules__card flex flex-col border-border/80 bg-muted/15 py-0 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-lg hover:shadow-primary/5';
+---
+
+<section id="features" class="product-detail__features-anchor py-12 md:py-16" aria-labelledby="product-features-title">
+  <div class="mx-auto max-w-6xl px-5">
+    <SectionHeader
+      eyebrow={catalog.modulesEyebrow ?? 'Modules'}
+      title={catalog.whatsIncluded ?? "What's included"}
+      desc={(catalog.moduleNote ?? 'Every module shipped with {name}. Each line is the menu name plus a short note on what it changes.').replace(
+        '{name}',
+        productName,
+      )}
+      titleId="product-features-title"
+    />
+
+    {
+      groups.length > 0 ? (
+        <div class="product-modules mt-10">
+          {
+            featureColumns ? (
+              <div class="product-modules__columns">
+                {[featureColumns.left, featureColumns.right].map((columnGroups) => (
+                  <div class="product-modules__col">
+                    {columnGroups.map((group) => (
+                      <Card class={moduleCardClass}>
+                        <CardHeader class="space-y-1 border-b border-border/60 pb-4 pt-5">
+                          <div class="flex flex-wrap items-center justify-between gap-2">
+                            <CardTitle class="text-base font-semibold normal-case leading-snug">{group.name}</CardTitle>
+                            <span class="text-xs font-medium tabular-nums text-muted-foreground">
+                              {group.items.length}{' '}
+                              {group.items.length === 1
+                                ? (catalog.optionOne ?? 'option')
+                                : (catalog.optionMany ?? 'options')}
+                            </span>
+                          </div>
+                        </CardHeader>
+                        <CardContent class="pb-5 pt-4">
+                          <ul class="product-module-feature-list space-y-2.5 text-sm text-muted-foreground">
+                            {group.items.map((item) => (
+                              <li class="product-module-feature-list__item flex items-start gap-2.5">
+                                <Icon
+                                  name="check"
+                                  size={15}
+                                  class="product-feature-check mt-0.5 shrink-0 icon-app--primary"
+                                />
+                                <span>
+                                  <span class="font-medium text-foreground">{item.name}</span>
+                                  {item.desc && (
+                                    <span class="mt-0.5 block text-muted-foreground">{item.desc}</span>
+                                  )}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="product-modules__col product-modules__col--single">
+                {groups.map((group) => (
+                  <Card class={moduleCardClass}>
+                    <CardHeader class="space-y-1 border-b border-border/60 pb-4 pt-5">
+                      <div class="flex flex-wrap items-center justify-between gap-2">
+                        <CardTitle class="text-base font-semibold normal-case leading-snug">{group.name}</CardTitle>
+                        <span class="text-xs font-medium tabular-nums text-muted-foreground">
+                          {group.items.length}{' '}
+                          {group.items.length === 1 ? (catalog.optionOne ?? 'option') : (catalog.optionMany ?? 'options')}
+                        </span>
+                      </div>
+                    </CardHeader>
+                    <CardContent class="pb-5 pt-4">
+                      <ul class="product-module-feature-list space-y-2.5 text-sm text-muted-foreground">
+                        {group.items.map((item) => (
+                          <li class="product-module-feature-list__item flex items-start gap-2.5">
+                            <Icon name="check" size={15} class="product-feature-check mt-0.5 shrink-0 icon-app--primary" />
+                            <span>
+                              <span class="font-medium text-foreground">{item.name}</span>
+                              {item.desc && <span class="mt-0.5 block text-muted-foreground">{item.desc}</span>}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )
+          }
+        </div>
+      ) : (
+        <ul class="product-detail__features mt-10 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature) => (
+            <li class="flex items-start gap-2.5 rounded-xl border border-border/80 bg-muted/15 px-4 py-3 text-sm text-muted-foreground transition-colors hover:border-primary/25 hover:bg-muted/30">
+              <Icon name="check" size={15} class="product-feature-check mt-0.5 shrink-0 icon-app--primary" />
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</section>

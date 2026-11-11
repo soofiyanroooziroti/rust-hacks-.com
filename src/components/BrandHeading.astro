@@ -1,0 +1,26 @@
+---
+import { splitBrandHeading } from '../utils/heading';
+
+interface Props {
+  text: string;
+  id?: string;
+  as?: 'h1' | 'h2' | 'span';
+  class?: string;
+}
+
+const { text, id, as = 'h1', class: className } = Astro.props;
+const Tag = as;
+const { lead, accent } = splitBrandHeading(text);
+---
+
+<Tag id={id} class:list={['brand-heading', className]}>
+  {
+    lead ? (
+      <span class="brand-heading__lead">
+        {lead}
+        {accent ? ' ' : ''}
+      </span>
+    ) : null
+  }
+  {accent ? <span class="brand-heading__accent">{accent}</span> : null}
+</Tag>
