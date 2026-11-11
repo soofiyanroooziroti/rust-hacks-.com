@@ -29,7 +29,7 @@ const extraStrings = {
       plans: { title: 'Plans', desc: 'Compare 1 Month $35 and Lifetime $150.' },
       features: { title: 'Features', desc: '15+ modules: aimbot, ESP, loot, and weapon options.' },
       status: { title: 'Status', desc: 'Patch notes and portal update reminders.' },
-      faq: { title: 'FAQ', desc: 'Plans, setup, ACE risk, and products.' },
+      faq: { title: 'FAQ', desc: 'Plans, setup, EAC risk, and products.' },
       support: { title: 'Support', desc: 'Loader, checkout, and portal help.' },
       blog: { title: 'Blog', desc: 'Aim, ESP, loot, and patch-day guides.' },
       forum: { title: 'Forum', desc: 'Threads with marked developer replies.' },
@@ -68,7 +68,7 @@ const extraStrings = {
     title: 'Rust module status',
     subtitle: 'Check after every Anti-Cheat Expert or client update before you launch.',
     breadcrumb: 'Status',
-    aceReminderLabel: 'ACE reminder',
+    aceReminderLabel: 'EAC reminder',
     recentTitle: 'Recent updates',
     activeLinePrefix: 'Last checked',
     storeLineup: 'Store lineup',
@@ -151,10 +151,10 @@ const extraStrings = {
     eyebrow: 'Help center',
     title: 'FAQ for cheats, products & guides',
     subtitle:
-      'Plans, aim and ESP options, the HWID spoofer, UGC recovery, and what to check after an ACE update.',
+      'Plans, aim and ESP options, the HWID spoofer, UGC recovery, and what to check after an EAC update.',
     schemaName: 'FAQ — Rust Hacks & Products',
     schemaDescription:
-      'Answers about Rust Hacks, the HWID spoofer, UGC recovery, ACE risk, and checkout on rust-hacks.com.',
+      'Answers about Rust Hacks, the HWID spoofer, UGC recovery, EAC risk, and checkout on rust-hacks.com.',
   },
   siteFaqSection: {
     allTopicsEyebrow: 'All topics',

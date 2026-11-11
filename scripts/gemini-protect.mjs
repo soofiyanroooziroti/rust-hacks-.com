@@ -31,7 +31,7 @@ const BASE_TERMS = [
   'HVCI',
   'TPM',
   'Secure Boot',
-  'ACE',
+  'EAC',
   'UGC',
   'USD',
   '1 Month $35',

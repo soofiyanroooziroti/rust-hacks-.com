@@ -47,7 +47,7 @@ export const heroStatusPills: { icon: IconName; label: string }[] = [
   { icon: 'seasonBuild', label: 'Camera FOV' },
   { icon: 'instantDelivery', label: 'Config save' },
   { icon: 'support247', label: 'HWID spoofer' },
-  { icon: 'shieldCheck', label: 'ACE status' },
+  { icon: 'shieldCheck', label: 'EAC status' },
   { icon: 'boneSelect', label: 'Bone select' },
   { icon: 'liveStatus', label: 'Check after a patch' },
 ];

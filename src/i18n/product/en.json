@@ -2,7 +2,7 @@
   "steps": [
     {
       "title": "Check status",
-      "desc": "Confirm modules are online on rust-hacks.com before you buy—especially after a Rust or ACE update."
+      "desc": "Confirm modules are online on rust-hacks.com before you buy—especially after a Rust or EAC update."
     },
     {
       "title": "Pick a plan",
@@ -196,7 +196,7 @@
       }
     ],
     "goodToKnow": "Rust and EasyAnti-Cheat (EAC) update often. Confirm availability on rust-hacks.com before you launch. Overlay behavior may differ in menus or spectator views after patches.",
-    "limitations": "Third-party software can violate game terms and lead to bans. You use this software at your own risk. Compatibility can change after game, ACE, or Windows updates without notice.",
+    "limitations": "Third-party software can violate game terms and lead to bans. You use this software at your own risk. Compatibility can change after game, EAC, or Windows updates without notice.",
     "requirements": [
       "Windows 10/11",
       "Intel/AMD",

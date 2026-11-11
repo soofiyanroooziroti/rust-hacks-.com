@@ -142,7 +142,7 @@
     "rows": [
       {
         "title": "Patch-day loader updates",
-        "desc": "Check rust-hacks.com after a Rust or ACE update before you open the loader."
+        "desc": "Check rust-hacks.com after a Rust or EAC update before you open the loader."
       },
       {
         "title": "Separate aim sliders",
@@ -167,7 +167,7 @@
     ],
     "metrics": [
       {
-        "value": "ACE",
+        "value": "EAC",
         "title": "Check after a patch",
         "desc": "Recheck the site after a Rust or EasyAnti-Cheat update before you launch."
       },
@@ -399,7 +399,7 @@
       {
         "num": "01",
         "phase": "Before purchase",
-        "title": "Check ACE status",
+        "title": "Check EAC status",
         "desc": "Read rust-hacks.com after a client or EasyAnti-Cheat update before you buy or launch."
       },
       {
@@ -957,7 +957,7 @@
       },
       "faq": {
         "title": "FAQ",
-        "desc": "Plans, setup, ACE risk, and products."
+        "desc": "Plans, setup, EAC risk, and products."
       },
       "support": {
         "title": "Support",
@@ -1005,7 +1005,7 @@
     "title": "Rust Hacks status",
     "subtitle": "Rust Hacks on rust-hacks.com. Read the color before you launch.",
     "breadcrumb": "Status",
-    "aceReminderLabel": "ACE reminder",
+    "aceReminderLabel": "EAC reminder",
     "recentTitle": "Recent updates",
     "activeLinePrefix": "Last checked",
     "storeLineup": "Store lineup",
@@ -1096,10 +1096,10 @@
   },
   "faqPage": {
     "eyebrow": "Help center",
-    "title": "Faq – Plans, Setup, and ACE Risk Before You Checkout",
-    "subtitle": "This FAQ covers plans, setup, and ACE risk before checkout, including the loader, spoofer, and account tool.",
+    "title": "FAQ: Plans, Setup and EAC Risk Before You Buy",
+    "subtitle": "This FAQ covers plans, setup, and EAC risk before checkout, including the loader, spoofer, and account tool.",
     "schemaName": "FAQ — Rust Hacks & Products",
-    "schemaDescription": "Answers about Rust Hacks, the HWID spoofer, UGC recovery, ACE risk, and checkout on rust-hacks.com."
+    "schemaDescription": "Answers about Rust Hacks, the HWID spoofer, UGC recovery, EAC risk, and checkout on rust-hacks.com."
   },
   "siteFaqSection": {
     "allTopicsEyebrow": "All topics",

@@ -55,7 +55,7 @@ export const en: Translations = {
     modesLabel: 'Modes',
     modes: ['Operations', 'Warfare', 'Extraction', 'Ranked'],
     metrics: [
-      { label: 'Anti-cheat', strong: 'ACE' },
+      { label: 'Anti-cheat', strong: 'EAC' },
       { label: 'Platform', strong: 'Windows PC' },
       { label: 'Plans', strong: '$35 / $150' },
       { label: 'Support', strong: '24/7' },
@@ -125,7 +125,7 @@ export const en: Translations = {
         title: 'Config',
         subtitle: 'Save the layout you tested.',
         desc: 'Store aim, visuals, loot, weapon options, and misc instead of retuning after every launch.',
-        bullets: ['Save and load configs', 'One slider change at a time', 'Reload after an ACE patch'],
+        bullets: ['Save and load configs', 'One slider change at a time', 'Reload after an EAC patch'],
         tags: ['config', 'presets', 'save'],
         bento: 'sm:col-span-2 lg:col-span-4 lg:row-span-2 lg:col-start-9 lg:row-start-4',
       },
@@ -165,7 +165,7 @@ export const en: Translations = {
     rows: [
       {
         title: 'Patch-day loader updates',
-        desc: 'Check rust-hacks.com after a Rust or ACE update before you open the loader.',
+        desc: 'Check rust-hacks.com after a Rust or EAC update before you open the loader.',
       },
       {
         title: 'Separate aim sliders',
@@ -190,7 +190,7 @@ export const en: Translations = {
     ],
     metrics: [
       {
-        value: 'ACE',
+        value: 'EAC',
         title: 'Check after a patch',
         desc: 'Recheck the site after a Rust or EasyAnti-Cheat update before you launch.',
       },
@@ -217,7 +217,7 @@ export const en: Translations = {
     ctaPrimaryHref: productBase,
     ctaSecondaryHref: '/faq/',
     statusStrip: {
-      aceStatusCta: 'Check ACE status',
+      aceStatusCta: 'Check EAC status',
       aceStatusHref: '/status/',
       perks: [
         { icon: 'instantDelivery', label: 'Instant delivery' },
@@ -246,7 +246,7 @@ export const en: Translations = {
   compatibility: {
     eyebrow: 'Platform support',
     title: 'Runs on your rig.',
-    subtitle: 'Check the site after a Rust or ACE update before you launch.',
+    subtitle: 'Check the site after a Rust or EAC update before you launch.',
     items: ['Windows 10 & 11', 'Intel or AMD', 'HVCI on', 'Core isolation on', 'TPM on', 'Secure boot on', 'Discord support', 'Config save'],
   },
   cheats: {
@@ -350,7 +350,7 @@ export const en: Translations = {
       {
         num: '01',
         phase: 'Before purchase',
-        title: 'Check ACE status',
+        title: 'Check EAC status',
         desc: 'Read rust-hacks.com after a client or EasyAnti-Cheat update before you buy or launch.',
       },
       {

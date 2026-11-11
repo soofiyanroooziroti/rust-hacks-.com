@@ -48,7 +48,7 @@ const extraStrings = {
       },
       faq: {
         title: 'FAQ',
-        desc: 'Plans, setup, ACE risk, and products.',
+        desc: 'Plans, setup, EAC risk, and products.',
       },
       support: {
         title: 'Support',
@@ -93,7 +93,7 @@ const extraStrings = {
     title: 'Rust module status',
     subtitle: 'Check after every Anti-Cheat Expert or client update before you launch.',
     breadcrumb: 'Status',
-    aceReminderLabel: 'ACE reminder',
+    aceReminderLabel: 'EAC reminder',
     recentTitle: 'Recent updates',
     activeLinePrefix: 'Last checked',
   },
@@ -125,10 +125,10 @@ const extraStrings = {
     eyebrow: 'Help center',
     title: 'FAQ for cheats, products & guides',
     subtitle:
-      'Plans, aim and ESP options, the HWID spoofer, UGC recovery, and what to check after an ACE update.',
+      'Plans, aim and ESP options, the HWID spoofer, UGC recovery, and what to check after an EAC update.',
     schemaName: 'FAQ — Rust Hacks & Products',
     schemaDescription:
-      'Answers about Rust Hacks, the HWID spoofer, UGC recovery, ACE risk, and checkout on rust-hacks.com.',
+      'Answers about Rust Hacks, the HWID spoofer, UGC recovery, EAC risk, and checkout on rust-hacks.com.',
   },
   siteFaqSection: {
     allTopicsEyebrow: 'All topics',

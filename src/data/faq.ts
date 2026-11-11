@@ -285,7 +285,7 @@ const defaultBlogFaqs: SiteFaqItem[] = [
     topic: 'blog',
     icon: 'faqBlogDefault3',
     q: 'Will settings in this article work next patch?',
-    a: 'Re-check after every Rust or ACE update. Reload a saved config instead of copying old slider values from a post.',
+    a: 'Re-check after every Rust or EAC update. Reload a saved config instead of copying old slider values from a post.',
   },
 ];
 

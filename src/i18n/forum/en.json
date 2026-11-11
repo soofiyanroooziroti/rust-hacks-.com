@@ -7,7 +7,7 @@
   },
   "posts": {
     "ace-status-before-launch": {
-      "title": "Do I launch after an ACE update if the site still says online?",
+      "title": "Do I launch after an EAC update if the site still says online?",
       "excerpt": "Client patched overnight. I have a monthly key and I do not want to open the loader on a stale build.",
       "body": [
         "Windows 11, monthly key for Rust Hacks. The game client updated this morning. The site banner still looked like yesterday.",
@@ -17,7 +17,7 @@
       "comments": [
         {
           "author": "HarborWatch",
-          "body": "Wait. Check rust-hacks.com after the client or ACE update, not the banner you remember from last night. Nothing here is a promise that a session stays clean. If status is not current, leave the loader closed.",
+          "body": "Wait. Check rust-hacks.com after the client or EAC update, not the banner you remember from last night. Nothing here is a promise that a session stays clean. If status is not current, leave the loader closed.",
           "replies": [
             {
               "author": "NightRaid",

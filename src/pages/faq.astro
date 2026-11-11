@@ -26,7 +26,7 @@ const faqs = getAllFaqs();
     webPageSchema({
       name: 'FAQ — Rust Hacks & Products',
       description:
-        'Answers about Rust Hacks, the HWID spoofer, UGC recovery, ACE risk, and checkout on rust-hacks.com.',
+        'Answers about Rust Hacks, the HWID spoofer, UGC recovery, EAC risk, and checkout on rust-hacks.com.',
       url: '/faq/',
     }),
     faqPageSchema(faqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') }))),
