@@ -2,7 +2,7 @@
 {
   "tag": "Visuals",
   "title": "Rust Animal ESP Hack: Track Wolves, Bears and More",
-  "seoTitle": "Rust Animal ESP Hack: Wolves, Bears",
+  "seoTitle": "Rust Animal ESP Hack: Wolves, Bears, Boars, and Deer",
   "slug": "rust-animal-esp-hack",
   "image": "/images/blog/rust-animal-esp-hack.webp",
   "imageAlt": "Rust road scene with ESP name labels in the distance",

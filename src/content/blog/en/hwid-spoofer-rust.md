@@ -2,11 +2,11 @@
 {
   "tag": "Hardware",
   "title": "HWID Spoofer Rust Guide: Discover What an HWID Spoofer Does",
-  "seoTitle": "HWID Spoofer Rust: What It Does",
+  "seoTitle": "HWID Spoofer Rust: Hardware Flags and New Accounts",
   "slug": "hwid-spoofer-rust",
   "image": "/images/blog/hwid-spoofer-rust.webp",
   "imageAlt": "Rust snowy landscape with small distance ESP markers",
-  "desc": "HWID spoofer rust, explained: what is an hwid, how a rust hwid ban follows the PC, and what a fingerprint change does not undo. Read before mixing two cases.",
+  "desc": "HWID spoofer rust: what is an hwid, how a rust hwid ban follows the PC, and what a fingerprint change does not undo. Read before mixing two cases.",
   "date": "Sep 22, 2026",
   "dateIso": "2026-09-22",
   "readTime": "9 min read",

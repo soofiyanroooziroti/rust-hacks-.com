@@ -2,7 +2,7 @@
 {
   "tag": "Setup",
   "title": "Rust Hack Download: Setup Guide and How to Use It",
-  "seoTitle": "Rust Hack Download: Setup Guide",
+  "seoTitle": "Rust Hack Download: Portal Setup Steps on Windows PC",
   "slug": "rust-hack-download",
   "image": "/images/blog/rust-hack-download.webp",
   "imageAlt": "Rust player with a weapon near a base tower at night",

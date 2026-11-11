@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { title, html, href } = Astro.props;
-const isCheckout = href.startsWith('/go/');
+const isCheckout = href.startsWith('/go/') || href.includes('zadeyo.com');
 ---
 
 <aside class="blog-post-cta not-prose my-8" aria-label={title}>
@@ -26,7 +26,7 @@ const isCheckout = href.startsWith('/go/');
       size="sm"
       class="blog-post-cta__btn justify-start"
       {...(isCheckout
-        ? { rel: 'nofollow sponsored', 'data-astro-reload': true, 'data-astro-prefetch': 'false' }
+        ? { rel: 'sponsored nofollow noopener', 'data-astro-reload': true, 'data-astro-prefetch': 'false' }
         : {})}
     >
       Buy now

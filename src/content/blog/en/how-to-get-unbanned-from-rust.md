@@ -2,11 +2,11 @@
 {
   "tag": "Accounts",
   "title": "How to Get Unbanned From Rust: The Complete Guide",
-  "seoTitle": "How to Get Unbanned From Rust",
+  "seoTitle": "How to Get Unbanned From Rust: Appeals and Hardware",
   "slug": "how-to-get-unbanned-from-rust",
   "image": "/images/blog/how-to-get-unbanned-from-rust.webp",
   "imageAlt": "Rust base tower at night seen from the ground",
-  "desc": "How to get unbanned from rust starts with the right case: a rust unban appeal versus a hardware flag. Build a rust ban fix checklist before you file anything.",
+  "desc": "How to get unbanned from rust starts with the right case: a rust unban appeal versus a hardware flag. Build a rust ban fix checklist before you file.",
   "date": "Sep 28, 2026",
   "dateIso": "2026-09-28",
   "readTime": "9 min read",

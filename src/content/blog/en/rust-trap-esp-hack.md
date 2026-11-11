@@ -2,7 +2,7 @@
 {
   "tag": "Visuals",
   "title": "Rust Trap ESP Hack: Spot Traps Before You Walk Into Them",
-  "seoTitle": "Rust Trap ESP Hack: Turrets, Mines",
+  "seoTitle": "Rust Trap ESP Hack: Turrets, Mines, and SAM Site Marks",
   "slug": "rust-trap-esp-hack",
   "image": "/images/blog/rust-trap-esp-hack.webp",
   "imageAlt": "Rust stone wall with ESP markers in a snowy area",

@@ -2,7 +2,7 @@
 {
   "tag": "Review",
   "title": "Best Rust Hacks Review & Comparison 2026: Features & Value",
-  "seoTitle": "Best Rust Hacks: Features and Value",
+  "seoTitle": "Best Rust Hacks: Features, Pricing and Value in 2026",
   "slug": "best-rust-hacks",
   "image": "/images/blog/best-rust-hacks.webp",
   "imageAlt": "Rust inventory screen with a skeleton ESP overlay and player name",

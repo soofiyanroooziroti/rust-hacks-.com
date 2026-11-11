@@ -22,7 +22,7 @@ You verify the domain at your DNS provider—no HTML meta tags in the repo.
 | ------------------- | ------------------------- |
 | delta force cheats (broad) | `/` |
 | plans, spoofer, UGC | `/products/delta-force-cheats/` |
-| aim, ESP, loot, chams | blog posts (titles set per article) |
+| aim, ESP, loot, weapon options | blog posts (titles set per article) |
 | hwid | `/products/delta-force-cheats/hwid-spoofer/` |
 | purchase / refund | `/terms/`, `/support/` |
 

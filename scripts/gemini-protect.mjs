@@ -19,7 +19,7 @@ const BASE_TERMS = [
   'CS2 cheats',
   'aimbot',
   'wallhack',
-  'chams',
+  'weapon options',
   'Discord',
   'Windows',
   'Lifetime',

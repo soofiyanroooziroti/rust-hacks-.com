@@ -23,11 +23,11 @@ const extraStrings = {
     badgeProduct: 'PRODUCT',
     badgeActive: 'Active',
     cards: {
-      cheats: { title: 'Rust Hacks', desc: 'Aimbot, ESP, loot, and chams for Windows PC.' },
+      cheats: { title: 'Rust Hacks', desc: 'Aimbot, ESP, loot, and weapon options for Windows PC.' },
       spoofer: { title: 'HWID Spoofer', desc: 'Hardware profile rotation after a machine flag.' },
       ugc: { title: 'UGC Account Recovery', desc: 'Appeal workspace for locked gaming accounts.' },
       plans: { title: 'Plans', desc: 'Compare 1 Month $35 and Lifetime $150.' },
-      features: { title: 'Features', desc: '15+ modules: aimbot, ESP, loot, and chams.' },
+      features: { title: 'Features', desc: '15+ modules: aimbot, ESP, loot, and weapon options.' },
       status: { title: 'Status', desc: 'Patch notes and portal update reminders.' },
       faq: { title: 'FAQ', desc: 'Plans, setup, ACE risk, and products.' },
       support: { title: 'Support', desc: 'Loader, checkout, and portal help.' },

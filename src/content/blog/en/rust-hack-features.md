@@ -2,11 +2,11 @@
 {
   "tag": "Config",
   "title": "Rust Hack Features: Customize Your Interface with Config Options",
-  "seoTitle": "Rust Hack Features: Config Options",
+  "seoTitle": "Rust Hack Features: Config Options and Overlay Sliders",
   "slug": "rust-hack-features",
   "image": "/images/blog/rust-hack-features.webp",
   "imageAlt": "Rust night view with ESP labels over distant terrain",
-  "desc": "Rust hack features are config sliders: watermark, font, icon size, box width, and FPS. Open the rust hack menu before you look for aim rows on the wrong list.",
+  "desc": "Rust hack features are config sliders: watermark, font, icon size, box width, and FPS. Open the rust hack menu before you look for aim rows.",
   "date": "Oct 10, 2026",
   "dateIso": "2026-10-10",
   "readTime": "7 min read",

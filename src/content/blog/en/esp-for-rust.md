@@ -2,11 +2,11 @@
 {
   "tag": "Visuals",
   "title": "ESP for Rust: Gain the Upper Hand with Visual ESP Hacks",
-  "seoTitle": "ESP for Rust: Visual Labels",
+  "seoTitle": "ESP for Rust: Player, Loot, Animal, and Trap Labels",
   "slug": "esp-for-rust",
   "image": "/images/blog/esp-for-rust.webp",
   "imageAlt": "Rust skeleton ESP and name label on a player in a wooden room",
-  "desc": "ESP for rust on this Windows loader: wood, berries, hemp, food, dropped items, and vehicles. See which rust esp hack toggles to turn on before the map fills up.",
+  "desc": "ESP for rust: wood, berries, hemp, food, dropped items, and vehicles. See which rust esp hack toggles to turn on before the map fills up.",
   "date": "Sep 16, 2026",
   "dateIso": "2026-09-16",
   "readTime": "9 min read",

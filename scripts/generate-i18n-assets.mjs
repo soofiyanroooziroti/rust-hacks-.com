@@ -24,7 +24,7 @@ const extraStrings = {
     cards: {
       cheats: {
         title: 'Rust Hacks',
-        desc: 'Aimbot, ESP, loot, and chams for Windows PC.',
+        desc: 'Aimbot, ESP, loot, and weapon options for Windows PC.',
       },
       spoofer: {
         title: 'HWID Spoofer',
@@ -40,7 +40,7 @@ const extraStrings = {
       },
       features: {
         title: 'Features',
-        desc: '15+ modules: aimbot, ESP, loot, and chams.',
+        desc: '15+ modules: aimbot, ESP, loot, and weapon options.',
       },
       status: {
         title: 'Status',

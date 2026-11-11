@@ -7,7 +7,12 @@ import { normalizeInternalPath, ROUTES } from '../utils/path';
 
 function linkify(text: string): string {
   return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label: string, href: string) => {
-    return `<a href="${normalizeInternalPath(href)}">${label}</a>`;
+    const normalized = normalizeInternalPath(href);
+    const rel =
+      normalized.includes('zadeyo.com') || normalized.startsWith('/go/')
+        ? ' rel="sponsored nofollow noopener"'
+        : '';
+    return `<a href="${normalized}"${rel}>${label}</a>`;
   });
 }
 

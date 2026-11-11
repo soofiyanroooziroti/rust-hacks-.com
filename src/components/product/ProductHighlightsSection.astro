@@ -55,7 +55,7 @@ const { product } = Astro.props;
         {t.catalog?.allModules ?? 'All modules'}
         <Icon name="chevronDown" size={16} />
       </Button>
-      <Button as="a" href={product.buyUrl} variant="primary" size="sm" class="rounded-full" rel="nofollow sponsored" data-astro-reload data-astro-prefetch="false">
+      <Button as="a" href={product.buyUrl} variant="primary" size="sm" class="rounded-full" rel="sponsored nofollow noopener" data-astro-reload data-astro-prefetch="false">
         {t.catalog?.buyNow ?? 'Buy now'}
         <Icon name="arrowRight" size={16} />
       </Button>

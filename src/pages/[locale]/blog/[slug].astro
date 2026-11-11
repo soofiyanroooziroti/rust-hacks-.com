@@ -3,7 +3,6 @@ import '../../../styles/blog-pages.css';
 import { getPrefixedBlogStaticPaths } from '../../../data/blog';
 import { getBlogLocalesForSlug, getBlogPost, getRelatedBlogPosts } from '../../../data/blog';
 import { getTranslations } from '../../../i18n';
-import { resolvePageSeo, pageTitle } from '../../../config/seo';
 import { articleSchema, breadcrumbSchema, faqPageSchema } from '../../../utils/schema';
 import { getBlogPublicationIso } from '../../../data/blog';
 import { checkoutPath, resolveCheckoutHref } from '../../../config/checkout';
@@ -52,7 +51,11 @@ const blogLocales = getBlogLocalesForSlug(post.slug);
 function linkify(text: string): string {
   return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label: string, href: string) => {
     const normalized = getLocalizedPath(normalizeInternalPath(href), locale);
-    return `<a href="${normalized}">${label}</a>`;
+    const rel =
+      normalized.includes('zadeyo.com') || normalized.includes('/go/')
+        ? ' rel="sponsored nofollow noopener"'
+        : '';
+    return `<a href="${normalized}"${rel}>${label}</a>`;
   });
 }
 
@@ -67,7 +70,7 @@ const h1Text = post.h1Title ?? post.title;
 ---
 
 <BaseLayout
-  title={pageTitle(post.seoTitle ?? post.title, null)}
+  title={post.seoTitle ?? post.title}
   description={post.desc}
   blogSlug={post.slug}
   blogLocales={blogLocales}
@@ -206,7 +209,7 @@ const h1Text = post.h1Title ?? post.title;
               href={checkoutPath('apexLegends')}
               variant="primary"
               aria-label={t.ui.checkoutAria}
-              rel="nofollow sponsored"
+              rel="sponsored nofollow noopener"
               data-astro-reload
               data-astro-prefetch="false"
             >

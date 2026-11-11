@@ -2,7 +2,7 @@
 {
   "tag": "Aim",
   "title": "Aimbot for Rust: Master Every Firefight with Precision",
-  "seoTitle": "Aimbot for Rust: FOV and Smooth",
+  "seoTitle": "Aimbot for Rust: FOV, Smooth, Bone, and Key Options",
   "slug": "aimbot-for-rust",
   "image": "/images/blog/aimbot-for-rust.webp",
   "imageAlt": "Rust aimbot FOV circle around a player in a grassy field",

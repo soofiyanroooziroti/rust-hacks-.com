@@ -2,7 +2,6 @@
 import type { Locale } from '../../i18n/locales';
 import { getTranslations } from '../../i18n';
 import { getLocalizedPath, localizedPath } from '../../utils/path';
-import { pageTitle } from '../../config/seo';
 import { breadcrumbSchema, discussionForumPostingSchema } from '../../utils/schema';
 import '../../styles/forum.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -42,7 +41,7 @@ const relatedPosts = [
 ].slice(0, 3);
 ---
 
-<BaseLayout title={pageTitle(post.title)} description={post.description} jsonLd={[
+<BaseLayout title={post.title} description={post.description} jsonLd={[
   discussionForumPostingSchema({
     name: post.title,
     text: post.body.join('\n\n'),

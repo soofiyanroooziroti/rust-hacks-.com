@@ -42,8 +42,16 @@ export function localeHref(astro: Pick<AstroGlobal, 'currentLocale' | 'url'>, hr
 }
 
 export function localizeInternalLinksInHtml(html: string, locale: Locale): string {
-  return String(html).replace(/href="(\/[^"]*)"/g, (full, path: string) => {
+  const localized = String(html).replace(/href="(\/[^"]*)"/g, (full, path: string) => {
     if (path.startsWith('/go/')) return full;
     return `href="${getLocalizedPath(path, locale)}"`;
+  });
+  return localized.replace(/<a\b([^>]*?)>/gi, (tag) => {
+    const href = tag.match(/href="([^"]*)"/)?.[1] ?? '';
+    if (!href.includes('zadeyo.com') && !href.includes('/go/')) return tag;
+    if (/\brel=/.test(tag)) {
+      return tag.replace(/\brel="[^"]*"/, 'rel="sponsored nofollow noopener"');
+    }
+    return tag.replace(/>$/, ' rel="sponsored nofollow noopener">');
   });
 }

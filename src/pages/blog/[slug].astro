@@ -5,7 +5,6 @@ const t = getTranslations(locale);
 import '../../styles/blog-pages.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getAllBlogSlugs, getBlogPost, getRelatedBlogPosts } from '../../data/blog';
-import { pageTitle } from '../../config/seo';
 import {
   articleSchema,
   breadcrumbSchema,
@@ -50,11 +49,14 @@ const related = getRelatedBlogPosts(post.slug, 3);
 const blogFaqs = getBlogFaqs(post.tag, post.slug);
 
 function linkify(text: string): string {
-  return text
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label: string, href: string) => {
-      const normalized = normalizeInternalPath(href);
-      return `<a href="${normalized}">${label}</a>`;
-    });
+  return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label: string, href: string) => {
+    const normalized = normalizeInternalPath(href);
+    const rel =
+      normalized.includes('zadeyo.com') || normalized.startsWith('/go/')
+        ? ' rel="sponsored nofollow noopener"'
+        : '';
+    return `<a href="${normalized}"${rel}>${label}</a>`;
+  });
 }
 
 function slugify(text: string): string {
@@ -67,7 +69,7 @@ const published = parseBlogDate(post.date);
 ---
 
 <BaseLayout
-  title={pageTitle(post.seoTitle ?? post.title)}
+  title={post.seoTitle ?? post.title}
   description={post.desc}
   ogType="article"
   ogImage={socialShareImage(post.image)}
@@ -185,7 +187,7 @@ const published = parseBlogDate(post.date);
           </div>
 
           <nav class="blog-article__actions" aria-label="Continue reading">
-            <Button as="a" href={checkoutPath('rustHack')} variant="primary" aria-label={t.ui.checkoutAria} rel="nofollow sponsored" data-astro-reload data-astro-prefetch="false">
+            <Button as="a" href={checkoutPath('rustHack')} variant="primary" aria-label={t.ui.checkoutAria} rel="sponsored nofollow noopener" data-astro-reload data-astro-prefetch="false">
               Buy Rust Hacks
               <Icon name="arrowRight" size={17} />
             </Button>

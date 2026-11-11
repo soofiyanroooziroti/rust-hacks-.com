@@ -2,7 +2,7 @@
 {
   "tag": "Misc",
   "title": "Rust FOV Changer Hack: Fullbright and Movement Options Explained",
-  "seoTitle": "Rust FOV Changer Hack: Fullbright",
+  "seoTitle": "Rust FOV Changer Hack: Fullbright and Movement Options",
   "slug": "rust-fov-changer-hack",
   "image": "/images/blog/rust-fov-changer-hack.webp",
   "imageAlt": "Rust scope view with an ESP marker on a distant player",

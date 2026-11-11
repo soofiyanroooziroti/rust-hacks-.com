@@ -133,7 +133,7 @@ export function buildSearchIndex(locale: Locale = defaultLocale): SearchIndexEnt
       }
       entries.push({
         title: 'Rust hack features',
-        description: 'Aimbot, player ESP, loot filters, chams, and misc modules on the hack product page.',
+        description: 'Aimbot, player ESP, loot filters, weapon options, and misc modules on the hack product page.',
         url: featuresUrl,
         type: 'Features',
         text: product.fullFeatures.join(' '),

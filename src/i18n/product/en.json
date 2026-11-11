@@ -145,8 +145,8 @@
     ],
     "slides": [
       {
-        "alt": "Rust chams and ESP on an operator in a firefight",
-        "caption": "Chams & ESP",
+        "alt": "Rust skeleton ESP on an operator in a firefight",
+        "caption": "Skeleton ESP",
         "captionDesc": "Player highlights and bone ESP in a close-quarters fight."
       },
       {
@@ -160,9 +160,9 @@
         "captionDesc": "Loot and operator awareness during extraction."
       },
       {
-        "alt": "Rust warehouse interior with chams on several players",
-        "caption": "Warehouse chams",
-        "captionDesc": "Player chams in a close indoor fight."
+        "alt": "Rust warehouse interior with skeleton ESP on several players",
+        "caption": "Warehouse ESP",
+        "captionDesc": "Player ESP in a close indoor fight."
       },
       {
         "alt": "Rust skeleton ESP on operators",

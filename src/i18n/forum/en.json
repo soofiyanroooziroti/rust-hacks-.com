@@ -91,17 +91,17 @@
       ]
     },
     "chams-or-esp": {
-      "title": "Is chams the same thing as the player ESP labels?",
-      "excerpt": "I turned on static chams for players and still see boxes. Do I need both?",
+      "title": "Is skeleton ESP the same thing as the box labels?",
+      "excerpt": "I turned on skeleton ESP and still see boxes. Do I need both?",
       "body": [
-        "Chams menu: applies to player, AI, weapon, hands, or self. Enable, style static or RGB, static color picker.",
-        "ESP still draws the box and the name. I thought chams replaced that."
+        "ESP style rows: skeleton, box, name, and health. Each one is its own toggle.",
+        "The box still draws when skeleton is on. I thought one replaced the other."
       ],
       "flair": "Question",
       "comments": [
         {
           "author": "HarborWatch",
-          "body": "They are separate. Chams is a color pass on the model. Player ESP is the label group: skeleton, box, name, gear. You can run one, the other, or both. Self and hands are for your own view, not for finding enemies.",
+          "body": "They are separate toggles in the ESP group: skeleton, box, name, and gear. You can run one or several. Name labels do not replace the box.",
           "replies": []
         }
       ]

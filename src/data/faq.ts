@@ -101,7 +101,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'esp',
     icon: 'faqWhatIsEsp',
     q: 'Why does player ESP cover the fight?',
-    a: 'Start with box or skeleton, health, and distance. Add gear levels only if you read them. A max distance drops far operators. Chams is a separate color pass, not a replacement for those labels.',
+    a: 'Start with box or skeleton, health, and distance. Add gear levels only if you read them. A max distance drops far operators. Name ESP is a separate toggle, not a replacement for those labels.',
     scopes: ['rust-cheat'],
   },
   {
@@ -141,7 +141,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'scripts',
     icon: 'faqWhatIsEsp',
     q: 'Does visible check stop labels through cover?',
-    a: 'No. Visible check only gates aim assist: it engages when the operator is in line of sight, not through solid cover. Skeleton, box, and chams are separate toggles and can still draw when that check is on.',
+    a: 'No. Visible check only gates aim assist: it engages when the operator is in line of sight, not through solid cover. Skeleton, box, and name ESP are separate toggles and can still draw when that check is on.',
     scopes: ['rust-cheat'],
   },
   {
@@ -197,7 +197,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'scripts',
     icon: 'faqExternalLoader',
     q: 'Does combat mode turn aim assist off?',
-    a: 'No. Combat mode hides the markers you pick: player, AI, item, dead container, or computer. Aim assist, camera width, and chams stay on until you toggle those groups yourself.',
+    a: 'No. Combat mode hides the markers you pick: player, AI, item, dead container, or computer. Aim assist, camera width, and weapon options stay on until you toggle those groups yourself.',
     scopes: ['rust-cheat'],
   },
   {
@@ -553,7 +553,7 @@ export const compareRows = [
   { feature: 'Aimbot options', icon: 'comparePlayerEsp' as const, lite: true, pro: true, elite: true },
   { feature: 'Player ESP', icon: 'compareWardLocator' as const, lite: true, pro: true, elite: true },
   { feature: 'Loot filter', icon: 'compareRuneTimer' as const, lite: true, pro: true, elite: true },
-  { feature: 'Chams', icon: 'compareZoomHack' as const, lite: true, pro: true, elite: true },
+  { feature: 'Weapon options', icon: 'compareZoomHack' as const, lite: true, pro: true, elite: true },
   { feature: 'Camera FOV', icon: 'compareStreamproof' as const, lite: true, pro: true, elite: true },
   { feature: 'Config save', icon: 'compareCloudBackup' as const, lite: true, pro: true, elite: true },
 ];

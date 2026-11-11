@@ -43,7 +43,7 @@ export const heroStatusPills: { icon: IconName; label: string }[] = [
   { icon: 'softAim', label: 'Aimbot' },
   { icon: 'espActive', label: 'Player ESP' },
   { icon: 'lootEsp', label: 'Loot filter' },
-  { icon: 'skeletonEsp', label: 'Chams' },
+  { icon: 'skeletonEsp', label: 'Weapon options' },
   { icon: 'seasonBuild', label: 'Camera FOV' },
   { icon: 'instantDelivery', label: 'Config save' },
   { icon: 'support247', label: 'HWID spoofer' },

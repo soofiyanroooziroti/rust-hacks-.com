@@ -2,11 +2,11 @@
 {
   "tag": "Weapons",
   "title": "Rust No Recoil Hack: Weapon Options Explained",
-  "seoTitle": "Rust No Recoil Hack: Spread, Sway",
+  "seoTitle": "Rust No Recoil Hack: Spread and Sway Options Explained",
   "slug": "rust-no-recoil-hack",
   "image": "/images/blog/rust-no-recoil-hack.webp",
   "imageAlt": "Rust first-person view of a scoped rifle inside a base",
-  "desc": "Rust no recoil hack rows: yaw, pitch, and scope recoil, plus a rust no spread hack and a rust no sway hack. See the weapon list before you touch aim sliders.",
+  "desc": "Rust no recoil hack rows: yaw, pitch and scope recoil, plus no spread and no sway. See the weapon list before you touch the aim sliders.",
   "date": "Nov 4, 2026",
   "dateIso": "2026-11-04",
   "readTime": "7 min read",
