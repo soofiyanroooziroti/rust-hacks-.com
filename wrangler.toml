@@ -1,0 +1,7 @@
+# Static Astro output. Stops `npx wrangler deploy` from adding the Cloudflare adapter.
+name = "rust-hacks--com"
+compatibility_date = "2026-11-12"
+pages_build_output_dir = "dist"
+
+[assets]
+directory = "./dist"

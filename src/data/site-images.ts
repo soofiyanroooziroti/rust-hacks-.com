@@ -1,5 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import type { ProductSlide } from './product-types';
 
 export interface SiteImageEntry {
@@ -11,13 +9,18 @@ export interface SiteImageEntry {
   height: number;
 }
 
-const manifestPath = path.join(process.cwd(), 'public/images/images.json');
+const manifestRaw = import.meta.glob<string>('../../public/images/images.json', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
 
 function loadManifest(): SiteImageEntry[] {
-  if (!fs.existsSync(manifestPath)) {
+  const raw = Object.values(manifestRaw)[0];
+  if (!raw) {
     throw new Error('Missing public/images/images.json');
   }
-  return JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as SiteImageEntry[];
+  return JSON.parse(raw) as SiteImageEntry[];
 }
 
 const manifest = loadManifest();
